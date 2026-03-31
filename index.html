@@ -1,85 +1,142 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
-  <title>MF Soluções Elétricas</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MF Soluções Elétricas</title>
 
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #0f172a;
-      color: white;
-    }
+<style>
+body {
+  margin:0;
+  font-family: Arial;
+  background:#0f172a;
+  color:white;
+}
 
-    .container {
-      padding: 40px 20px;
-      text-align: center;
-    }
+/* MENU */
+header {
+  background:#020617;
+  padding:15px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
 
-    h1 {
-      font-size: 32px;
-      margin-bottom: 10px;
-    }
+header h1 {
+  font-size:18px;
+}
 
-    p {
-      font-size: 18px;
-      color: #cbd5f5;
-    }
+nav a {
+  margin:0 10px;
+  color:white;
+  text-decoration:none;
+}
 
-    .btn {
-      display: inline-block;
-      margin-top: 20px;
-      padding: 15px 25px;
-      background: #22c55e;
-      color: white;
-      text-decoration: none;
-      border-radius: 8px;
-      font-weight: bold;
-    }
+/* HERO */
+.hero {
+  text-align:center;
+  padding:80px 20px;
+}
 
-    .section {
-      margin-top: 60px;
-    }
+.hero h2 {
+  font-size:36px;
+}
 
-    .box {
-      background: #1e293b;
-      padding: 20px;
-      margin: 10px;
-      border-radius: 10px;
-    }
-  </style>
+.btn {
+  background:#22c55e;
+  padding:15px 25px;
+  border-radius:8px;
+  display:inline-block;
+  margin-top:20px;
+  text-decoration:none;
+  color:white;
+}
+
+/* SEÇÕES */
+.section {
+  padding:60px 20px;
+  text-align:center;
+}
+
+.cards {
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+}
+
+.card {
+  background:#1e293b;
+  padding:20px;
+  margin:10px;
+  border-radius:10px;
+  width:250px;
+}
+
+/* WHATSAPP */
+.whatsapp {
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  background:#22c55e;
+  padding:15px;
+  border-radius:50%;
+  font-size:20px;
+}
+</style>
 </head>
 
 <body>
 
-<div class="container">
-  <h1>⚡ MF Soluções Elétricas & Energia Solar</h1>
-  <p>Reduza sua conta de luz em até 95%</p>
+<header>
+  <h1>⚡ MF Energia Solar</h1>
+  <nav>
+    <a href="#">Início</a>
+    <a href="#">Serviços</a>
+    <a href="#">Projetos</a>
+    <a href="#">Contato</a>
+  </nav>
+</header>
 
-  <a class="btn" href="https://wa.me/5521972381004" target="_blank">
-    📲 Solicitar orçamento
+<section class="hero">
+  <h2>Reduza sua conta de luz em até 95%</h2>
+  <p>Energia solar com economia real</p>
+
+  <a class="btn" href="https://wa.me/5521972381004">
+    Solicitar orçamento
   </a>
-</div>
+</section>
 
-<div class="container section">
-  <h2>☀️ Nossos Serviços</h2>
+<section class="section">
+  <h2>Por que escolher a MF?</h2>
 
-  <div class="box">Energia Solar Fotovoltaica</div>
-  <div class="box">Instalações Elétricas</div>
-  <div class="box">Projetos e Dimensionamento</div>
-</div>
+  <div class="cards">
+    <div class="card">Alta qualidade</div>
+    <div class="card">Economia garantida</div>
+    <div class="card">Valorização do imóvel</div>
+    <div class="card">Retorno rápido</div>
+  </div>
+</section>
 
-<div class="container section">
-  <h2>💰 Por que investir?</h2>
-  <p>Economia, valorização do imóvel e proteção contra aumento de energia.</p>
-</div>
+<section class="section">
+  <h2>Nossos serviços</h2>
 
-<div class="container section">
-  <a class="btn" href="https://wa.me/5521972381004" target="_blank">
-    🚀 Falar com especialista
+  <div class="cards">
+    <div class="card">Energia Solar</div>
+    <div class="card">Instalações elétricas</div>
+    <div class="card">Projetos</div>
+  </div>
+</section>
+
+<section class="section">
+  <h2>Fale com um especialista</h2>
+
+  <a class="btn" href="https://wa.me/5521972381004">
+    WhatsApp
   </a>
+</section>
+
+<div class="whatsapp">
+  <a href="https://wa.me/5521972381004" style="color:white;">💬</a>
 </div>
 
 </body>
