@@ -1,47 +1,72 @@
 # ⚡ MF Soluções Elétricas & Energia Solar
 
-## 🚀 Quem somos
-Somos especialistas em soluções elétricas e energia solar fotovoltaica, atuando com foco em economia, segurança e eficiência energética.
+<p align="center">
+  <img src="https://i.imgur.com/8Km9tLL.png" width="100%">
+</p>
 
 ---
 
-## ☀️ Nossos serviços
+## 🚀 Energia inteligente para reduzir sua conta de luz
 
-- ⚡ Instalações elétricas residenciais e comerciais  
-- ☀️ Projetos de energia solar fotovoltaica  
-- 🔧 Manutenção elétrica  
-- 📊 Dimensionamento e análise de consumo  
+Somos especialistas em soluções elétricas e energia solar fotovoltaica, entregando projetos completos com foco em **economia, segurança e retorno financeiro real**.
 
 ---
 
-## 📊 Simulador Solar
+## ☀️ O que fazemos
 
-👉 Em breve: sistema para cálculo de economia com energia solar
-
----
-
-## 💼 Projetos
-
-✔️ Sistemas fotovoltaicos instalados  
-✔️ Redução real na conta de energia  
-✔️ Clientes satisfeitos  
+🔹 Energia solar residencial e comercial  
+🔹 Instalações elétricas completas  
+🔹 Projetos e dimensionamento técnico  
+🔹 Manutenção e otimização de sistemas  
 
 ---
 
-## 📞 Contato
+## 📊 Simule sua economia agora
 
-📱 WhatsApp: https://wa.me/5521972381004  
-📸 Instagram: https://www.instagram.com/mf.eletricidade/
+👉 <a href="[https://SEU-SITE-OU-CALCULADORA](https://kronxz.github.io/solar-calculator/)" target="_blank">Acessar simulador solar</a>
+
+---
+
+## 💰 Por que investir em energia solar?
+
+✔ Redução de até 95% na conta de luz  
+✔ Retorno do investimento garantido  
+✔ Valorização do imóvel  
+✔ Proteção contra aumento de energia  
+
+---
+
+## 💼 Projetos realizados
+
+✔ Sistemas instalados com alta performance  
+✔ Clientes com economia real comprovada  
+✔ Execução profissional e segura  
+
+---
+
+## 📞 Fale com um especialista
+
+👉 <a href="https://wa.me/5521972381004" target="_blank">
+📲 Solicitar orçamento no WhatsApp
+</a>
+
+---
+
+## 🌐 Redes sociais
+
+📸 Instagram: (https://www.instagram.com/mf.eletricidade/)
 
 ---
 
 ## ⚡ Nosso diferencial
 
-✔️ Atendimento profissional  
-✔️ Transparência total  
-✔️ Foco em resultado real  
-✔️ Tecnologia aplicada ao cliente  
+✔ Atendimento profissional  
+✔ Transparência total  
+✔ Tecnologia aplicada  
+✔ Foco em resultado  
 
 ---
 
-🚀 Transformando energia em investimento
+## 🚀 MF Soluções Elétricas
+
+Transformando energia em investimento inteligente.
