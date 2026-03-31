@@ -1,4 +1,4 @@
-# ⚡ MF Soluções Elétricas & Energia Solar
+# ⚡ MF SOLUÇÕES ELÉTRICAS & ENERGIA SOLAR
 
 <p align="center">
   <img src="https://i.imgur.com/8Km9tLL.png" width="100%">
@@ -6,67 +6,75 @@
 
 ---
 
-## 🚀 Energia inteligente para reduzir sua conta de luz
+## 🚀 REDUZA SUA CONTA DE LUZ EM ATÉ 95%
 
-Somos especialistas em soluções elétricas e energia solar fotovoltaica, entregando projetos completos com foco em **economia, segurança e retorno financeiro real**.
+Você está pagando caro na conta de energia todos os meses.
+
+Nós transformamos esse custo em investimento através de sistemas de energia solar projetados para gerar economia real.
 
 ---
 
-## ☀️ O que fazemos
+## ☀️ SOLUÇÕES COMPLETAS EM ENERGIA
 
-🔹 Energia solar residencial e comercial  
-🔹 Instalações elétricas completas  
-🔹 Projetos e dimensionamento técnico  
+🔹 Projetos fotovoltaicos residenciais e comerciais  
+🔹 Instalações elétricas de alto padrão  
+🔹 Dimensionamento técnico profissional  
 🔹 Manutenção e otimização de sistemas  
 
 ---
 
-## 📊 Simule sua economia agora
+## 📊 SIMULE SUA ECONOMIA AGORA
 
-👉 <a href="[https://SEU-SITE-OU-CALCULADORA](https://kronxz.github.io/solar-calculator/)" target="_blank">Acessar simulador solar</a>
+<p align="center">
+  <a href="https://SEU-LINK-CALCULADORA" target="_blank">
+    <img src="https://img.shields.io/badge/🔎%20SIMULAR%20ECONOMIA-CLIQUE%20AQUI-blue?style=for-the-badge">
+  </a>
+</p>
 
 ---
 
-## 💰 Por que investir em energia solar?
+## 💰 POR QUE INVESTIR EM ENERGIA SOLAR?
 
-✔ Redução de até 95% na conta de luz  
-✔ Retorno do investimento garantido  
+✔ Redução imediata na conta de luz  
+✔ Retorno do investimento em poucos anos  
+✔ Proteção contra aumentos da energia  
 ✔ Valorização do imóvel  
-✔ Proteção contra aumento de energia  
 
 ---
 
-## 💼 Projetos realizados
+## 🧠 DIFERENCIAL MF SOLUÇÕES
 
-✔ Sistemas instalados com alta performance  
-✔ Clientes com economia real comprovada  
-✔ Execução profissional e segura  
-
----
-
-## 📞 Fale com um especialista
-
-👉 <a href="https://wa.me/5521972381004" target="_blank">
-📲 Solicitar orçamento no WhatsApp
-</a>
+🚀 Atendimento direto com especialista  
+📊 Projeto pensado para máximo retorno financeiro  
+⚡ Execução profissional e segura  
+🔍 Transparência total no processo  
 
 ---
 
-## 🌐 Redes sociais
+## 📸 RESULTADOS REAIS
 
-📸 Instagram: (https://www.instagram.com/mf.eletricidade/)
-
----
-
-## ⚡ Nosso diferencial
-
-✔ Atendimento profissional  
-✔ Transparência total  
-✔ Tecnologia aplicada  
-✔ Foco em resultado  
+✔ Clientes economizando todos os meses  
+✔ Sistemas funcionando com alta eficiência  
+✔ Projetos entregues com qualidade  
 
 ---
 
-## 🚀 MF Soluções Elétricas
+## 📞 FALE AGORA COM UM ESPECIALISTA
 
-Transformando energia em investimento inteligente.
+<p align="center">
+  <a href="https://wa.me/5521972381004" target="_blank">
+    <img src="https://img.shields.io/badge/📲%20SOLICITAR%20ORÇAMENTO%20AGORA-WhatsApp-green?style=for-the-badge">
+  </a>
+</p>
+
+---
+
+## 🌐 REDES SOCIAIS
+
+📸 Instagram: https://www.instagram.com/mf.eletricidade/
+
+---
+
+## ⚡ MF SOLUÇÕES ELÉTRICAS & ENERGIA SOLAR
+
+Transformando sua conta de luz em economia inteligente.
