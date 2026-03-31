@@ -26,7 +26,7 @@ Nós transformamos esse custo em investimento através de sistemas de energia so
 ## 📊 SIMULE SUA ECONOMIA AGORA
 
 <p align="center">
-  <a href="https://SEU-LINK-CALCULADORA" target="_blank">
+  <a href="https://kronxz.github.io/solar-calculator/" target="_blank">
     <img src="https://img.shields.io/badge/🔎%20SIMULAR%20ECONOMIA-CLIQUE%20AQUI-blue?style=for-the-badge">
   </a>
 </p>
