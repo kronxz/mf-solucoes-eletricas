@@ -9,8 +9,8 @@
 
 body{
 margin:0;
-font-family:Arial;
-background:#0b1220;
+font-family:Arial, sans-serif;
+background:linear-gradient(180deg, #020617 0%, #020617 40%, #020617 100%);
 color:white;
 }
 
@@ -74,7 +74,7 @@ content:'';
 position:absolute;
 width:100%;
 height:100%;
-background:rgba(2,6,23,0.8);
+background:rgba(2,6,23,0.7);
 }
 
 .hero-content{
@@ -100,18 +100,20 @@ margin-top:20px;
 
 /* SEÇÕES */
 .section{
-padding:100px 20px;
+padding:120px 20px;
 text-align:center;
+max-width:1200px;
+margin:auto;
 }
 .btn{
-background:linear-gradient(135deg, #22c55e, #16a34a);
-padding:16px 32px;
-border-radius:10px;
+background:linear-gradient(135deg,#22c55e,#16a34a);
+padding:18px 36px;
+border-radius:12px;
 text-decoration:none;
 color:white;
+font-weight:700;
 display:inline-block;
 margin-top:25px;
-font-weight:700;
 transition:0.3s;
 box-shadow:0 10px 25px rgba(34,197,94,0.4);
 }
@@ -131,32 +133,37 @@ white-space:nowrap;
 background:#16a34a;
 }
 .cards{
-display:flex;
-flex-wrap:wrap;
-justify-content:center;
+display:grid;
+grid-template-columns:repeat(auto-fit, minmax(250px,1fr));
+gap:25px;
+margin-top:40px;
 }
 
 .card{
-background:#111827;
-margin:15px;
+background:rgba(255,255,255,0.03);
 padding:30px;
 border-radius:16px;
-width:300px;
-box-shadow:0 15px 40px rgba(0,0,0,0.5);
+backdrop-filter:blur(10px);
+border:1px solid rgba(255,255,255,0.05);
 transition:0.3s;
+font-weight:500;
 }
+
+.card:hover{
+transform:translateY(-5px);
+box-shadow:0 20px 40px rgba(0,0,0,0.5);
+}
+.card:hover img{
+transform:scale(1.05);
+}
+
 .card img{
 border-radius:12px;
 margin-bottom:12px;
 transition:0.3s;
 }
 
-.card:hover img{
-transform:scale(1.05);
-}
-.card:hover{
-transform:translateY(-8px);
-}
+
 
 /* GALERIA REAL */
 .gallery{
@@ -250,6 +257,15 @@ width:90%;
 .gallery img{
 width:100%;
 height:auto;
+}
+  h2{
+font-size:32px;
+margin-bottom:10px;
+font-weight:700;
+}
+
+.section p{
+color:#94a3b8;
 }
 
 /* MAPA */
