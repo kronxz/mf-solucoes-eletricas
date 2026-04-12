@@ -17,15 +17,17 @@ color:white;
 /* MENU */
 header{
 position:fixed;
-width:100%;
 top:0;
+left:0;
+width:100%;
 display:flex;
 justify-content:space-between;
 align-items:center;
-padding:20px 50px;
+padding:20px 40px;
 background:rgba(2,6,23,0.9);
 backdrop-filter: blur(10px);
 z-index:999;
+box-sizing:border-box; /* 🔥 ESSA LINHA RESOLVE */
 }
 
 .logo img{
