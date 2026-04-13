@@ -341,35 +341,65 @@ color:#94a3b8;
   max-width:900px;
   margin:40px auto;
   overflow:hidden;
+  border-radius:20px;
 }
 
 .slides{
   display:flex;
-  transition:0.5s;
+  transition:transform 0.6s ease-in-out;
 }
 
 .slides img{
   width:100%;
-  border-radius:16px;
   flex-shrink:0;
+  border-radius:20px;
 }
 
+/* BOTÕES */
 .prev, .next{
   position:absolute;
   top:50%;
   transform:translateY(-50%);
-  background:rgba(0,0,0,0.5);
+  background:rgba(0,0,0,0.4);
   color:white;
   border:none;
-  padding:10px 15px;
+  padding:12px;
   cursor:pointer;
   border-radius:50%;
-  font-size:20px;
+  font-size:18px;
+  transition:0.3s;
 }
 
-.prev{ left:10px; }
-.next{ right:10px; }
+.prev:hover, .next:hover{
+  background:#22c55e;
+}
 
+.prev{ left:15px; }
+.next{ right:15px; }
+
+/* DOTS */
+.dots{
+  position:absolute;
+  bottom:15px;
+  width:100%;
+  text-align:center;
+}
+
+.dots span{
+  display:inline-block;
+  width:10px;
+  height:10px;
+  margin:0 5px;
+  background:#94a3b8;
+  border-radius:50%;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+.dots .active{
+  background:#22c55e;
+  transform:scale(1.3);
+}
 
 
   
@@ -476,8 +506,6 @@ Descubra quanto você pode economizar com energia solar na sua casa ainda hoje
 
 <div class="carrossel">
 
-  <button class="prev">❮</button>
-
   <div class="slides">
     <img src="imagens/obra1.jpg">
     <img src="imagens/obra2.jpg">
@@ -486,7 +514,10 @@ Descubra quanto você pode economizar com energia solar na sua casa ainda hoje
     <img src="imagens/obra5.jpg">
   </div>
 
-  <button class="next">❯</button>
+  <button class="prev"><i class="fas fa-chevron-left"></i></button>
+  <button class="next"><i class="fas fa-chevron-right"></i></button>
+
+  <div class="dots"></div>
 
 </div>
 
@@ -617,19 +648,80 @@ Falar no WhatsApp
 
 let index = 0;
 const slides = document.querySelector(".slides");
-const total = document.querySelectorAll(".slides img").length;
+const imagens = document.querySelectorAll(".slides img");
+const total = imagens.length;
+const dotsContainer = document.querySelector(".dots");
 
-function mostrarSlide(i){
-  index = (i + total) % total;
+let autoplay;
+
+// criar bolinhas
+imagens.forEach((_, i) => {
+  let dot = document.createElement("span");
+  dot.addEventListener("click", () => irPara(i));
+  dotsContainer.appendChild(dot);
+});
+
+const dots = document.querySelectorAll(".dots span");
+
+function atualizar(){
   slides.style.transform = `translateX(-${index * 100}%)`;
+
+  dots.forEach(d => d.classList.remove("active"));
+  dots[index].classList.add("active");
 }
 
-document.querySelector(".next").onclick = () => mostrarSlide(index + 1);
-document.querySelector(".prev").onclick = () => mostrarSlide(index - 1);
+function irPara(i){
+  index = i;
+  atualizar();
+}
 
-setInterval(() => {
-  mostrarSlide(index + 1);
-}, 4000);
+document.querySelector(".next").onclick = () => {
+  index = (index + 1) % total;
+  atualizar();
+};
+
+document.querySelector(".prev").onclick = () => {
+  index = (index - 1 + total) % total;
+  atualizar();
+};
+
+// autoplay
+function iniciar(){
+  autoplay = setInterval(() => {
+    index = (index + 1) % total;
+    atualizar();
+  }, 4000);
+}
+
+function parar(){
+  clearInterval(autoplay);
+}
+
+document.querySelector(".carrossel").addEventListener("mouseenter", parar);
+document.querySelector(".carrossel").addEventListener("mouseleave", iniciar);
+
+// swipe mobile
+let startX = 0;
+
+slides.addEventListener("touchstart", e => {
+  startX = e.touches[0].clientX;
+});
+
+slides.addEventListener("touchend", e => {
+  let endX = e.changedTouches[0].clientX;
+
+  if(startX - endX > 50){
+    index = (index + 1) % total;
+  } else if(endX - startX > 50){
+    index = (index - 1 + total) % total;
+  }
+
+  atualizar();
+});
+
+// iniciar
+atualizar();
+iniciar();
 
 </script>
   
