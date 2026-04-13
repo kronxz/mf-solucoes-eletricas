@@ -335,6 +335,44 @@ color:#94a3b8;
   color:white;
   box-shadow:0 10px 20px rgba(34,197,94,0.4);
 }
+
+.carrossel{
+  position:relative;
+  max-width:900px;
+  margin:40px auto;
+  overflow:hidden;
+}
+
+.slides{
+  display:flex;
+  transition:0.5s;
+}
+
+.slides img{
+  width:100%;
+  border-radius:16px;
+  flex-shrink:0;
+}
+
+.prev, .next{
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  background:rgba(0,0,0,0.5);
+  color:white;
+  border:none;
+  padding:10px 15px;
+  cursor:pointer;
+  border-radius:50%;
+  font-size:20px;
+}
+
+.prev{ left:10px; }
+.next{ right:10px; }
+
+
+
+  
 </style>
 </head>
 
@@ -436,12 +474,19 @@ Descubra quanto você pode economizar com energia solar na sua casa ainda hoje
 <section class="section" id="projetos">
 <h2>Projetos Reais</h2>
 
-<div class="gallery">
+<div class="carrossel">
 
-<img src="imagens/obra1.jpg">
-<img src="imagens/obra2.jpg">
-<img src="imagens/obra3.jpg">
-<img src="imagens/obra4.jpg">
+  <button class="prev">❮</button>
+
+  <div class="slides">
+    <img src="imagens/obra1.jpg">
+    <img src="imagens/obra2.jpg">
+    <img src="imagens/obra3.jpg">
+    <img src="imagens/obra4.jpg">
+    <img src="imagens/obra5.jpg">
+  </div>
+
+  <button class="next">❯</button>
 
 </div>
 
@@ -567,6 +612,28 @@ Falar no WhatsApp
   </p>
 
 </footer>
+
+<script>
+
+let index = 0;
+const slides = document.querySelector(".slides");
+const total = document.querySelectorAll(".slides img").length;
+
+function mostrarSlide(i){
+  index = (i + total) % total;
+  slides.style.transform = `translateX(-${index * 100}%)`;
+}
+
+document.querySelector(".next").onclick = () => mostrarSlide(index + 1);
+document.querySelector(".prev").onclick = () => mostrarSlide(index - 1);
+
+setInterval(() => {
+  mostrarSlide(index + 1);
+}, 4000);
+
+</script>
+  
+
   
 </body>
 </html>
