@@ -50,15 +50,37 @@ gap:20px;
 max-width:100%;
 }
   
-.whatsapp{
+.btn-whatsapp{
 position:fixed;
 bottom:20px;
 right:20px;
-background:#22c55e;
-padding:18px;
-border-radius:50%;
-box-shadow:0 10px 25px rgba(0,0,0,0.3);
-font-size:22px;
+display:flex;
+align-items:center;
+gap:10px;
+
+background:linear-gradient(135deg,#22c55e,#16a34a);
+color:white;
+
+padding:14px 22px;
+border-radius:50px;
+
+font-weight:600;
+font-size:15px;
+
+text-decoration:none;
+
+box-shadow:0 10px 25px rgba(34,197,94,0.4);
+transition:0.3s;
+z-index:999;
+}
+
+.btn-whatsapp i{
+font-size:18px;
+}
+
+.btn-whatsapp:hover{
+transform:scale(1.05);
+box-shadow:0 15px 35px rgba(34,197,94,0.6);
 }
 /* HERO COM SUA IMAGEM */
 .hero{
