@@ -188,12 +188,12 @@ padding:30px;
 border-radius:16px;
 backdrop-filter:blur(10px);
 border:1px solid rgba(255,255,255,0.05);
-transition:0.3s;
+transition: all 0.3s ease;
 font-weight:500;
 }
 
 .card:hover{
-transform:translateY(-5px);
+transform:translateY(-8px) scale(1.02);
 box-shadow:0 20px 40px rgba(0,0,0,0.5);
 }
 .card:hover img{
@@ -599,7 +599,16 @@ color:#94a3b8;
   color:white;
   font-size:20px;
 }
+.reveal{
+  opacity:0;
+  transform:translateY(80px) scale(0.95);
+  transition:all 1s cubic-bezier(0.22, 1, 0.36, 1);
+}
 
+.reveal.active{
+  opacity:1;
+  transform:translateY(0);
+}
 
 
   
@@ -656,7 +665,7 @@ Reduza sua conta de luz em até 95% com energia solar
 
 <div class="diferenciais">
 
-<div class="bloco">
+<div class="bloco reveal">
 
   <div class="img-box">
     <img src="imagens/qualidade.jpg">
@@ -680,7 +689,7 @@ garantindo segurança, eficiência e máximo desempenho em cada projeto.
 
 </div>
 
-<div class="bloco reverse">
+<div class="bloco reverse reveal">
 
   <div class="img-box">
     <img src="imagens/economia.jpg">
@@ -704,7 +713,7 @@ garantindo segurança, eficiência e máximo desempenho em cada projeto.
 
 </div>
 
-<div class="bloco">
+<div class="bloco reveal">
 
   <div class="img-box">
     <img src="imagens/energia.jpg">
@@ -728,7 +737,7 @@ garantindo segurança, eficiência e máximo desempenho em cada projeto.
 
 </div>
 
-<div class="bloco reverse">
+<div class="bloco reverse reveal">
 
   <div class="img-box">
     <img src="imagens/casa.jpg">
@@ -758,17 +767,17 @@ garantindo segurança, eficiência e máximo desempenho em cada projeto.
 <section class="numeros">
 
   <div>
-    <h2>+150</h2>
+    <h2><span class="contador" data-target="150">0</span>+</h2>
     <p>Sistemas instalados</p>
   </div>
 
   <div>
-    <h2>Até 95%</h2>
+    <h2><span class="contador" data-target="95">0</span>%</h2>
     <p>Redução na conta</p>
   </div>
 
   <div>
-    <h2>+R$1.000</h2>
+    <h2>R$ <span class="contador" data-target="1000">0</span></h2>
     <p>Economia mensal</p>
   </div>
 
@@ -961,6 +970,24 @@ Falar no WhatsApp
   Falar com especialista
 </a>
 
+<section class="section" style="text-align:center;">
+
+<h2 style="font-size:38px;">
+Pare de pagar caro na conta de luz todos os meses
+</h2>
+
+<p style="color:#94a3b8; font-size:18px; max-width:600px; margin:auto;">
+Descubra em menos de 30 segundos quanto você pode economizar com energia solar.
+Sem burocracia. Atendimento direto no WhatsApp.
+</p>
+
+<a class="btn" href="https://wa.me/5521972381004" style="margin-top:30px;">
+⚡ Falar com especialista agora
+</a>
+
+</section>
+
+
 <footer class="footer">
 
   <h2>MF Soluções Elétricas</h2>
@@ -1074,6 +1101,59 @@ slides.addEventListener("touchend", e => {
 // iniciar
 atualizar();
 iniciar();
+
+function revelar(){
+  const elementos = document.querySelectorAll('.reveal');
+
+  elementos.forEach(el => {
+    const topo = el.getBoundingClientRect().top;
+    const alturaTela = window.innerHeight;
+
+    if(topo < alturaTela - 100){
+      el.classList.add('active');
+    }
+  });
+}
+
+window.addEventListener('scroll', revelar);
+revelar();
+const contadores = document.querySelectorAll('.contador');
+
+contadores.forEach(contador => {
+  const atualizar = () => {
+    const alvo = +contador.getAttribute('data-target');
+    const valor = +contador.innerText;
+
+    const incremento = alvo / 100;
+
+    if(valor < alvo){
+      contador.innerText = Math.ceil(valor + incremento);
+      setTimeout(atualizar, 20);
+    } else {
+      contador.innerText = alvo;
+    }
+  };
+
+  atualizar();
+});
+const botoes = document.querySelectorAll('.btn');
+
+botoes.forEach(botao => {
+  botao.addEventListener('mousemove', e => {
+    const rect = botao.getBoundingClientRect();
+
+    const x = e.clientX - rect.left - rect.width/2;
+    const y = e.clientY - rect.top - rect.height/2;
+
+    botao.style.transform = `translate(${x * 0.15}px, ${y * 0.15}px) scale(1.05)`;
+  });
+
+  botao.addEventListener('mouseleave', () => {
+    botao.style.transform = 'translate(0,0) scale(1)';
+  });
+});
+
+
 
 </script>
   
