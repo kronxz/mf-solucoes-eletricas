@@ -535,14 +535,24 @@ color:#94a3b8;
   color:#94a3b8;
   font-size:14px;
 }
-.numeros{
-  display:flex;
-  flex-wrap:wrap;
-  gap:20px;
-  justify-content:space-around;
-  text-align:center;
-  margin:60px 0;
-}
+<section class="numeros destaque">
+
+  <div class="numero-box">
+    <h2><span class="contador" data-target="150">0</span>+</h2>
+    <p>Sistemas instalados</p>
+  </div>
+
+  <div class="numero-box">
+    <h2><span class="contador" data-target="95">0</span>%</h2>
+    <p>Redução na conta</p>
+  </div>
+
+  <div class="numero-box">
+    <h2>R$ <span class="contador" data-target="1000">0</span></h2>
+    <p>Economia mensal</p>
+  </div>
+
+</section>
 
 .numeros h2{
   color:#22c55e;
@@ -609,6 +619,66 @@ color:#94a3b8;
   opacity:1;
   transform:translateY(0);
 }
+.destaque{
+  background:linear-gradient(180deg,#020617,#020617,#020617);
+  padding:80px 20px;
+}
+
+.numero-box{
+  background:rgba(255,255,255,0.03);
+  padding:30px;
+  border-radius:16px;
+  width:220px;
+  margin:20px;
+  backdrop-filter:blur(10px);
+  border:1px solid rgba(255,255,255,0.05);
+  transition:0.3s;
+}
+
+.numero-box:hover{
+  transform:translateY(-8px);
+}
+
+.numeros{
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:20px;
+}
+.passos.premium{
+  display:flex;
+  justify-content:center;
+  gap:20px;
+  flex-wrap:wrap;
+}
+
+.passo{
+  background:#0f172a;
+  padding:25px;
+  border-radius:12px;
+  width:200px;
+  text-align:center;
+  transition:0.3s;
+}
+
+.passo h3{
+  color:#22c55e;
+  font-size:22px;
+  margin-bottom:10px;
+}
+
+.passo:hover{
+  transform:translateY(-6px);
+}
+.fundo-diferente{
+  background:#020617;
+  border-top:1px solid rgba(255,255,255,0.05);
+  border-bottom:1px solid rgba(255,255,255,0.05);
+}
+
+
+
+
 
 
   
@@ -782,30 +852,30 @@ garantindo segurança, eficiência e máximo desempenho em cada projeto.
   </div>
 
 </section>
-<section class="section como">
+<section class="section como fundo-diferente">
 
 <h2>Como funciona</h2>
 
-<div class="passos">
+<div class="passos premium">
 
-<div>
-<h3>1. Captação</h3>
-<p>Os painéis captam a luz solar.</p>
+<div class="passo">
+  <h3>01</h3>
+  <p>Captação da energia solar pelos painéis</p>
 </div>
 
-<div>
-<h3>2. Conversão</h3>
-<p>O inversor transforma em energia elétrica.</p>
+<div class="passo">
+  <h3>02</h3>
+  <p>Conversão em energia elétrica pelo inversor</p>
 </div>
 
-<div>
-<h3>3. Uso</h3>
-<p>A energia alimenta sua casa.</p>
+<div class="passo">
+  <h3>03</h3>
+  <p>Energia distribuída na sua casa</p>
 </div>
 
-<div>
-<h3>4. Economia</h3>
-<p>Você reduz drasticamente sua conta.</p>
+<div class="passo">
+  <h3>04</h3>
+  <p>Redução imediata na conta de luz</p>
 </div>
 
 </div>
