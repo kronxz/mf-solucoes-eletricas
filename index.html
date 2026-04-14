@@ -843,13 +843,12 @@ color:#94a3b8;
 }
 .financiamento {
   text-align: center;
-  padding: 100px 20px;
+  padding: 120px 20px;
 
-  background: linear-gradient(
-    to bottom,
-    #020617,
-    #020617,
-    #030b1f
+  background: radial-gradient(circle at center,
+    #020617 0%,
+    #020617 40%,
+    #03122e 100%
   );
 }
 
@@ -865,25 +864,28 @@ color:#94a3b8;
 }
 
 .bancos {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 40px;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+  max-width: 800px;
+  margin: 0 auto;
 }
 
 .bancos img {
-  height: 40px;
-  opacity: 0.7;
+  height: 55px; /* maior */
+  margin: 0 auto;
+  display: block;
+
+  opacity: 0.9; /* mais visível */
+  filter: brightness(1.2); /* clareia */
+
   transition: all 0.3s ease;
-  filter: grayscale(100%);
 }
 
 /* 🔥 EFEITO PREMIUM */
 .bancos img:hover {
-  opacity: 1;
-  transform: scale(1.1);
-  filter: grayscale(0%);
+  transform: scale(1.15);
+  filter: brightness(1.6);
 }
 /* ANIMAÇÃO DE ENTRADA */
 .bancos img {
@@ -910,7 +912,13 @@ color:#94a3b8;
     opacity: 1;
   }
 }
+.bancos img {
+  box-shadow: 0 0 0px rgba(0,255,200,0);
+}
 
+.bancos img:hover {
+  box-shadow: 0 0 15px rgba(0,255,200,0.3);
+}
 
 
   
