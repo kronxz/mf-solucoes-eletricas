@@ -759,7 +759,45 @@ color:#94a3b8;
   0%,100%{ transform:translateY(0); }
   50%{ transform:translateY(-10px); }
 }
+.ilustracao{
+  position:relative;
+}
 
+.linha{
+  position:absolute;
+  height:3px;
+  background:linear-gradient(90deg, transparent, #22c55e, transparent);
+  animation:energia 2s linear infinite;
+  opacity:0.8;
+}
+
+/* POSIÇÕES (ajustadas na mão) */
+.l1{
+  width:120px;
+  top:55%;
+  left:25%;
+}
+
+.l2{
+  width:100px;
+  top:65%;
+  left:40%;
+  animation-delay:0.5s;
+}
+
+.l3{
+  width:120px;
+  top:75%;
+  left:55%;
+  animation-delay:1s;
+}
+
+/* ANIMAÇÃO */
+@keyframes energia{
+  0%{ transform:translateX(-20px); opacity:0; }
+  50%{ opacity:1; }
+  100%{ transform:translateX(20px); opacity:0; }
+}
 
 
   
@@ -953,7 +991,14 @@ Veja de forma simples como a energia solar funciona na sua casa
 
 <!-- ILUSTRAÇÃO CENTRAL -->
 <div class="ilustracao">
-  <img src="imagens/casa-solar.png" alt="Sistema solar">
+
+  <img src="imagens/casa-solar.png">
+
+  <!-- LINHAS ANIMADAS -->
+  <div class="linha l1"></div>
+  <div class="linha l2"></div>
+  <div class="linha l3"></div>
+
 </div>
 
 <!-- PASSOS -->
