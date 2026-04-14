@@ -681,13 +681,84 @@ color:#94a3b8;
   transform:translateY(-6px);
 }
 .fundo-diferente{
-  background:#020617;
+  background:
+    radial-gradient(circle at top, rgba(34,197,94,0.08), transparent 60%),
+    #020617;
+
   border-top:1px solid rgba(255,255,255,0.05);
   border-bottom:1px solid rgba(255,255,255,0.05);
 }
 
+.ilustracao{
+  margin:60px 0;
+  display:flex;
+  justify-content:center;
+}
 
+.ilustracao img{
+  width:420px;
+  max-width:90%;
 
+  filter:
+    drop-shadow(0 30px 60px rgba(0,0,0,0.6))
+    drop-shadow(0 0 40px rgba(34,197,94,0.2));
+
+  animation:flutuar 4s ease-in-out infinite;
+}
+
+.passos-novo{
+  display:flex;
+  justify-content:center;
+  gap:25px;
+  flex-wrap:wrap;
+  margin-top:40px;
+}
+
+.passo-box{
+  background:linear-gradient(145deg, rgba(255,255,255,0.06), rgba(255,255,255,0.01));
+  padding:28px;
+  border-radius:18px;
+  width:230px;
+
+  border:1px solid rgba(255,255,255,0.08);
+  backdrop-filter:blur(12px);
+
+  box-shadow:0 15px 40px rgba(0,0,0,0.4);
+
+  transition:0.3s;
+}
+
+.passo-box span{
+  color:#22c55e;
+  font-weight:700;
+  font-size:20px;
+}
+
+.passo-box h3{
+  margin:10px 0;
+  font-size:18px;
+}
+
+.passo-box p{
+  color:#94a3b8;
+  font-size:14px;
+}
+
+.passo-box:hover{
+  transform:translateY(-10px) scale(1.05);
+  box-shadow:0 25px 60px rgba(0,0,0,0.6);
+}
+
+.passo-box span{
+  display:inline-block;
+  margin-bottom:8px;
+  letter-spacing:2px;
+}
+
+@keyframes flutuar{
+  0%,100%{ transform:translateY(0); }
+  50%{ transform:translateY(-10px); }
+}
 
 
 
@@ -874,29 +945,43 @@ garantindo segurança, eficiência e máximo desempenho em cada projeto.
 </section>
 <section class="section como fundo-diferente">
 
-<h2>Como funciona</h2>
+<h2 style="font-size:38px;">Como funciona?</h2>
 
-<div class="passos premium">
+<p style="color:#94a3b8; max-width:600px; margin:auto;">
+Veja de forma simples como a energia solar funciona na sua casa
+</p>
 
-<div class="passo">
-  <h3>01</h3>
-  <p>Captação da energia solar pelos painéis</p>
+<!-- ILUSTRAÇÃO CENTRAL -->
+<div class="ilustracao">
+  <img src="imagens/casa-solar.png" alt="Sistema solar">
 </div>
 
-<div class="passo">
-  <h3>02</h3>
-  <p>Conversão em energia elétrica pelo inversor</p>
-</div>
+<!-- PASSOS -->
+<div class="passos-novo">
 
-<div class="passo">
-  <h3>03</h3>
-  <p>Energia distribuída na sua casa</p>
-</div>
+  <div class="passo-box">
+    <span>01</span>
+    <h3>Captação</h3>
+    <p>Painéis captam a luz do sol</p>
+  </div>
 
-<div class="passo">
-  <h3>04</h3>
-  <p>Redução imediata na conta de luz</p>
-</div>
+  <div class="passo-box">
+    <span>02</span>
+    <h3>Conversão</h3>
+    <p>Inversor transforma em energia elétrica</p>
+  </div>
+
+  <div class="passo-box">
+    <span>03</span>
+    <h3>Distribuição</h3>
+    <p>Energia alimenta sua casa</p>
+  </div>
+
+  <div class="passo-box">
+    <span>04</span>
+    <h3>Economia</h3>
+    <p>Conta reduz drasticamente</p>
+  </div>
 
 </div>
 
