@@ -483,6 +483,27 @@ color:#94a3b8;
   object-fit:cover;
   box-shadow:0 20px 40px rgba(0,0,0,0.5);
 }
+.img-box{
+  position:relative;
+  display:inline-block;
+}
+
+.img-box::before{
+  content:'';
+  position:absolute;
+  width:100%;
+  height:100%;
+  background:linear-gradient(135deg,#1e3a8a,#2563eb);
+  border-radius:20px;
+  top:15px;
+  left:15px;
+  z-index:0;
+}
+
+.img-box img{
+  position:relative;
+  z-index:1;
+}
 
 .bloco div{
   max-width:400px;
@@ -561,7 +582,21 @@ color:#94a3b8;
   font-size:16px;
   line-height:1.5;
 }
+.icone{
+  width:50px;
+  height:50px;
+  border-radius:50%;
+  background:linear-gradient(135deg,#22c55e,#16a34a);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin-bottom:10px;
+}
 
+.icone i{
+  color:white;
+  font-size:20px;
+}
 
 
 
@@ -619,17 +654,35 @@ color:#94a3b8;
 
 <div class="diferenciais">
 
-  <div class="bloco">
-  <img src="imagens/qualidade.jpg">
-  <div>
-    <h3>Qualidade</h3>
-    <p>Sistemas com alta durabilidade e instalação profissional.</p>
+<div class="bloco">
+
+  <div class="img-box">
+    <img src="imagens/qualidade.jpg">
   </div>
+
+  <div class="texto">
+
+    <div class="icone">
+      <i class="fas fa-shield-alt"></i>
+    </div>
+
+    <h3>Qualidade</h3>
+
+    <p>
+      Nossos sistemas possuem vida útil superior a 25 anos, com baixíssima manutenção.
+      Equipamentos de alta qualidade e equipe técnica preparada para garantir máximo desempenho.
+    </p>
+
+  </div>
+
 </div>
 
 <div class="bloco reverse">
   <img src="imagens/economia.jpg">
   <div>
+    <div class="icone">
+  <i class="fas fa-percent"></i>
+</div>
     <h3>Economize até 95%</h3>
     <p>Reduza drasticamente sua conta de energia já nos primeiros meses.</p>
   </div>
@@ -638,6 +691,9 @@ color:#94a3b8;
 <div class="bloco">
   <img src="imagens/energia.jpg">
   <div>
+    <div class="icone">
+  <i class="fas fa-leaf"></i>
+</div>
     <h3>Energia limpa</h3>
     <p>Produza sua própria energia e ajude o meio ambiente.</p>
   </div>
@@ -646,6 +702,9 @@ color:#94a3b8;
 <div class="bloco reverse">
   <img src="imagens/casa.jpg">
   <div>
+    <div class="icone">
+  <i class="fas fa-home"></i>
+</div>
     <h3>Valorização do imóvel</h3>
     <p>Seu imóvel mais valorizado e com economia garantida.</p>
   </div>
