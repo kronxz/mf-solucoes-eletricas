@@ -663,12 +663,15 @@ color:#94a3b8;
 }
 
 .passo{
-  background:#0f172a;
+  background:linear-gradient(145deg, rgba(255,255,255,0.05), rgba(255,255,255,0.01));
   padding:25px;
   border-radius:12px;
   width:200px;
   text-align:center;
   transition:0.3s;
+
+  border:1px solid rgba(255,255,255,0.08);
+  backdrop-filter:blur(10px);
 }/* CORES INDIVIDUAIS DOS PASSOS */
 
 .passo1 h3{
@@ -814,6 +817,35 @@ color:#94a3b8;
   50%{ opacity:1; }
   100%{ transform:translateX(20px); opacity:0; }
 }
+/* CORES DOS NÚMEROS (AGORA CORRETO) */
+
+.passo1 span{
+  color:#f59e0b;
+}
+
+.passo2 span{
+  color:#ec4899;
+}
+
+.passo3 span{
+  color:#22c55e;
+}
+
+.passo4 span{
+  color:#3b82f6;
+}
+.passo span{
+  display:inline-block;
+  font-size:22px;
+  font-weight:700;
+  margin-bottom:8px;
+  letter-spacing:2px;
+}
+
+
+
+
+
 
 
   
@@ -1021,7 +1053,8 @@ Veja de forma simples como a energia solar funciona na sua casa
 <div class="passos-novo">
 
   <div class="passo passo1">
-  <h3>01</h3>
+    <span>01</span>
+    <h3>Captação</h3>
   <p>A energia solar é captada pelos painéis instalados no telhado, absorvendo a luz do sol e transformando em energia elétrica.</p>
 </div>
 
