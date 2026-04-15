@@ -206,7 +206,13 @@ margin-bottom:12px;
 transition:0.3s;
 }
 
-
+.diferenciais{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap:60px;
+  max-width:1100px;
+  margin:0 auto;
+}
 
 /* GALERIA REAL */
 .gallery{
@@ -247,22 +253,28 @@ height:80px;
 /* MOBILE (COLE AQUI NO FINAL DO CSS) */
 @media (max-width:768px){
 
-header{
-  padding:15px 16px;
-  justify-content:space-between;
-}
-  .logo{
-  margin-left:0;
-}
-.menu{
-  gap:6px;
-}
+  .diferenciais{
+    grid-template-columns: 1fr;
+  }
 
-.menu a{
-  padding:6px 8px;
-  background:rgba(255,255,255,0.03);
-  border-radius:6px;
-}
+  header{
+    padding:15px 16px;
+    justify-content:space-between;
+  }
+
+  .logo{
+    margin-left:0;
+  }
+
+  .menu{
+    gap:6px;
+  }
+
+  .menu a{
+    padding:6px 8px;
+    background:rgba(255,255,255,0.03);
+    border-radius:6px;
+  }
 nav{
   flex-direction:row;
   justify-content:flex-end;
@@ -486,8 +498,11 @@ color:#94a3b8;
   transform:scale(1.3);
 }
 .diferenciais{
-  display:flex;
-  flex-direction:column;
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  max-width: 1100px;
+  margin: 0 auto;
 }
 
 .bloco{
@@ -495,7 +510,7 @@ color:#94a3b8;
   align-items:center;
   justify-content:center;
   gap:50px;
-  margin:120px auto;
+  margin: 0;
   max-width:1100px;
 }
 .bloco{
