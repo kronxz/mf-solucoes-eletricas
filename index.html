@@ -753,12 +753,14 @@ color:#94a3b8;
 }
 
 .ilustracao img{
-  width:550px; /* AUMENTAMOS AQUI */
+  width:550px;
   max-width:95%;
+  position:relative;
+  z-index:2;
 
   filter:
-    drop-shadow(0 30px 60px rgba(0,0,0,0.6))
-    drop-shadow(0 0 40px rgba(34,197,94,0.2));
+    drop-shadow(0 40px 80px rgba(0,0,0,0.7))
+    drop-shadow(0 0 60px rgba(34,197,94,0.25));
 
   animation:flutuar 4s ease-in-out infinite;
 }
@@ -824,8 +826,11 @@ color:#94a3b8;
   position:absolute;
   height:3px;
   background:linear-gradient(90deg, transparent, #22c55e, transparent);
-  animation:energia 2s linear infinite;
-  opacity:0.8;
+
+  animation:energia 1.5s linear infinite;
+  opacity:0.9;
+
+  filter: drop-shadow(0 0 6px #22c55e);
 }
 
 /* POSIÇÕES (ajustadas na mão) */
@@ -851,9 +856,17 @@ color:#94a3b8;
 
 /* ANIMAÇÃO */
 @keyframes energia{
-  0%{ transform:translateX(-20px); opacity:0; }
-  50%{ opacity:1; }
-  100%{ transform:translateX(20px); opacity:0; }
+  0%{
+    transform:translateX(-30px);
+    opacity:0;
+  }
+  50%{
+    opacity:1;
+  }
+  100%{
+    transform:translateX(30px);
+    opacity:0;
+  }
 }
 /* CORES DOS NÚMEROS (AGORA CORRETO) */
 
@@ -966,6 +979,48 @@ color:#94a3b8;
   transform: scale(1.2);
   margin-top: 5px;
 }
+.sol{
+  position:absolute;
+  width:60px;
+  height:60px;
+  border-radius:50%;
+  background: radial-gradient(circle, #facc15, #f59e0b);
+
+  top:20px;
+  right:80px;
+
+  box-shadow:0 0 40px rgba(250,204,21,0.8);
+
+  animation:girarSol 10s linear infinite;
+}
+
+@keyframes girarSol{
+  from{ transform:rotate(0deg); }
+  to{ transform:rotate(360deg); }
+}
+.ilustracao::after{
+  content:'';
+  position:absolute;
+  width:300px;
+  height:300px;
+
+  background: radial-gradient(circle, rgba(34,197,94,0.25), transparent 70%);
+
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+
+  filter: blur(40px);
+  z-index:0;
+
+  animation:pulsar 3s ease-in-out infinite;
+}
+
+@keyframes pulsar{
+  0%,100%{ opacity:0.6; transform:translate(-50%,-50%) scale(1); }
+  50%{ opacity:1; transform:translate(-50%,-50%) scale(1.1); }
+}
+
 
 
 
@@ -1160,6 +1215,8 @@ Veja de forma simples como a energia solar funciona na sua casa
 
 <!-- ILUSTRAÇÃO CENTRAL -->
 <div class="ilustracao">
+
+  <div class="sol"></div>
 
   <img src="imagens/casa-solar.png">
 
