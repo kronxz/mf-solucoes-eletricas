@@ -420,7 +420,7 @@ color:#94a3b8;
 
 .slides {
   display: flex;
-  transition: transform 0.5s ease;
+  transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .slides img {
@@ -447,9 +447,31 @@ color:#94a3b8;
 
 .grupo img {
   width: 30%;
-  height: auto; /* 🔥 NÃO CORTA */
+  height: auto;
   border-radius: 15px;
-  object-fit: contain; /* 🔥 garante inteiro */
+
+  object-fit: contain;
+
+  transition: all 0.5s ease;
+  opacity: 0.5;
+  transform: scale(0.85);
+  filter: blur(1px);
+}
+
+/* IMAGEM CENTRAL DESTACADA */
+.grupo img.ativa {
+  transform: scale(1.1);
+  opacity: 1;
+  filter: blur(0);
+  z-index: 2;
+
+  box-shadow: 0 25px 80px rgba(0,0,0,0.7);
+}
+
+/* LATERAIS */
+.grupo img.lado {
+  transform: scale(0.9);
+  opacity: 0.7;
 }
 
 /* BOTÕES */
@@ -1001,6 +1023,10 @@ color:#94a3b8;
 @keyframes pulsar{
   0%,100%{ opacity:0.6; transform:translate(-50%,-50%) scale(1); }
   50%{ opacity:1; transform:translate(-50%,-50%) scale(1.1); }
+}
+
+.grupo img:hover {
+  transform: scale(1.05);
 }
 
 
@@ -1604,10 +1630,29 @@ grupos.forEach((_, i) => {
 const dots = document.querySelectorAll(".dots span");
 
 function atualizar(){
+
   slides.style.transform = `translateX(-${index * 100}%)`;
 
   dots.forEach(d => d.classList.remove("active"));
   dots[index].classList.add("active");
+
+  // 🔥 EFEITO PREMIUM
+  const grupos = document.querySelectorAll(".grupo");
+
+  grupos.forEach(grupo => {
+    const imgs = grupo.querySelectorAll("img");
+
+    imgs.forEach(img => {
+      img.classList.remove("ativa", "lado");
+    });
+
+    if(grupo === grupos[index]){
+      imgs[1].classList.add("ativa"); // imagem do meio
+
+      imgs[0].classList.add("lado");
+      imgs[2].classList.add("lado");
+    }
+  });
 }
 
 function irPara(i){
