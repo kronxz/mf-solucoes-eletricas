@@ -424,6 +424,7 @@ color:#94a3b8;
   background: linear-gradient(180deg,#020617,#020617,#03122e);
   padding:60px 20px;
   border-top:1px solid rgba(255,255,255,0.08);
+  text-align:center;
 }
 
 .footer-container{
@@ -432,7 +433,7 @@ color:#94a3b8;
   gap:40px;
   max-width:1100px;
   margin:auto;
-  text-align:left;
+  text-align:center;
 }
 
 .footer h3{
@@ -1174,14 +1175,16 @@ Reduza sua conta de luz em até
 <span class="amarelo">95%</span> 
 com energia <span class="azul">solar</span>
 </h1>
-  
-  Descubra quanto você pode economizar com 
+
+<p style="font-size:20px; margin-top:20px; color:#cbd5f5;">
+Descubra quanto você pode economizar com 
 <span class="azul">energia solar</span> 
 na sua casa ainda hoje
-  
-  <a class="btn" href="https://kronxz.github.io/solar-calculator/">
-  ⚡ Ver minha economia agora
-  </a>
+</p>
+
+<a class="btn" href="https://kronxz.github.io/solar-calculator/">
+⚡ Ver minha economia agora
+</a>
   
   <p style="margin-top:15px; font-size:14px; color:#9ca3af;">
   ✔ Mais de 150 sistemas instalados na região <br>
@@ -1669,9 +1672,7 @@ Atendemos em <span class="amarelo">Maricá</span> e região
 </h2>
 <div class="linha-titulo"></div>
 
-<iframe class="map"
-src="https://www.google.com/maps?q=Maricá,RJ&output=embed">
-</iframe>
+<div id="mapa" style="width:100%; height:450px; border-radius:12px;"></div>
 
 <br><br>
 
@@ -1704,6 +1705,8 @@ Sem burocracia. Atendimento direto no WhatsApp.
 
 
 <footer class="footer">
+
+  <img src="imagens/logo.png" class="logo-footer">
 
   <h2>MF Soluções Elétricas</h2>
 
@@ -1887,6 +1890,54 @@ botoes.forEach(botao => {
   });
 });
 
+<script>
+function initMap() {
+  const marica = { lat: -22.9194, lng: -42.8186 };
+
+  const map = new google.maps.Map(document.getElementById("mapa"), {
+    zoom: 12,
+    center: marica,
+    mapTypeControl: true,
+    streetViewControl: true,
+    fullscreenControl: true,
+    zoomControl: true,
+  });
+
+  new google.maps.Marker({
+    position: marica,
+    map: map,
+    title: "MF Soluções Elétricas"
+  });
+}
+
+<script>
+function initMap() {
+  const marica = { lat: -22.9194, lng: -42.8186 };
+
+  const map = new google.maps.Map(document.getElementById("mapa"), {
+    zoom: 12,
+    center: marica,
+    mapTypeControl: true,
+    streetViewControl: true,
+    fullscreenControl: true,
+    zoomControl: true,
+  });
+
+  new google.maps.Marker({
+    position: marica,
+    map: map,
+    title: "MF Soluções Elétricas"
+  });
+}
+</script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBrQi4rRvIA7lSLfIwIrgqjMhwuPZh5XI0&callback=initMap" async defer></script>
+
+
+
+</script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=SUA_CHAVE_AQUI&callback=initMap" async defer></script>
 
 
 </script>
