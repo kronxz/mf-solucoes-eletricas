@@ -1333,6 +1333,75 @@ Veja de forma simples como a energia solar funciona na sua casa
       <img src="imagens/projetos/proj14.jpg">
       <img src="imagens/projetos/proj15.jpg">
     </div>
+    <!-- GRUPO 6 -->
+<div class="grupo">
+  <img src="imagens/projetos/proj16.jpg">
+  <img src="imagens/projetos/proj17.jpg">
+  <img src="imagens/projetos/proj18.jpg">
+</div>
+
+<!-- GRUPO 7 -->
+<div class="grupo">
+  <img src="imagens/projetos/proj19.jpg">
+  <img src="imagens/projetos/proj20.jpg">
+  <img src="imagens/projetos/proj21.jpg">
+</div>
+
+<!-- GRUPO 8 -->
+<div class="grupo">
+  <img src="imagens/projetos/proj22.jpg">
+  <img src="imagens/projetos/proj23.jpg">
+  <img src="imagens/projetos/proj24.jpg">
+</div>
+
+<!-- GRUPO 9 -->
+<div class="grupo">
+  <img src="imagens/projetos/proj25.jpg">
+  <img src="imagens/projetos/proj26.jpg">
+  <img src="imagens/projetos/proj27.jpg">
+</div>
+
+<!-- GRUPO 10 -->
+<div class="grupo">
+  <img src="imagens/projetos/proj28.jpg">
+  <img src="imagens/projetos/proj29.jpg">
+  <img src="imagens/projetos/proj30.jpg">
+</div>
+
+<!-- GRUPO 11 -->
+<div class="grupo">
+  <img src="imagens/projetos/proj31.jpg">
+  <img src="imagens/projetos/proj32.jpg">
+  <img src="imagens/projetos/proj33.jpg">
+</div>
+
+<!-- GRUPO 12 -->
+<div class="grupo">
+  <img src="imagens/projetos/proj34.jpg">
+  <img src="imagens/projetos/proj35.jpg">
+  <img src="imagens/projetos/proj36.jpg">
+</div>
+
+<!-- GRUPO 13 -->
+<div class="grupo">
+  <img src="imagens/projetos/proj37.jpg">
+  <img src="imagens/projetos/proj38.jpg">
+  <img src="imagens/projetos/proj39.jpg">
+</div>
+
+<!-- GRUPO 14 -->
+<div class="grupo">
+  <img src="imagens/projetos/proj40.jpg">
+  <img src="imagens/projetos/proj41.jpg">
+  <img src="imagens/projetos/proj42.jpg">
+</div>
+
+<!-- GRUPO 15 -->
+<div class="grupo">
+  <img src="imagens/projetos/proj43.jpg">
+  <img src="imagens/projetos/proj44.jpg">
+  <img src="imagens/projetos/proj45.jpg">
+</div>
 
   </div>
 
@@ -1519,14 +1588,14 @@ Sem burocracia. Atendimento direto no WhatsApp.
 
 let index = 0;
 const slides = document.querySelector(".slides");
-const imagens = document.querySelectorAll(".slides img");
-const total = imagens.length;
+const grupos = document.querySelectorAll(".grupo");
+const total = grupos.length;
 const dotsContainer = document.querySelector(".dots");
 
 let autoplay;
 
 // criar bolinhas
-imagens.forEach((_, i) => {
+grupos.forEach((_, i) => {
   let dot = document.createElement("span");
   dot.addEventListener("click", () => irPara(i));
   dotsContainer.appendChild(dot);
