@@ -98,7 +98,7 @@ max-width:100%;
 
   padding:14px 22px;
   border:1px solid rgba(255,255,255,0.2);
-
+  border-radius:50px !important;
   text-decoration:none;
 
   box-shadow:
@@ -127,6 +127,7 @@ align-items:center;
 justify-content:center;
 text-align:center;
 position:relative;
+  filter: brightness(1.1) contrast(1.05);
 }
 
 .hero::after{
@@ -134,14 +135,17 @@ content:'';
 position:absolute;
 width:100%;
 height:100%;
+z-index:1;
+
 background:
-    linear-gradient(180deg, rgba(2,6,23,0.6), rgba(2,6,23,0.9)),
-    radial-gradient(circle at center, rgba(34,197,94,0.15), transparent 60%);
+  linear-gradient(180deg, rgba(2,6,23,0.25), rgba(2,6,23,0.45));
 }
 
 .hero-content{
   background: rgba(2,6,23,0.55);
   padding:30px;
+   position:relative;
+  z-index:2;
   border-radius:16px;
 
   backdrop-filter: blur(10px);
@@ -1602,12 +1606,12 @@ src="https://www.google.com/maps?q=Maricá,RJ&output=embed">
 
 <br><br>
 
-<a class="btn" href="https://wa.me/5521972381004">
+<a class="btn" href="https://wa.me/5521972381004?text=Olá,%20vim%20pelo%20site%20e%20gostaria%20de%20um%20orçamento">
 Falar no WhatsApp
 </a>
 </section>
 
-<a class="btn-whatsapp" href="https://wa.me/5521972381004" target="_blank">
+<a class="btn-whatsapp" href="https://wa.me/5521972381004?text=Olá,%20vim%20pelo%20site%20e%20gostaria%20de%20um%20orçamento">
   <i class="fab fa-whatsapp"></i>
   Falar com especialista
 </a>
