@@ -421,10 +421,39 @@ color:#94a3b8;
   height:300px;
 }
   .footer{
-  background:#020617;
-  padding:50px 20px;
-  text-align:center;
-  border-top:1px solid rgba(255,255,255,0.05);
+  background: linear-gradient(180deg,#020617,#020617,#03122e);
+  padding:60px 20px;
+  border-top:1px solid rgba(255,255,255,0.08);
+}
+
+.footer-container{
+  display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px,1fr));
+  gap:40px;
+  max-width:1100px;
+  margin:auto;
+  text-align:left;
+}
+
+.footer h3{
+  color:#facc15;
+  margin-bottom:10px;
+}
+
+.footer p,
+.footer a{
+  color:#94a3b8;
+  font-size:14px;
+  text-decoration:none;
+}
+
+.footer a:hover{
+  color:#ffffff;
+}
+
+.logo-footer{
+  width:60px;
+  margin-bottom:10px;
 }
 
 .footer h2{
@@ -1126,12 +1155,14 @@ color:#94a3b8;
 <div class="hero-content">
 
 <h1>
-Reduza sua conta de luz em até 95% com energia solar
+Reduza sua conta de luz em até 
+<span class="amarelo">95%</span> 
+com energia <span class="azul">solar</span>
 </h1>
   
-  <p style="font-size:22px; color:#cbd5f5; margin-top:20px;">
-  Descubra quanto você pode economizar com energia solar na sua casa ainda hoje
-  </p>
+  Descubra quanto você pode economizar com 
+<span class="azul">energia solar</span> 
+na sua casa ainda hoje
   
   <a class="btn" href="https://kronxz.github.io/solar-calculator/">
   ⚡ Ver minha economia agora
@@ -1344,7 +1375,10 @@ Veja de forma simples como a energia solar funciona na sua casa
 </section>
 
 <section class="section" id="servicos">
-<h2>Por que nossos clientes fecham com a MF Soluções?</h2>
+<h2>
+Por que nossos clientes fecham com a 
+<span class="amarelo">MF Soluções</span>?
+</h2>
 
 <div class="cards">
 
@@ -1582,7 +1616,9 @@ Economia: ~R$ 650/mês
 <!-- 🔽 COLE AQUI -->
 <section class="section financiamento">
 
-  <h2>Financiamento facilitado</h2>
+  <h2>
+Financiamento <span class="amarelo">facilitado</span>
+</h2>
 
   <p class="sub">
     Trabalhamos com os principais bancos do Brasil.
@@ -1608,7 +1644,9 @@ Economia: ~R$ 650/mês
 
 
 <section class="section" id="contato">
-<h2>Atendemos em Maricá e região</h2>
+<h2>
+Atendemos em <span class="amarelo">Maricá</span> e região
+</h2>
 
 <iframe class="map"
 src="https://www.google.com/maps?q=Maricá,RJ&output=embed">
