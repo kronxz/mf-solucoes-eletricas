@@ -328,7 +328,15 @@ header{
 
 .bloco{
   flex-direction:column;
+  align-items:center;
   text-align:center;
+  margin:0 auto;
+}
+
+.bloco div{
+  width:100%;
+  max-width:320px;
+  margin:0 auto;
 }
 
 .reverse{
@@ -338,8 +346,8 @@ header{
 .bloco img{
   width:100%;
   max-width:300px;
+  height:auto;
 }
-
  
 .section{
   padding:80px 15px;
@@ -479,9 +487,13 @@ section{
 .logo img{
   width:50px;
   height:50px;
+  min-width:50px;
+  min-height:50px;
+
   border-radius:50%;
   object-fit:cover;
-  box-shadow:0 5px 15px rgba(0,0,0,0.3);
+
+  aspect-ratio:1/1;
 }
 
 .map{
@@ -526,6 +538,8 @@ section{
   border-radius:50%;
   object-fit:cover;
 
+  
+
   background:#020617; /* mesma cor do fundo */
 
   padding:5px;
@@ -533,6 +547,9 @@ section{
   box-shadow:0 5px 15px rgba(0,0,0,0.4);
 
   margin-bottom:10px;
+
+  display:block;
+  margin:0 auto 10px;
 }
 
 .footer h2{
