@@ -1713,7 +1713,15 @@ Atendemos em <span class="amarelo">Maricá</span> e região
 </h2>
 <div class="linha-titulo"></div>
 
-<div id="mapa" style="width:100%; height:450px; border-radius:12px;"></div>
+<div style="width:100%; max-width:1000px; margin:auto; border-radius:20px; overflow:hidden;">
+  <iframe 
+    src="https://www.google.com/maps?q=Maricá%20RJ&output=embed"
+    width="100%" 
+    height="450" 
+    style="border:0;"
+    loading="lazy">
+  </iframe>
+</div>
 
 <br><br>
 
@@ -1932,35 +1940,6 @@ botoes.forEach(botao => {
 });
 </script>
 
-<script>
-function initMap() {
-  const marica = { lat: -22.9194, lng: -42.8186 };
-
-  const map = new google.maps.Map(document.getElementById("mapa"), {
-  zoom: 12,
-  center: marica,
-  mapTypeControl: true,
-  streetViewControl: true,
-  fullscreenControl: true,
-  zoomControl: true,
-  styles: [
-    {
-      featureType: "all",
-      elementType: "geometry",
-      stylers: [{ saturation: -20 }]
-    }
-  ]
-});
-
-  new google.maps.Marker({
-    position: marica,
-    map: map,
-    title: "MF Soluções Elétricas"
-  });
-}
-</script>
-
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBrQi4rRvIA7lSLfIwIrgqjMhwuPZh5XI0&callback=initMap" async defer></script>
 
 
   
