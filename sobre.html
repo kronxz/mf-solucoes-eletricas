@@ -3,62 +3,152 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sobre Nós - MF Soluções</title>
+<title>Sobre - MF Soluções</title>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 <style>
+
 body{
-margin:0;
-font-family:Arial;
-background:#020617;
-color:white;
+  margin:0;
+  font-family:Arial, sans-serif;
+
+  background:
+    radial-gradient(circle at 20% 20%, rgba(34,197,94,0.08), transparent 40%),
+    radial-gradient(circle at 80% 30%, rgba(59,130,246,0.08), transparent 40%),
+    #020617;
+
+  color:white;
 }
 
 /* HEADER */
 header{
-display:flex;
-justify-content:space-between;
-align-items:center;
-padding:20px;
-background:#020617;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:20px 40px;
 }
 
 .logo img{
-width:50px;
-border-radius:50%;
+  width:50px;
+  border-radius:50%;
 }
 
-/* CONTEÚDO */
+/* HERO */
+.hero{
+  text-align:center;
+  padding:100px 20px 60px;
+}
+
+.hero h1{
+  font-size:42px;
+  margin-bottom:10px;
+}
+
+.hero p{
+  color:#94a3b8;
+  max-width:600px;
+  margin:auto;
+}
+
+/* CONTAINER */
 .container{
-max-width:900px;
-margin:80px auto;
-padding:20px;
+  max-width:1000px;
+  margin:auto;
+  padding:20px;
 }
 
-h1{
-font-size:36px;
-margin-bottom:20px;
-}
-
+/* TEXTO */
 p{
-color:#cbd5f5;
-line-height:1.6;
-margin-bottom:15px;
+  color:#cbd5f5;
+  line-height:1.6;
 }
 
 .highlight{
-color:#22c55e;
-font-weight:600;
+  color:#22c55e;
+  font-weight:600;
+}
+
+/* CARDS */
+.cards{
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(250px,1fr));
+  gap:25px;
+  margin-top:40px;
+}
+
+.card{
+  background:
+    linear-gradient(145deg, rgba(255,255,255,0.06), rgba(255,255,255,0.01));
+  
+  padding:25px;
+  border-radius:16px;
+
+  backdrop-filter:blur(10px);
+
+  border:1px solid rgba(34,197,94,0.15);
+
+  transition:0.3s;
+}
+
+.card:hover{
+  transform:translateY(-5px);
+  box-shadow:0 20px 40px rgba(0,0,0,0.5);
+}
+
+.card h3{
+  margin-bottom:10px;
 }
 
 /* BLOCO */
 .box{
-background:#0f172a;
-padding:25px;
-border-radius:16px;
-margin-top:30px;
+  background:#0f172a;
+  padding:25px;
+  border-radius:16px;
+  margin-top:30px;
+
+  border:1px solid rgba(255,255,255,0.05);
 }
+
+/* NÚMEROS */
+.numeros{
+  display:flex;
+  justify-content:center;
+  gap:40px;
+  margin:60px 0;
+  flex-wrap:wrap;
+}
+
+.numero{
+  text-align:center;
+}
+
+.numero h2{
+  color:#22c55e;
+  font-size:40px;
+}
+
+/* CTA */
+.cta{
+  text-align:center;
+  margin:80px 0;
+}
+
+.btn{
+  background:linear-gradient(135deg,#22c55e,#16a34a);
+  padding:16px 28px;
+  border-radius:10px;
+  color:white;
+  text-decoration:none;
+  font-weight:700;
+
+  box-shadow:0 10px 25px rgba(34,197,94,0.4);
+}
+
+.btn:hover{
+  transform:scale(1.05);
+}
+
 </style>
 </head>
 
@@ -72,48 +162,104 @@ margin-top:30px;
 <a href="index.html" style="color:white;">Voltar</a>
 </header>
 
-<div class="container">
+<!-- HERO -->
+<section class="hero">
 
 <h1>Quem somos</h1>
 
 <p>
-A <span class="highlight">MF Soluções Elétricas</span> nasceu com um objetivo simples:
-<strong>ajudar pessoas a pararem de pagar caro na conta de luz.</strong>
+A <span class="highlight">MF Soluções</span> nasceu para resolver um problema simples:
+<strong>você parar de pagar caro na conta de luz.</strong>
+</p>
+
+</section>
+
+<div class="container">
+
+<p>
+Somos especialistas em energia solar com experiência prática em campo.
+Aqui você não fala com vendedor — você fala com quem entende.
 </p>
 
 <p>
-Começamos atendendo pequenos clientes e hoje ajudamos dezenas de famílias
-a economizar todos os meses.
-</p>  
-
-<p>
-Com experiência prática no campo e conhecimento técnico sólido,
-nos especializamos em projetos de energia solar que realmente geram economia.
+Nosso foco não é apenas instalar placas solares,
+mas entregar <span class="highlight">economia real todos os meses</span>.
 </p>
 
-<p>
-Hoje, nossa missão é simples: entregar economia real e segurança para cada cliente.
-</p>
+<!-- NÚMEROS -->
+<div class="numeros">
 
-<div class="box">
-<h2>Nossa missão</h2>
-<p>Levar energia limpa, economia real e independência energética para cada cliente.</p>
+<div class="numero">
+<h2>150+</h2>
+<p>Sistemas instalados</p>
 </div>
 
-<div class="box">
-<h2>Nossos diferenciais</h2>
-<p>✔ Atendimento direto com especialista</p>
-<p>✔ Projeto sob medida</p>
-<p>✔ Instalação profissional</p>
-<p>✔ Foco total em economia real</p>
+<div class="numero">
+<h2>95%</h2>
+<p>Redução na conta</p>
 </div>
 
+<div class="numero">
+<h2>R$1000+</h2>
+<p>Economia mensal</p>
+</div>
+
+</div>
+
+<!-- DIFERENCIAIS -->
+<div class="cards">
+
+<div class="card">
+<h3>⚡ Atendimento direto</h3>
+<p>Você fala direto com especialista, sem enrolação.</p>
+</div>
+
+<div class="card">
+<h3>📐 Projeto sob medida</h3>
+<p>Sistema dimensionado para máxima economia.</p>
+</div>
+
+<div class="card">
+<h3>🛠 Instalação profissional</h3>
+<p>Padrão técnico elevado e acabamento impecável.</p>
+</div>
+
+<div class="card">
+<h3>💰 Foco em economia</h3>
+<p>Nosso objetivo é reduzir sua conta, não só vender.</p>
+</div>
+
+</div>
+
+<!-- CONFIANÇA -->
 <div class="box">
+
 <h2>Por que confiar na MF?</h2>
+
 <p>
-Mais de <span class="highlight">150 sistemas instalados</span> e clientes satisfeitos.
-Nosso foco não é vender — é entregar resultado.
+✔ Mais de <span class="highlight">150 sistemas instalados</span><br>
+✔ Clientes economizando todos os meses<br>
+✔ Experiência prática em campo<br>
+✔ Atendimento direto e transparente
 </p>
+
+</div>
+
+<!-- CTA -->
+<div class="cta">
+
+<h2>Pare de pagar caro na conta de luz</h2>
+
+<p style="color:#94a3b8;">
+Descubra agora quanto você pode economizar com energia solar
+</p>
+
+<br>
+
+<a href="https://kronxz.github.io/solar-calculator/" class="btn">
+⚡ Simular minha economia
+</a>
+
 </div>
 
 </div>
