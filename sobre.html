@@ -102,12 +102,9 @@ p{
 
 /* BLOCO */
 .box{
-  background:#0f172a;
-  padding:25px;
-  border-radius:16px;
-  margin-top:30px;
-
-  border:1px solid rgba(255,255,255,0.05);
+  background:linear-gradient(145deg, rgba(255,255,255,0.04), rgba(255,255,255,0.01));
+  border:1px solid rgba(34,197,94,0.15);
+  backdrop-filter:blur(10px);
 }
 
 /* NÚMEROS */
@@ -149,6 +146,62 @@ p{
   transform:scale(1.05);
 }
 
+.btn-whatsapp{
+  position:fixed;
+  bottom:20px;
+  right:20px;
+
+  display:flex;
+  align-items:center;
+  gap:10px;
+
+  background: linear-gradient(135deg,#16a34a,#22c55e);
+
+  color:#ffffff;
+  font-weight:600;
+
+  padding:14px 22px;
+  border-radius:50px;
+  text-decoration:none;
+
+  box-shadow:
+    0 10px 25px rgba(34,197,94,0.5),
+    0 0 15px rgba(34,197,94,0.3);
+
+  z-index:999;
+}
+
+.btn-whatsapp:hover{
+  transform:scale(1.05);
+}
+.menu{
+  display:flex;
+  gap:20px;
+  align-items:center;
+}
+
+.menu a{
+  color:#e5e7eb;
+  text-decoration:none;
+  font-size:14px;
+  font-weight:500;
+}
+
+.menu a:hover{
+  color:#22c55e;
+}
+
+.btn-menu{
+  background:#22c55e;
+  padding:8px 16px;
+  border-radius:8px;
+  font-weight:600;
+}
+
+
+
+
+
 </style>
 </head>
 
@@ -159,13 +212,34 @@ p{
 <img src="imagens/logo.png">
 </div>
 
-<a href="index.html" style="color:white;">Voltar</a>
+<nav class="menu">
+
+<a href="index.html">Início</a>
+<a href="sobre.html">Sobre</a>
+<a href="#contato" class="btn-menu">Contato</a>
+
+</nav>
 </header>
 
 <!-- HERO -->
 <section class="hero">
 
 <h1>Quem somos</h1>
+
+<div style="text-align:center; margin-top:20px;">
+
+<img src="imagens/tecnico.jpg" style="
+width:120px;
+border-radius:50%;
+border:3px solid #22c55e;
+box-shadow:0 10px 30px rgba(0,0,0,0.6);
+">
+
+<p style="margin-top:10px; color:#94a3b8;">
+Marcos Felipe • Técnico em Eletrotécnica
+</p>
+
+</div>
 
 <p>
 A <span class="highlight">MF Soluções</span> nasceu para resolver um problema simples:
@@ -176,22 +250,63 @@ A <span class="highlight">MF Soluções</span> nasceu para resolver um problema 
 
 <div class="container">
 
+<h2>Nossa história</h2>
+
 <p>
-Somos especialistas em energia solar com experiência prática em campo.
-Aqui você não fala com vendedor — você fala com quem entende.
+A MF Soluções Elétricas nasceu dentro da prática, não da teoria.
+Tudo começou com <strong>Paulo</strong>, eletricista formado pelo SENAI há mais de 30 anos,
+que construiu uma base sólida de clientes em Maricá através de trabalho sério e bem feito.
 </p>
 
 <p>
-Nosso foco não é apenas instalar placas solares,
-mas entregar <span class="highlight">economia real todos os meses</span>.
+Com o tempo, ele formou novos profissionais dentro da própria família.
+Seu irmão André e depois Luiz seguiram o mesmo caminho,
+carregando a mesma responsabilidade e padrão técnico.
+</p>
+
+<p>
+Eu, Marcos, cresci dentro desse ambiente.
+Aprendi na prática, acompanhando obras, resolvendo problemas reais
+e entendendo o que realmente funciona no dia a dia.
+Hoje, sou técnico em eletrotécnica e responsável técnico da MF Soluções.
+</p>
+
+<p>
+Com o aumento da demanda por energia solar,
+percebemos um problema sério no mercado:
+<strong>muitos sistemas sendo mal instalados e clientes insatisfeitos.</strong>
+</p>
+
+<p>
+Foi nesse momento que decidimos evoluir.
+Nos especializamos em energia solar para não apenas instalar,
+mas corrigir erros, fazer manutenção e garantir que o sistema funcione de verdade.
+</p>
+
+<p>
+Hoje, unimos experiência de mais de 30 anos com tecnologia atual
+para entregar algo simples:
+<span class="highlight">economia real com responsabilidade técnica.</span>
 </p>
 
 <!-- NÚMEROS -->
-<div class="numeros">
+<div class="cards">
 
-<div class="numero">
-<h2>150+</h2>
+<div class="card">
+<h3>150+</h3>
 <p>Sistemas instalados</p>
+</div>
+
+<div class="card">
+<h3>95%</h3>
+<p>Redução na conta</p>
+</div>
+
+<div class="card">
+<h3>R$1000+</h3>
+<p>Economia mensal</p>
+</div>
+
 </div>
 
 <div class="numero">
@@ -231,6 +346,21 @@ mas entregar <span class="highlight">economia real todos os meses</span>.
 
 </div>
 
+<!-- RESPONSABILIDADE TÉCNICA -->
+<div class="box">
+
+<h2>Responsabilidade técnica</h2>
+
+<p>
+✔ Técnico em eletrotécnica<br>
+✔ Responsável técnico habilitado (CFT)<br>
+✔ Atendimento direto com o profissional<br>
+✔ Conformidade com normas técnicas<br>
+✔ Experiência prática em campo
+</p>
+
+</div>
+
 <!-- CONFIANÇA -->
 <div class="box">
 
@@ -263,6 +393,13 @@ Descubra agora quanto você pode economizar com energia solar
 </div>
 
 </div>
+
+<a class="btn-whatsapp" href="https://wa.me/5521972381004?text=Olá,%20vim%20pelo%20site%20e%20quero%20um%20orçamento%20de%20energia%20solar">
+
+<i class="fab fa-whatsapp"></i>
+Falar com especialista
+
+</a>
 
 </body>
 </html>
