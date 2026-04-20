@@ -198,14 +198,104 @@ p{
 }
 
 .btn-menu{
+  background:linear-gradient(135deg,#22c55e,#16a34a);
+  padding:10px 18px;
+  border-radius:10px;
+  font-weight:600;
+  color:white;
+
+  box-shadow:0 10px 25px rgba(34,197,94,0.4);
+  transition:0.3s;
+}
+
+.btn-menu:hover{
+  transform:scale(1.05);
+}
+
+.footer{
+  margin-top:80px;
+  padding:60px 20px;
+
+  text-align:center;
+
+  background:rgba(2,6,23,0.9);
+  border-top:1px solid rgba(255,255,255,0.05);
+}
+
+.footer-logo{
+  width:70px;
+  border-radius:50%;
+  margin-bottom:15px;
+}
+
+.footer h2{
+  margin-bottom:10px;
+}
+
+.footer p{
+  color:#94a3b8;
+  margin:5px 0;
+}
+
+.social{
+  margin-top:20px;
+  display:flex;
+  justify-content:center;
+  gap:15px;
+}
+
+.social a{
+  width:40px;
+  height:40px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  border-radius:50%;
+
+  background:#0f172a;
+
+  color:white;
+  text-decoration:none;
+
+  transition:0.3s;
+}
+
+/* CORES POR REDE */
+.social a:nth-child(1):hover{
+  background:#ea4335; /* email */
+}
+
+.social a:nth-child(2):hover{
+  background:#E1306C; /* instagram */
+}
+
+.social a:nth-child(3):hover{
+  background:#1877f2; /* facebook */
+}
+
+.social a:nth-child(4):hover{
+  background:#25D366; /* whatsapp */
+}
+
+.social a:hover{
   background:#22c55e;
-  padding:8px 16px;
-  border-radius:8px;
+}
+
+.copy{
+  margin-top:20px;
+  font-size:12px;
+}
+.insta-btn{
+  display:inline-block;
+  margin-top:10px;
+  color:#22c55e;
+  text-decoration:none;
   font-weight:600;
 }
-.card h3{
-  font-size:28px;
-  color:#22c55e;
+.social a i{
+  font-size:18px;
 }
 
 
@@ -228,8 +318,8 @@ p{
 <a href="index.html#servicos">Serviços</a>
 <a href="index.html#projetos">Projetos</a>
 
-<a href="https://wa.me/5521972381004" class="btn-menu">
-Contato
+<a href="https://wa.me/5521972381004?text=Olá,%20vim%20pelo%20site%20e%20gostaria%20de%20um%20orçamento%20de%20energia%20solar" class="btn-menu">
+⚡ Falar com especialista
 </a>
 
 </nav>
@@ -240,13 +330,9 @@ Contato
 
 <h1>Quem somos</h1>
 
-
-
 <p style="margin-top:10px; color:#94a3b8;">
 Marcos Felipe • Técnico em Eletrotécnica
 </p>
-
-</div>
 
 <p>
 A <span class="highlight">MF Soluções</span> nasceu para resolver um problema simples:
@@ -316,8 +402,6 @@ para entregar algo simples:
 
 </div>
 
-
-</div>
 
 <!-- DIFERENCIAIS -->
 <div class="cards">
@@ -398,6 +482,48 @@ Descubra agora quanto você pode economizar com energia solar
 Falar com especialista
 
 </a>
+
+<footer class="footer">
+
+<div class="footer-content">
+
+<img src="imagens/logo.png" class="footer-logo">
+
+<h2>MF Soluções Elétricas</h2>
+
+<p>CNPJ: 48.929.808/0001-84</p>
+<p>Responsável Técnico: Marcos Felipe - Eletrotécnico</p>
+<p>Telefone: (21) 97238-1004</p>
+<p>Email: mfeletricidade.solar@gmail.com</p>
+
+<p style="margin-top:20px; color:#94a3b8;">
+Acompanhe nossos trabalhos reais
+</p>
+
+<div class="social">
+
+<a href="mailto:mfeletricidade.solar@gmail.com"><i class="fas fa-envelope"></i></a>
+
+<a href="https://instagram.com/mf.eletricidade" target="_blank" rel="noopener">
+<i class="fab fa-instagram"></i>
+</a>
+
+<a href="https://www.facebook.com/profile.php?id=61550489622398" target="_blank" rel="noopener">
+<i class="fab fa-facebook"></i>
+</a>
+
+<a href="https://wa.me/5521972381004"><i class="fab fa-whatsapp"></i></a>
+
+</div>
+
+<p class="copy">© 2026 MF Soluções Elétricas - Todos os direitos reservados</p>
+
+</div>
+
+
+</footer>
+
+
 
 </body>
 </html>
