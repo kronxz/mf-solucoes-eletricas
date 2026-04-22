@@ -1320,7 +1320,7 @@ Descubra quanto você pode economizar com
 na sua casa ainda hoje
 </p>
 
-<a class="btn" href="https://kronxz.github.io/solar-calculator/">
+<a class="btn" href="https://kronxz.github.io/solar-calculator/" onclick="fbq('track', 'ViewContent')">
 ⚡ Ver minha economia agora
 </a>
   
@@ -1570,7 +1570,7 @@ Por que nossos clientes fecham com a
     Simulação rápida baseada no seu consumo
   </p>
 
-  <a class="btn" href="https://kronxz.github.io/solar-calculator/">
+  <a class="btn" href="https://kronxz.github.io/solar-calculator/" onclick="fbq('track', 'ViewContent')">
     ⚡ Ver minha economia agora
   </a>
 </section> 
@@ -2038,7 +2038,7 @@ botoes.forEach(botao => {
 </script>
 
 <script>
-// 🔥 CONTADOR DE VISITAS - SITE
+// 🔥 CONTADOR DE VISITAS SITE
 let visitas = JSON.parse(localStorage.getItem("visitas")) || []
 
 let hoje = new Date().toLocaleDateString()
@@ -2050,7 +2050,12 @@ visitas.push({
 
 localStorage.setItem("visitas", JSON.stringify(visitas))
 </script>
-
+<script>
+// 🔥 TEMPO NA PÁGINA
+setTimeout(() => {
+  fbq('trackCustom', 'TempoPagina')
+}, 10000) // 10 segundos
+</script>
   
 
   
