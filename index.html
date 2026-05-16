@@ -237,6 +237,69 @@
     0 10px 30px rgba(0,0,0,0.25);
 }
 
+
+.hero-stats{
+
+    display:flex;
+    gap:16px;
+
+    flex-wrap:wrap;
+
+    justify-content:center;
+
+    margin-top:35px;
+}
+
+.hero-stat{
+
+    min-width:160px;
+
+    padding:18px;
+
+    border-radius:18px;
+
+    background:rgba(255,255,255,0.05);
+
+    border:1px solid rgba(255,255,255,0.08);
+
+    backdrop-filter:blur(12px);
+
+    box-shadow:
+    0 10px 30px rgba(0,0,0,0.25);
+
+    transition:0.3s;
+}
+
+.hero-stat:hover{
+
+    transform:translateY(-4px);
+
+    border-color:
+    rgba(59,130,246,0.35);
+}
+
+.hero-stat strong{
+
+    display:block;
+
+    font-size:24px;
+
+    font-weight:800;
+
+    color:white;
+
+    margin-bottom:6px;
+}
+
+.hero-stat span{
+
+    color:#cbd5e1;
+
+    font-size:14px;
+}
+
+
+
         .hero-content{
 
     width:100%;
@@ -628,6 +691,23 @@
                 padding: 60px 15px;
                 margin: 0 auto;
             }
+
+
+            .hero-stats{
+
+    gap:12px;
+}
+
+.hero-stat{
+
+    flex:1 1 calc(50% - 10px);
+
+    min-width:140px;
+
+    padding:16px;
+}
+
+
 
         }
 
@@ -1712,6 +1792,30 @@
             <a class="btn" href="https://kronxz.github.io/solar-calculator/" onclick="fbq('track', 'ViewContent')">
                 ⚡ Ver minha economia agora
             </a>
+
+            <div class="hero-stats">
+
+    <div class="hero-stat">
+        <strong>+150</strong>
+        <span>Projetos instalados</span>
+    </div>
+
+    <div class="hero-stat">
+        <strong>Maricá</strong>
+        <span>e região</span>
+    </div>
+
+    <div class="hero-stat">
+        <strong>Equipe</strong>
+        <span>Especializada</span>
+    </div>
+
+    <div class="hero-stat">
+        <strong>95%</strong>
+        <span>de economia</span>
+    </div>
+
+</div>
 
             <p style="margin-top:15px; font-size:14px; color:#9ca3af;">
                 ✔ Mais de 150 sistemas instalados na região <br>
