@@ -1450,6 +1450,195 @@
             height: auto;
             display: block;
         }
+
+.prova-social{
+    max-width:1300px;
+}
+
+.mini-badge{
+
+    display:inline-block;
+
+    padding:10px 18px;
+
+    border-radius:999px;
+
+    background:rgba(255,255,255,0.05);
+
+    border:1px solid rgba(255,255,255,0.08);
+
+    color:#facc15;
+
+    font-size:13px;
+    font-weight:700;
+
+    margin-bottom:25px;
+
+    letter-spacing:1px;
+}
+
+.titulo-prova{
+
+    font-size:52px;
+
+    line-height:1.1;
+
+    max-width:900px;
+
+    margin:auto;
+
+    margin-bottom:20px;
+}
+
+.sub-prova{
+
+    color:#94a3b8;
+
+    font-size:18px;
+
+    max-width:700px;
+
+    margin:auto;
+
+    margin-bottom:70px;
+}
+
+.cards-prova{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(auto-fit,minmax(320px,1fr));
+
+    gap:30px;
+}
+
+.prova-card{
+
+    background:
+    linear-gradient(
+        145deg,
+        rgba(255,255,255,0.05),
+        rgba(255,255,255,0.02)
+    );
+
+    border-radius:24px;
+
+    padding:28px;
+
+    text-align:left;
+
+    border:1px solid rgba(255,255,255,0.08);
+
+    backdrop-filter:blur(12px);
+
+    transition:0.35s;
+
+    box-shadow:
+    0 20px 50px rgba(0,0,0,0.45);
+}
+
+.prova-card:hover{
+
+    transform:
+    translateY(-8px);
+
+    border-color:
+    rgba(250,204,21,0.35);
+}
+
+.prova-card img{
+
+    width:100%;
+    height:220px;
+
+    object-fit:cover;
+
+    border-radius:16px;
+
+    margin:18px 0;
+}
+
+.stars{
+
+    color:#facc15;
+
+    font-size:18px;
+
+    letter-spacing:3px;
+}
+
+.prova-card h3{
+
+    font-size:24px;
+
+    margin-bottom:8px;
+}
+
+.conta-media{
+
+    color:#94a3b8;
+
+    font-size:14px;
+
+    display:block;
+
+    margin-bottom:18px;
+}
+
+.prova-card p{
+
+    color:#e5e7eb;
+
+    line-height:1.7;
+
+    font-size:16px;
+}
+
+.economia{
+
+    margin-top:22px;
+
+    color:#22c55e;
+
+    font-size:20px;
+
+    font-weight:800;
+}
+
+/* MOBILE */
+
+@media(max-width:768px){
+
+    .titulo-prova{
+
+        font-size:34px;
+    }
+
+    .sub-prova{
+
+        font-size:16px;
+
+        margin-bottom:40px;
+    }
+
+    .prova-card{
+
+        padding:22px;
+    }
+
+    .prova-card img{
+
+        height:190px;
+    }
+}
+
+
+
+
+
+
+
     </style>
 </head>
 
@@ -1878,76 +2067,118 @@
 
     </section>
 
-    <section class="section">
-        <h2>Clientes que já estão pagando quase zero na conta de luz</h2>
+    
 
-        <div class="cards">
+<section class="section prova-social">
 
-            <div class="card">
+    <div class="mini-badge">
+        ⭐ MAIS DE 150 CLIENTES ATENDIDOS
+    </div>
 
-                <img src="imagens/cliente1.jpg"
-                    style="width:100%; height:180px; object-fit:cover; border-radius:10px; margin-bottom:10px;">
+    <h2 class="titulo-prova">
+        Clientes que já estão pagando
+        <span class="amarelo">quase zero</span>
+        na conta de luz
+    </h2>
 
+    <p class="sub-prova">
+        Veja relatos reais de clientes da região de Maricá
+        que reduziram drasticamente a conta de energia.
+    </p>
 
+    <div class="cards-prova">
 
-                <p><strong>Bruno Souza – Itaipuaçu</strong></p>
+        <!-- CARD 1 -->
+        <div class="prova-card">
 
-                <p style="font-size:14px; color:#9ca3af;">
-                    Conta média: R$ 980/mês
-                </p>
-
-                <p>
-                    "Depois da instalação, minha conta caiu pra menos de R$ 100."
-                </p>
-
-                <p style="color:#22c55e; font-weight:700;">
-                    Economia: ~R$ 880/mês
-                </p>
-
+            <div class="stars">
+                ⭐⭐⭐⭐⭐
             </div>
 
+            <img src="imagens/cliente1.jpg">
 
-            <div class="card">
+            <h3>Bruno Souza — Itaipuaçu</h3>
 
-                <img src="imagens/cliente2.jpg"
-                    style="width:100%; height:180px; object-fit:cover; border-radius:10px; margin-bottom:10px;">
+            <span class="conta-media">
+                Conta média: R$ 980/mês
+            </span>
 
-                <p><strong>Cláudia – Centro de Maricá</strong></p>
-                <p style="font-size:14px; color:#9ca3af;">
-                    Conta média: R$ 1.200/mês
-                </p>
+            <p>
+                “Depois da instalação, minha conta caiu
+                para menos de R$ 100 por mês.
+                Melhor investimento que fiz.”
+            </p>
 
-                <p style="margin-top:10px;">
-                    "Eu achava que era caro, mas o retorno veio muito mais rápido do que eu imaginava."
-                </p>
-
-                <p style="color:#22c55e; font-weight:700; margin-top:10px;">
-                    Economia: ~R$ 1.050/mês
-                </p>
-            </div>
-
-
-            <div class="card">
-
-                <img src="imagens/cliente3.jpg"
-                    style="width:100%; height:180px; object-fit:cover; border-radius:10px; margin-bottom:10px;">
-
-                <p><strong>Roberto – Inoã</strong></p>
-                <p style="font-size:14px; color:#9ca3af;">
-                    Conta média: R$ 750/mês
-                </p>
-
-                <p style="margin-top:10px;">
-                    "Hoje praticamente não pago mais conta de luz. Sistema funcionando perfeito."
-                </p>
-
-                <p style="color:#22c55e; font-weight:700; margin-top:10px;">
-                    Economia: ~R$ 650/mês
-                </p>
+            <div class="economia">
+                Economia média: ~R$ 880/mês
             </div>
 
         </div>
-    </section>
+
+        <!-- CARD 2 -->
+        <div class="prova-card">
+
+            <div class="stars">
+                ⭐⭐⭐⭐⭐
+            </div>
+
+            <img src="imagens/cliente2.jpg">
+
+            <h3>Cláudia — Centro de Maricá</h3>
+
+            <span class="conta-media">
+                Conta média: R$ 1.200/mês
+            </span>
+
+            <p>
+                “Achei que demoraria anos para compensar,
+                mas o retorno veio muito mais rápido
+                do que eu imaginava.”
+            </p>
+
+            <div class="economia">
+                Economia média: ~R$ 1.050/mês
+            </div>
+
+        </div>
+
+        <!-- CARD 3 -->
+        <div class="prova-card">
+
+            <div class="stars">
+                ⭐⭐⭐⭐⭐
+            </div>
+
+            <img src="imagens/cliente3.jpg">
+
+            <h3>Roberto — Inoã</h3>
+
+            <span class="conta-media">
+                Conta média: R$ 750/mês
+            </span>
+
+            <p>
+                “Hoje praticamente não pago mais conta
+                de luz. Sistema funcionando perfeito
+                desde a instalação.”
+            </p>
+
+            <div class="economia">
+                Economia média: ~R$ 650/mês
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+
+
+
+
 
     </section> <!-- seção anterior -->
 
