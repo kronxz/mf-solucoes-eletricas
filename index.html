@@ -2032,6 +2032,353 @@ h2, h3 {
         }
 
         /* =============================================
+           ETAPA 1 — CTA FIXO MOBILE
+        ============================================= */
+        .mobile-cta-bar {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .mobile-cta-bar {
+                display: flex;
+                position: fixed;
+                bottom: 0; left: 0; right: 0;
+                z-index: 1000;
+                background: rgba(2,6,23,0.97);
+                backdrop-filter: blur(14px);
+                border-top: 1px solid rgba(255,255,255,0.08);
+                padding: 10px 12px 12px;
+                gap: 8px;
+                box-shadow: 0 -8px 30px rgba(0,0,0,0.5);
+            }
+
+            .mcta-btn {
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 4px;
+                padding: 10px 6px;
+                border-radius: 12px;
+                text-decoration: none;
+                font-size: 11px;
+                font-weight: 700;
+                letter-spacing: 0.3px;
+                transition: 0.2s;
+                border: none;
+                cursor: pointer;
+            }
+
+            .mcta-btn i { font-size: 17px; }
+
+            .mcta-call {
+                background: rgba(59,130,246,0.15);
+                border: 1px solid rgba(59,130,246,0.3);
+                color: #93c5fd;
+            }
+
+            .mcta-call:hover { background: rgba(59,130,246,0.25); }
+
+            .mcta-wpp {
+                background: rgba(37,211,102,0.15);
+                border: 1px solid rgba(37,211,102,0.3);
+                color: #4ade80;
+            }
+
+            .mcta-wpp:hover { background: rgba(37,211,102,0.25); }
+
+            .mcta-sim {
+                background: linear-gradient(135deg, #22c55e, #16a34a);
+                border: none;
+                color: #ffffff;
+                box-shadow: 0 4px 14px rgba(34,197,94,0.4);
+                flex: 1.4;
+            }
+
+            .mcta-sim:hover { transform: translateY(-1px); box-shadow: 0 6px 18px rgba(34,197,94,0.55); }
+
+            /* Espaço extra no fundo para não cobrir conteúdo */
+            body { padding-bottom: 80px; }
+        }
+
+        /* =============================================
+           ETAPA 2 — STICKY CTA CARD
+        ============================================= */
+        .sticky-cta {
+            display: none;
+            position: fixed;
+            bottom: 90px;
+            right: 20px;
+            z-index: 998;
+            max-width: 300px;
+            background: linear-gradient(145deg, rgba(15,23,42,0.98), rgba(2,6,23,0.98));
+            border: 1px solid rgba(34,197,94,0.3);
+            border-radius: 20px;
+            padding: 22px 22px 18px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.6), 0 0 30px rgba(34,197,94,0.1);
+            backdrop-filter: blur(16px);
+            animation: slideInRight 0.4s cubic-bezier(0.22,1,0.36,1) both;
+        }
+
+        .sticky-cta.visible { display: block; }
+
+        @keyframes slideInRight {
+            from { opacity:0; transform:translateX(40px) scale(0.95); }
+            to   { opacity:1; transform:translateX(0) scale(1); }
+        }
+
+        .sticky-close {
+            position: absolute;
+            top: 10px; right: 12px;
+            background: none;
+            border: none;
+            color: #475569;
+            font-size: 16px;
+            cursor: pointer;
+            padding: 4px;
+            line-height: 1;
+            transition: color 0.2s;
+        }
+
+        .sticky-close:hover { color: #e2e8f0; }
+
+        .sticky-cta p {
+            font-size: 14px;
+            font-weight: 700;
+            color: #f1f5f9;
+            margin: 0 0 6px;
+            padding-right: 16px;
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.4;
+        }
+
+        .sticky-cta small {
+            font-size: 12px;
+            color: #64748b;
+            display: block;
+            margin-bottom: 14px;
+        }
+
+        .sticky-cta-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            width: 100%;
+            padding: 12px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #22c55e, #16a34a);
+            color: #fff;
+            font-size: 13px;
+            font-weight: 700;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 6px 18px rgba(34,197,94,0.45);
+            transition: 0.3s;
+        }
+
+        .sticky-cta-btn:hover { transform: translateY(-1px); box-shadow: 0 10px 24px rgba(34,197,94,0.6); }
+
+        @media (max-width: 768px) {
+            .sticky-cta { bottom: 100px; right: 10px; max-width: 260px; }
+        }
+
+        /* =============================================
+           ETAPA 3 — FAQ
+        ============================================= */
+        .faq-section {
+            padding: 100px 20px;
+            max-width: 860px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+        }
+
+        .faq-question {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 22px 4px;
+            cursor: pointer;
+            gap: 16px;
+            transition: color 0.2s;
+        }
+
+        .faq-question:hover { color: #22c55e; }
+
+        .faq-question span {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 16px;
+            font-weight: 700;
+            color: inherit;
+            line-height: 1.4;
+        }
+
+        .faq-toggle {
+            width: 28px; height: 28px;
+            min-width: 28px;
+            border-radius: 8px;
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.08);
+            display: flex; align-items: center; justify-content: center;
+            color: #64748b;
+            font-size: 13px;
+            transition: 0.3s;
+        }
+
+        .faq-item.open .faq-toggle {
+            background: rgba(34,197,94,0.15);
+            border-color: rgba(34,197,94,0.3);
+            color: #22c55e;
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s cubic-bezier(0.22,1,0.36,1), padding 0.3s;
+            padding: 0 4px;
+        }
+
+        .faq-item.open .faq-answer {
+            max-height: 300px;
+            padding-bottom: 20px;
+        }
+
+        .faq-answer p {
+            color: #94a3b8;
+            font-size: 15px;
+            line-height: 1.75;
+            margin: 0;
+        }
+
+        .faq-answer p strong { color: #e2e8f0; }
+
+        @media (max-width: 600px) {
+            .faq-question span { font-size: 14px; }
+            .faq-section { padding: 70px 16px; }
+        }
+
+        /* =============================================
+           ETAPA 4 — AUTORIDADE AVANÇADA
+        ============================================= */
+        .autoridade-adv {
+            padding: 100px 20px;
+            text-align: center;
+            background:
+                radial-gradient(ellipse at top, rgba(34,197,94,0.07), transparent 60%),
+                linear-gradient(180deg, #020617, #020617);
+            border-top: 1px solid rgba(255,255,255,0.05);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .autoridade-adv-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .autoridade-adv h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 42px;
+            font-weight: 800;
+            letter-spacing: -1.5px;
+            margin-bottom: 16px;
+            line-height: 1.1;
+        }
+
+        .autoridade-adv .sub {
+            font-size: 17px;
+            color: #64748b;
+            margin-bottom: 60px;
+            font-style: italic;
+        }
+
+        .autoridade-adv-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            text-align: left;
+            margin-bottom: 60px;
+        }
+
+        .aav-card {
+            background: linear-gradient(145deg, rgba(255,255,255,0.05), rgba(255,255,255,0.01));
+            border: 1px solid rgba(255,255,255,0.07);
+            border-radius: 20px;
+            padding: 28px 24px;
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            transition: 0.3s;
+        }
+
+        .aav-card:hover {
+            border-color: rgba(34,197,94,0.3);
+            transform: translateY(-4px);
+            box-shadow: 0 16px 40px rgba(0,0,0,0.4);
+        }
+
+        .aav-check {
+            width: 36px; height: 36px;
+            min-width: 36px;
+            border-radius: 10px;
+            background: rgba(34,197,94,0.12);
+            border: 1px solid rgba(34,197,94,0.25);
+            display: flex; align-items: center; justify-content: center;
+            color: #22c55e;
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .aav-body h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 15px;
+            font-weight: 700;
+            color: #f1f5f9;
+            margin: 0 0 5px;
+        }
+
+        .aav-body p {
+            font-size: 13px;
+            color: #64748b;
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        .autoridade-adv-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(135deg, #22c55e, #16a34a);
+            color: white;
+            font-weight: 700;
+            font-size: 15px;
+            padding: 16px 32px;
+            border-radius: 50px;
+            text-decoration: none;
+            box-shadow: 0 10px 28px rgba(34,197,94,0.45);
+            transition: 0.3s;
+        }
+
+        .autoridade-adv-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 16px 36px rgba(34,197,94,0.6);
+        }
+
+        @media (max-width: 900px) {
+            .autoridade-adv-grid { grid-template-columns: repeat(2,1fr); }
+            .autoridade-adv h2 { font-size: 30px; }
+        }
+
+        @media (max-width: 480px) {
+            .autoridade-adv-grid { grid-template-columns: 1fr; }
+        }
+
+        /* =============================================
            TAREFA 2 — FAIXA DE INDICADORES PREMIUM
         ============================================= */
         .indicadores-strip {
@@ -3528,6 +3875,149 @@ h2, h3 {
         Falar com especialista
     </a>
 
+    <!-- ETAPA 4 — AUTORIDADE AVANÇADA -->
+    <section class="autoridade-adv">
+        <div class="autoridade-adv-inner">
+            <div class="mini-badge" style="margin-bottom:20px;">🏆 EXPERIÊNCIA COMPROVADA</div>
+            <h2>Mais de 30 anos resolvendo<br>problemas elétricos em <span class="amarelo">Maricá</span></h2>
+            <p class="sub">Antes mesmo da energia solar se popularizar.</p>
+
+            <div class="autoridade-adv-grid">
+                <div class="aav-card">
+                    <div class="aav-check">✔</div>
+                    <div class="aav-body">
+                        <h4>30 anos de experiência familiar</h4>
+                        <p>Três gerações na área elétrica. Base técnica sólida construída na prática, não em teoria.</p>
+                    </div>
+                </div>
+                <div class="aav-card">
+                    <div class="aav-check">✔</div>
+                    <div class="aav-body">
+                        <h4>+150 projetos executados</h4>
+                        <p>Mais de 150 sistemas instalados com sucesso em residências e estabelecimentos da região.</p>
+                    </div>
+                </div>
+                <div class="aav-card">
+                    <div class="aav-check">✔</div>
+                    <div class="aav-body">
+                        <h4>Atendimento local</h4>
+                        <p>Equipe sediada em Maricá. Conhecemos cada bairro e atendemos com agilidade toda a região.</p>
+                    </div>
+                </div>
+                <div class="aav-card">
+                    <div class="aav-check">✔</div>
+                    <div class="aav-body">
+                        <h4>Pós-venda e suporte</h4>
+                        <p>Acompanhamento completo após a instalação. Não sumimos depois que você fecha o contrato.</p>
+                    </div>
+                </div>
+                <div class="aav-card">
+                    <div class="aav-check">✔</div>
+                    <div class="aav-body">
+                        <h4>Equipe técnica própria</h4>
+                        <p>Sem terceirização. Os mesmos profissionais que projetam são os que instalam no seu imóvel.</p>
+                    </div>
+                </div>
+                <div class="aav-card">
+                    <div class="aav-check">✔</div>
+                    <div class="aav-body">
+                        <h4>Transparência total</h4>
+                        <p>Orçamento claro, sem surpresas. Você sabe exatamente o que contrata antes de assinar.</p>
+                    </div>
+                </div>
+            </div>
+
+            <a class="autoridade-adv-cta"
+                href="https://wa.me/5521972381004?text=Quero%20um%20or%C3%A7amento%20de%20energia%20solar."
+                onclick="registrarClique('secao_autoridade_adv')"
+                target="_blank">
+                <i class="fab fa-whatsapp"></i> Falar com especialista
+            </a>
+        </div>
+    </section>
+
+    <!-- ETAPA 3 — FAQ -->
+    <section class="faq-section" id="faq">
+        <div style="text-align:center; margin-bottom:50px;">
+            <div class="mini-badge" style="margin-bottom:16px;">❓ DÚVIDAS FREQUENTES</div>
+            <h2 style="font-family:'Montserrat',sans-serif;font-size:38px;font-weight:800;letter-spacing:-1.5px;margin:0 0 12px;">
+                Perguntas <span class="amarelo">frequentes</span>
+            </h2>
+            <p style="color:#64748b;font-size:16px;max-width:560px;margin:0 auto;">
+                Tudo o que você precisa saber antes de decidir.
+            </p>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFaq(this)">
+                <span>Quanto posso economizar com energia solar?</span>
+                <div class="faq-toggle"><i class="fas fa-plus"></i></div>
+            </div>
+            <div class="faq-answer">
+                <p>Depende do seu consumo atual. Em média, nossos clientes economizam <strong>entre 80% e 95% da conta de luz</strong>. Um sistema bem dimensionado cobre praticamente toda a geração necessária para o imóvel. Solicite uma simulação gratuita para saber o valor exato no seu caso.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFaq(this)">
+                <span>O sistema funciona quando falta luz na rua?</span>
+                <div class="faq-toggle"><i class="fas fa-plus"></i></div>
+            </div>
+            <div class="faq-answer">
+                <p>No sistema padrão (grid-tie, sem bateria), <strong>o sistema desliga automaticamente quando há falta de energia</strong> — isso é uma exigência da norma para proteger os eletricistas que trabalham na rede. Para funcionar durante quedas, é necessário adicionar baterias. Podemos avaliar essa opção para você.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFaq(this)">
+                <span>Quanto tempo dura um sistema solar?</span>
+                <div class="faq-toggle"><i class="fas fa-plus"></i></div>
+            </div>
+            <div class="faq-answer">
+                <p>Os painéis solares têm <strong>vida útil superior a 25 anos</strong>, com degradação mínima ao longo do tempo (menos de 0,7% ao ano). O inversor geralmente tem vida útil de 10 a 15 anos. Utilizamos equipamentos com garantia e procedência comprovada.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFaq(this)">
+                <span>Precisa de manutenção?</span>
+                <div class="faq-toggle"><i class="fas fa-plus"></i></div>
+            </div>
+            <div class="faq-answer">
+                <p>A manutenção é <strong>mínima</strong>. Em geral, basta a limpeza periódica dos painéis (2 a 4 vezes por ano) e uma vistoria técnica anual. Oferecemos plano de acompanhamento pós-instalação para garantir que seu sistema continue gerando no máximo.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFaq(this)">
+                <span>Tem garantia?</span>
+                <div class="faq-toggle"><i class="fas fa-plus"></i></div>
+            </div>
+            <div class="faq-answer">
+                <p>Sim. Os painéis têm <strong>garantia de desempenho de 25 anos</strong> e garantia de produto de 10 a 12 anos. O inversor possui garantia de 5 a 10 anos dependendo do fabricante. Além disso, oferecemos garantia de serviço na instalação.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFaq(this)">
+                <span>Posso financiar o sistema solar?</span>
+                <div class="faq-toggle"><i class="fas fa-plus"></i></div>
+            </div>
+            <div class="faq-answer">
+                <p>Sim! Trabalhamos com os principais bancos: <strong>Solfácil, Santander, Itaú, Bradesco, Caixa, BB, BV e Sicoob</strong>. As parcelas costumam ser menores do que a conta de luz atual, ou seja, você já começa a economizar desde o primeiro mês mesmo financiando.</p>
+            </div>
+        </div>
+
+        <div style="text-align:center; margin-top:40px;">
+            <a class="btn-wpp-secao"
+                href="https://wa.me/5521972381004?text=Tenho%20d%C3%BAvidas%20sobre%20energia%20solar."
+                onclick="registrarClique('secao_faq')"
+                target="_blank">
+                <i class="fab fa-whatsapp"></i> Ainda tem dúvidas? Fale com a gente
+            </a>
+        </div>
+    </section>
+
     <section class="section" style="text-align:center;">
 
         <h2 style="font-size:38px;">
@@ -3602,6 +4092,41 @@ h2, h3 {
             </div>
         </div>
     </footer>
+
+    <!-- ETAPA 1 — CTA FIXO MOBILE -->
+    <div class="mobile-cta-bar" id="mobileCta">
+        <a class="mcta-btn mcta-call"
+            href="tel:+5521972381004"
+            onclick="if(typeof gtag!=='undefined')gtag('event','CTA_mobile_call');">
+            <i class="fas fa-phone"></i>
+            Ligar
+        </a>
+        <a class="mcta-btn mcta-wpp"
+            href="https://wa.me/5521972381004?text=Olá,%20vim%20pelo%20site%20e%20quero%20um%20orçamento"
+            target="_blank"
+            onclick="if(typeof gtag!=='undefined')gtag('event','CTA_mobile_whatsapp');">
+            <i class="fab fa-whatsapp"></i>
+            WhatsApp
+        </a>
+        <a class="mcta-btn mcta-sim"
+            href="#inicio"
+            onclick="if(typeof gtag!=='undefined')gtag('event','CTA_mobile_simulacao');">
+            <i class="fas fa-bolt"></i>
+            Simular Economia
+        </a>
+    </div>
+
+    <!-- ETAPA 2 — STICKY CTA CARD -->
+    <div class="sticky-cta" id="stickyCta">
+        <button class="sticky-close" onclick="fecharSticky()" aria-label="Fechar">✕</button>
+        <p>Sua conta passa de R$ 300 por mês?</p>
+        <small>Solicite uma simulação gratuita.</small>
+        <a class="sticky-cta-btn"
+            href="#inicio"
+            onclick="if(typeof gtag!=='undefined')gtag('event','sticky_cta_click'); fecharSticky();">
+            <i class="fas fa-bolt"></i> Quero Simular
+        </a>
+    </div>
 
     <script>
 
@@ -3776,11 +4301,11 @@ h2, h3 {
     <script>
     /* =============================================
        CAPTURA DE UTM + ENVIO DE FORMULÁRIO + RASTREAMENTO GA4
-       MF Soluções — Fase 1.5 — Conversão & Rastreamento
+       MF Soluções — Fase 4 — Conversão & Rastreamento Avançado
     ============================================= */
     (function () {
 
-        // 1. Capturar UTMs da URL e salvar no localStorage
+        // 1. Capturar UTMs + referrer + landingPage + timestamp
         var params = new URLSearchParams(window.location.search);
         var utmKeys = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'];
         var utms = {};
@@ -3791,6 +4316,14 @@ h2, h3 {
             var stored = localStorage.getItem('mf_' + key);
             if (stored) utms[key] = stored;
         });
+
+        // Etapa 6 — campos adicionais de rastreamento
+        if (!localStorage.getItem('mf_referrer'))    localStorage.setItem('mf_referrer',    document.referrer || 'direto');
+        if (!localStorage.getItem('mf_landingPage')) localStorage.setItem('mf_landingPage', window.location.pathname);
+        if (!localStorage.getItem('mf_timestamp'))   localStorage.setItem('mf_timestamp',   new Date().toISOString());
+        utms['referrer']    = localStorage.getItem('mf_referrer');
+        utms['landingPage'] = localStorage.getItem('mf_landingPage');
+        utms['timestamp']   = localStorage.getItem('mf_timestamp');
 
         // 2. Registrar cliques por seção para análise futura (Local)
         window.registrarClique = function (origem) {
@@ -3903,6 +4436,25 @@ h2, h3 {
             });
         }
 
+        // Etapa 5 — Sticky CTA após 30% scroll (apenas uma vez)
+        var stickyMostrado = false;
+        window.fecharSticky = function () {
+            var el = document.getElementById('stickyCta');
+            if (el) { el.classList.remove('visible'); el.style.display = 'none'; }
+            sessionStorage.setItem('mf_sticky_closed', '1');
+        };
+
+        // Etapa 5 — FAQ accordion
+        window.toggleFaq = function (btn) {
+            var item = btn.parentElement;
+            var isOpen = item.classList.contains('open');
+            document.querySelectorAll('.faq-item.open').forEach(function(i){ i.classList.remove('open'); });
+            if (!isOpen) {
+                item.classList.add('open');
+                if (typeof gtag !== 'undefined') gtag('event', 'faq_open', { question: btn.querySelector('span').innerText.slice(0,60) });
+            }
+        };
+
         // 6. Scroll Tracking (disparar apenas uma vez cada)
         var scrollsDisparados = {
             'scroll_25': false,
@@ -3910,6 +4462,8 @@ h2, h3 {
             'scroll_75': false,
             'scroll_100': false
         };
+
+        var authorityViewed = false;
 
         window.addEventListener('scroll', function () {
             var scrollTop = window.scrollY || window.pageYOffset || document.documentElement.scrollTop;
@@ -3933,6 +4487,28 @@ h2, h3 {
             if (pct >= 99 && !scrollsDisparados['scroll_100']) {
                 scrollsDisparados['scroll_100'] = true;
                 if (typeof gtag !== 'undefined') gtag('event', 'scroll_100');
+            }
+
+            // Sticky CTA — exibir após 30% scroll, apenas uma vez por sessão
+            if (pct >= 30 && !stickyMostrado && !sessionStorage.getItem('mf_sticky_closed')) {
+                stickyMostrado = true;
+                var sc = document.getElementById('stickyCta');
+                if (sc) {
+                    sc.classList.add('visible');
+                    if (typeof gtag !== 'undefined') gtag('event', 'sticky_cta_open');
+                }
+            }
+
+            // Authority view — disparar ao chegar na seção
+            if (!authorityViewed) {
+                var advEl = document.querySelector('.autoridade-adv');
+                if (advEl) {
+                    var rect = advEl.getBoundingClientRect();
+                    if (rect.top < window.innerHeight * 0.8) {
+                        authorityViewed = true;
+                        if (typeof gtag !== 'undefined') gtag('event', 'authority_view');
+                    }
+                }
             }
         });
 
