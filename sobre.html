@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sobre - MF Soluções</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+
+body{
+  margin:0;
+  font-family:Arial, sans-serif;
+
+  background:
+    radial-gradient(circle at 20% 20%, rgba(34,197,94,0.08), transparent 40%),
+    radial-gradient(circle at 80% 30%, rgba(59,130,246,0.08), transparent 40%),
+    #020617;
+
+  color:white;
+  padding-top:80px;
+}
+
+
+/* HEADER */
+header{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+
+  padding:15px 30px;
+
+  background:rgba(2,6,23,0.9);
+  backdrop-filter:blur(10px);
+
+  z-index:999;
+  box-sizing:border-box;
+}
+
+.logo img{
+  width:45px;
+  border-radius:50%;
+}
+
+/* HERO */
+.hero{
+  text-align:center;
+  padding:100px 20px 60px;
+}
+
+.hero h1{
+  font-size:42px;
+  margin-bottom:10px;
+}
+
+.hero p{
+  color:#94a3b8;
+  max-width:600px;
+  margin:auto;
+}
+
+/* CONTAINER */
+.container{
+  max-width:1000px;
+  margin:auto;
+  padding:20px;
+}
+
+/* TEXTO */
+p{
+  color:#cbd5f5;
+  line-height:1.6;
+}
+
+.highlight{
+  color:#22c55e;
+  font-weight:600;
+}
+
+/* CARDS */
+.cards{
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(250px,1fr));
+  gap:25px;
+  margin-top:40px;
+}
+
+.card{
+  background:
+    linear-gradient(145deg, rgba(255,255,255,0.06), rgba(255,255,255,0.01));
+  
+  padding:25px;
+  border-radius:16px;
+
+  backdrop-filter:blur(10px);
+
+  border:1px solid rgba(34,197,94,0.15);
+
+  transition:0.3s;
+}
+
+.card:hover{
+  transform:translateY(-5px);
+  box-shadow:0 20px 40px rgba(0,0,0,0.5);
+}
+
+.card h3{
+  margin-bottom:10px;
+}
+
+/* BLOCO */
+.box{
+  background:linear-gradient(145deg, rgba(255,255,255,0.04), rgba(255,255,255,0.01));
+  border:1px solid rgba(34,197,94,0.15);
+  backdrop-filter:blur(10px);
+
+  padding:25px;
+  border-radius:16px;
+  margin-top:30px;
+}
+
+/* NÚMEROS */
+.numeros{
+  display:flex;
+  justify-content:center;
+  gap:40px;
+  margin:60px 0;
+  flex-wrap:wrap;
+}
+
+.numero{
+  text-align:center;
+}
+
+.numero h2{
+  color:#22c55e;
+  font-size:40px;
+}
+
+/* CTA */
+.cta{
+  text-align:center;
+  margin:80px 0;
+}
+
+.btn{
+  background:linear-gradient(135deg,#22c55e,#16a34a);
+  padding:16px 28px;
+  border-radius:10px;
+  color:white;
+  text-decoration:none;
+  font-weight:700;
+
+  box-shadow:0 10px 25px rgba(34,197,94,0.4);
+}
+
+.btn:hover{
+  transform:scale(1.05);
+}
+
+.btn-whatsapp{
+  position:fixed;
+  bottom:20px;
+  right:20px;
+
+  display:flex;
+  align-items:center;
+  gap:10px;
+
+  background: linear-gradient(135deg,#16a34a,#22c55e);
+
+  color:#ffffff;
+  font-weight:600;
+
+  padding:14px 22px;
+  border-radius:50px;
+  text-decoration:none;
+
+  box-shadow:
+    0 10px 25px rgba(34,197,94,0.5),
+    0 0 15px rgba(34,197,94,0.3);
+
+  z-index:999;
+}
+
+.btn-whatsapp:hover{
+  transform:scale(1.05);
+}
+.menu{
+  display:flex;
+  gap:20px; /* antes era 30 */
+  align-items:center;
+  flex-wrap:wrap;
+}
+
+.menu a{
+  color:#e5e7eb;
+  text-decoration:none;
+  font-size:14px;
+  font-weight:500;
+}
+
+.menu a:hover{
+  color:#22c55e;
+}
+
+.btn-menu{
+  background:linear-gradient(135deg,#22c55e,#16a34a);
+  padding:10px 18px;
+  border-radius:10px;
+  font-weight:600;
+  color:white;
+
+  box-shadow:0 10px 25px rgba(34,197,94,0.4);
+  transition:0.3s;
+}
+
+.btn-menu:hover{
+  transform:scale(1.05);
+}
+
+.footer{
+  margin-top:80px;
+  padding:60px 20px;
+
+  text-align:center;
+
+  background:rgba(2,6,23,0.9);
+  border-top:1px solid rgba(255,255,255,0.05);
+}
+
+.footer-logo{
+  width:70px;
+  border-radius:50%;
+  margin-bottom:15px;
+}
+
+.footer h2{
+  margin-bottom:10px;
+}
+
+.footer p{
+  color:#94a3b8;
+  margin:5px 0;
+}
+
+.social{
+  margin-top:20px;
+  display:flex;
+  justify-content:center;
+  gap:15px;
+}
+
+.social a{
+  width:40px;
+  height:40px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  border-radius:50%;
+
+  background:#0f172a;
+
+  color:white;
+  text-decoration:none;
+
+  transition:0.3s;
+}
+
+/* CORES POR REDE */
+.social a:nth-child(1):hover{
+  background:#ea4335; /* email */
+}
+
+.social a:nth-child(2):hover{
+  background:#E1306C; /* instagram */
+}
+
+.social a:nth-child(3):hover{
+  background:#1877f2; /* facebook */
+}
+
+.social a:nth-child(4):hover{
+  background:#25D366; /* whatsapp */
+}
+
+.social a:hover{
+  background:#22c55e;
+}
+
+.copy{
+  margin-top:20px;
+  font-size:12px;
+}
+.insta-btn{
+  display:inline-block;
+  margin-top:10px;
+  color:#22c55e;
+  text-decoration:none;
+  font-weight:600;
+}
+.social a i{
+  font-size:18px;
+}
+
+
+
+
+</style>
+</head>
+
+<body>
+
+<header>
+<div class="logo">
+<img src="imagens/logo.png">
+</div>
+
+<nav class="menu">
+
+<a href="index.html">Início</a>
+<a href="sobre.html">Sobre</a>
+<a href="index.html#servicos">Serviços</a>
+<a href="index.html#projetos">Projetos</a>
+
+<a href="https://wa.me/5521972381004?text=Olá,%20vim%20pelo%20site" class="btn-menu">
+Contato
+</a>
+
+</nav>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+
+<h1>Quem somos</h1>
+
+<p style="margin-top:10px; color:#94a3b8;">
+Marcos Felipe • Técnico em Eletrotécnica
+</p>
+
+<p>
+A <span class="highlight">MF Soluções</span> nasceu para resolver um problema simples:
+<strong>você parar de pagar caro na conta de luz.</strong>
+</p>
+
+</section>
+
+<div class="container">
+
+<h2>Nossa história</h2>
+
+<p>
+A MF Soluções Elétricas nasceu dentro da prática, não da teoria.
+Tudo começou com <strong>Paulo</strong>, eletricista formado pelo SENAI há mais de 30 anos,
+que construiu uma base sólida de clientes em Maricá através de trabalho sério e bem feito.
+</p>
+
+<p>
+Com o tempo, ele formou novos profissionais dentro da própria família.
+Seu irmão André e depois Luiz seguiram o mesmo caminho,
+carregando a mesma responsabilidade e padrão técnico.
+</p>
+
+<p>
+Eu, Marcos, cresci dentro desse ambiente.
+Aprendi na prática, acompanhando obras, resolvendo problemas reais
+e entendendo o que realmente funciona no dia a dia.
+Hoje, sou técnico em eletrotécnica e responsável técnico da MF Soluções.
+</p>
+
+<p>
+Com o aumento da demanda por energia solar,
+percebemos um problema sério no mercado:
+<strong>muitos sistemas sendo mal instalados e clientes insatisfeitos.</strong>
+</p>
+
+<p>
+Foi nesse momento que decidimos evoluir.
+Nos especializamos em energia solar para não apenas instalar,
+mas corrigir erros, fazer manutenção e garantir que o sistema funcione de verdade.
+</p>
+
+<p>
+Hoje, unimos experiência de mais de 30 anos com tecnologia atual
+para entregar algo simples:
+<span class="highlight">economia real com responsabilidade técnica.</span>
+</p>
+
+<!-- NÚMEROS -->
+<div class="cards">
+
+<div class="card">
+<h3>150+</h3>
+<p>Sistemas instalados</p>
+</div>
+
+<div class="card">
+<h3>95%</h3>
+<p>Redução na conta</p>
+</div>
+
+<div class="card">
+<h3>R$1000+</h3>
+<p>Economia mensal</p>
+</div>
+
+</div>
+
+
+<!-- DIFERENCIAIS -->
+<div class="cards">
+
+<div class="card">
+<h3>⚡ Atendimento direto</h3>
+<p>Você fala direto com especialista, sem enrolação.</p>
+</div>
+
+<div class="card">
+<h3>📐 Projeto sob medida</h3>
+<p>Sistema dimensionado para máxima economia.</p>
+</div>
+
+<div class="card">
+<h3>🛠 Instalação profissional</h3>
+<p>Padrão técnico elevado e acabamento impecável.</p>
+</div>
+
+<div class="card">
+<h3>💰 Foco em economia</h3>
+<p>Nosso objetivo é reduzir sua conta, não só vender.</p>
+</div>
+
+</div>
+
+<!-- RESPONSABILIDADE TÉCNICA -->
+<div class="box">
+
+<h2>Responsabilidade técnica</h2>
+
+<p>
+✔ Técnico em eletrotécnica<br>
+✔ Responsável técnico habilitado (CFT)<br>
+✔ Atendimento direto com o profissional<br>
+✔ Conformidade com normas técnicas<br>
+✔ Experiência prática em campo
+</p>
+
+</div>
+
+<!-- CONFIANÇA -->
+<div class="box">
+
+<h2>Por que confiar na MF?</h2>
+
+<p>
+✔ Mais de <span class="highlight">150 sistemas instalados</span><br>
+✔ Clientes economizando todos os meses<br>
+✔ Experiência prática em campo<br>
+✔ Atendimento direto e transparente
+</p>
+
+</div>
+
+<!-- CTA -->
+<div class="cta">
+
+<h2>Pare de pagar caro na conta de luz</h2>
+
+<p style="color:#94a3b8;">
+Descubra agora quanto você pode economizar com energia solar
+</p>
+
+<br>
+
+<a href="https://kronxz.github.io/solar-calculator/" class="btn">
+⚡ Simular minha economia
+</a>
+
+</div>
+
+</div>
+
+<a class="btn-whatsapp" href="https://wa.me/5521972381004?text=Olá,%20vim%20pelo%20site%20e%20quero%20um%20orçamento%20de%20energia%20solar">
+
+<i class="fab fa-whatsapp"></i>
+Falar com especialista
+
+</a>
+
+<footer class="footer">
+
+<div class="footer-content">
+
+<img src="imagens/logo.png" class="footer-logo">
+
+<h2>MF Soluções Elétricas</h2>
+
+<p>CNPJ: 48.929.808/0001-84</p>
+<p>Responsável Técnico: Marcos Felipe - Eletrotécnico</p>
+<p>Telefone: (21) 97238-1004</p>
+<p>Email: mfeletricidade.solar@gmail.com</p>
+
+<p style="margin-top:20px; color:#94a3b8;">
+Acompanhe nossos trabalhos reais
+</p>
+
+<div class="social">
+
+<a href="mailto:mfeletricidade.solar@gmail.com"><i class="fas fa-envelope"></i></a>
+
+<a href="https://instagram.com/mf.eletricidade" target="_blank" rel="noopener">
+<i class="fab fa-instagram"></i>
+</a>
+
+<a href="https://www.facebook.com/profile.php?id=61550489622398" target="_blank" rel="noopener">
+<i class="fab fa-facebook"></i>
+</a>
+
+<a href="https://wa.me/5521972381004?text=Olá,%20vim%20pelo%20site%20e%20quero%20saber%20quanto%20posso%20economizar%20com%20energia%20solar" target="_blank" rel="noopener">
+<i class="fab fa-whatsapp"></i>
+</a>
+
+</div>
+
+<p class="copy">© 2026 MF Soluções Elétricas - Todos os direitos reservados</p>
+
+</div>
+
+
+</footer>
+
+
+
+</body>
+</html>
