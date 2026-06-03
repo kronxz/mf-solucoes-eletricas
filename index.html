@@ -645,10 +645,13 @@ h2, h3 {
             /* CARDS */
             .cards {
                 grid-template-columns: 1fr;
+                max-width: 420px;
+                margin-left: auto;
+                margin-right: auto;
             }
 
             .card {
-                width: 90%;
+                width: 100%;
                 text-align: center;
                 display: flex;
                 flex-direction: column;
@@ -2106,14 +2109,18 @@ h2, h3 {
         @media (max-width:768px) {
             .indicadores-inner {
                 grid-template-columns: repeat(2,1fr);
+                max-width: 480px;
+                margin-left: auto;
+                margin-right: auto;
             }
             .indicador-item {
                 border-right: 1px solid rgba(255,255,255,0.06);
                 border-bottom: 1px solid rgba(255,255,255,0.06);
-                padding: 24px 20px;
+                padding: 24px 16px;
                 gap: 10px;
                 flex-direction: column;
                 align-items: center;
+                justify-content: center;
                 text-align: center;
             }
             .indicador-item:nth-child(2n) { border-right: none; }
@@ -2125,7 +2132,8 @@ h2, h3 {
         }
 
         @media (max-width:480px) {
-            .indicador-item { padding: 20px 14px; gap:8px; }
+            .indicadores-inner { max-width: 100%; }
+            .indicador-item { padding: 20px 12px; gap:8px; }
             .indicador-text strong { font-size:20px; }
         }
 
@@ -3119,7 +3127,7 @@ h2, h3 {
                             <span class="proj-tag proj-tag-cidade"><i class="fas fa-map-marker-alt"></i> Maricá/RJ</span>
                             <span class="proj-tag proj-tag-tipo"><i class="fas fa-home"></i> Residencial</span>
                             <span class="proj-tag proj-tag-kwp"><i class="fas fa-solar-panel"></i> 8,91 kWp</span>
-                            <span class="proj-tag proj-tag-eco"><i class="fas fa-bolt"></i> R$ 650/mês</span>
+                            <span class="proj-tag proj-tag-eco"><i class="fas fa-bolt"></i> ~R$ 950/mês</span>
                         </div>
                     </div>
                 </div>
@@ -3131,7 +3139,7 @@ h2, h3 {
                             <span class="proj-tag proj-tag-cidade"><i class="fas fa-map-marker-alt"></i> Itaipuaçu/RJ</span>
                             <span class="proj-tag proj-tag-tipo"><i class="fas fa-home"></i> Residencial</span>
                             <span class="proj-tag proj-tag-kwp"><i class="fas fa-solar-panel"></i> 12,54 kWp</span>
-                            <span class="proj-tag proj-tag-eco"><i class="fas fa-bolt"></i> R$ 890/mês</span>
+                            <span class="proj-tag proj-tag-eco"><i class="fas fa-bolt"></i> ~R$ 1.350/mês</span>
                         </div>
                     </div>
                 </div>
@@ -3143,7 +3151,7 @@ h2, h3 {
                             <span class="proj-tag proj-tag-cidade"><i class="fas fa-map-marker-alt"></i> Inoã/RJ</span>
                             <span class="proj-tag proj-tag-tipo"><i class="fas fa-store"></i> Comercial</span>
                             <span class="proj-tag proj-tag-kwp"><i class="fas fa-solar-panel"></i> 18,27 kWp</span>
-                            <span class="proj-tag proj-tag-eco"><i class="fas fa-bolt"></i> R$ 1.250/mês</span>
+                            <span class="proj-tag proj-tag-eco"><i class="fas fa-bolt"></i> ~R$ 2.050/mês</span>
                         </div>
                     </div>
                 </div>
@@ -3286,10 +3294,10 @@ h2, h3 {
         <div class="reviews-grid">
             <div class="review-card">
                 <div class="review-card-header">
-                    <div class="review-avatar">C</div>
+                    <div class="review-avatar">R</div>
                     <div>
-                        <div class="review-name">Carlos Henrique</div>
-                        <div class="review-meta">📍 Itaipu, Niterói · Google</div>
+                        <div class="review-name">Ricardo Almeida</div>
+                        <div class="review-meta">📍 Ponta Negra · Google</div>
                     </div>
                 </div>
                 <div class="review-stars">★★★★★</div>
@@ -3297,10 +3305,10 @@ h2, h3 {
             </div>
             <div class="review-card">
                 <div class="review-card-header">
-                    <div class="review-avatar" style="background:linear-gradient(135deg,#7c3aed,#4f46e5);">F</div>
+                    <div class="review-avatar" style="background:linear-gradient(135deg,#7c3aed,#4f46e5);">J</div>
                     <div>
-                        <div class="review-name">Fernanda Oliveira</div>
-                        <div class="review-meta">📍 Condomínio Elisa · Google</div>
+                        <div class="review-name">Juliana Martins</div>
+                        <div class="review-meta">📍 São José do Imbassaí · Google</div>
                     </div>
                 </div>
                 <div class="review-stars">★★★★★</div>
@@ -3308,10 +3316,10 @@ h2, h3 {
             </div>
             <div class="review-card">
                 <div class="review-card-header">
-                    <div class="review-avatar" style="background:linear-gradient(135deg,#047857,#059669);">M</div>
+                    <div class="review-avatar" style="background:linear-gradient(135deg,#047857,#059669);">A</div>
                     <div>
-                        <div class="review-name">Marcelo Costa</div>
-                        <div class="review-meta">📍 Cordeirinho · Google</div>
+                        <div class="review-name">André Ribeiro</div>
+                        <div class="review-meta">📍 Araçatiba · Google</div>
                     </div>
                 </div>
                 <div class="review-stars">★★★★★</div>
