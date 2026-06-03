@@ -60,7 +60,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <style>
         body {
@@ -77,7 +77,7 @@
             }
 
             margin:0;
-            font-family:'DM Sans', Arial, sans-serif;
+            font-family:'Inter', Arial, sans-serif;
 
             background: radial-gradient(circle at 20% 20%, rgba(34, 197, 94, 0.08), transparent 40%),
             radial-gradient(circle at 80% 30%, rgba(59, 130, 246, 0.08), transparent 40%),
@@ -340,7 +340,7 @@
 }
 
         .hero h1{
-    font-family:'Syne', sans-serif;
+    font-family:'Montserrat', sans-serif;
     font-size:68px;
     line-height:1.05;
     font-weight:800;
@@ -353,7 +353,7 @@
 }
 
 h2, h3 {
-    font-family: 'Syne', sans-serif;
+    font-family: 'Montserrat', sans-serif;
 }
 
 
@@ -649,6 +649,14 @@ h2, h3 {
 
             .card {
                 width: 90%;
+                text-align: center;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .card .icone {
+                margin: 0 auto 15px;
             }
 
             /* GALERIA */
@@ -1906,7 +1914,7 @@ h2, h3 {
             background: rgba(255,255,255,0.07);
             color: #ffffff;
             font-size: 16px;
-            font-family: Arial, sans-serif;
+            font-family: 'Inter', Arial, sans-serif;
             outline: none;
             transition: border-color 0.3s, background 0.3s, box-shadow 0.3s;
             backdrop-filter: blur(8px);
@@ -1931,7 +1939,7 @@ h2, h3 {
             font-size: 17px;
             font-weight: 800;
             cursor: pointer;
-            font-family: Arial, sans-serif;
+            font-family: 'Inter', Arial, sans-serif;
             box-shadow: 0 12px 32px rgba(34,197,94,0.5);
             transition: all 0.3s ease;
             letter-spacing: 0.4px;
@@ -2071,7 +2079,7 @@ h2, h3 {
 
         .indicador-text strong {
             display: block;
-            font-family: 'Syne', sans-serif;
+            font-family: 'Montserrat', sans-serif;
             font-size: 26px;
             font-weight: 800;
             color: #ffffff;
@@ -2103,17 +2111,21 @@ h2, h3 {
                 border-right: 1px solid rgba(255,255,255,0.06);
                 border-bottom: 1px solid rgba(255,255,255,0.06);
                 padding: 24px 20px;
-                gap: 14px;
+                gap: 10px;
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
             }
             .indicador-item:nth-child(2n) { border-right: none; }
             .indicador-item:nth-child(3),
             .indicador-item:nth-child(4) { border-bottom: none; }
             .indicador-icon { width:44px; height:44px; min-width:44px; font-size:18px; }
             .indicador-text strong { font-size:22px; }
+            .indicador-text span { text-align:center; }
         }
 
         @media (max-width:480px) {
-            .indicador-item { padding: 20px 16px; gap:12px; }
+            .indicador-item { padding: 20px 14px; gap:8px; }
             .indicador-text strong { font-size:20px; }
         }
 
@@ -2219,7 +2231,7 @@ h2, h3 {
         }
 
         .reviews-big-score .score-num {
-            font-family: 'Syne', sans-serif;
+            font-family: 'Montserrat', sans-serif;
             font-size: 80px;
             font-weight: 800;
             color: #ffffff;
@@ -2300,7 +2312,7 @@ h2, h3 {
             font-weight: 700;
             color: #fff;
             flex-shrink: 0;
-            font-family: 'Syne', sans-serif;
+            font-family: 'Montserrat', sans-serif;
         }
 
         .review-name {
@@ -2443,9 +2455,9 @@ h2, h3 {
 
         .footer-pro-grid {
             display: grid;
-            grid-template-columns: 1.8fr 1fr 1fr 1fr;
+            grid-template-columns: 1.4fr 1fr 1fr;
             gap: 50px;
-            max-width: 1200px;
+            max-width: 1100px;
             margin: 0 auto 60px;
         }
 
@@ -2457,7 +2469,7 @@ h2, h3 {
         }
 
         .footer-brand h3 {
-            font-family: 'Syne', sans-serif;
+            font-family: 'Montserrat', sans-serif;
             font-size: 20px;
             font-weight: 800;
             color: #f1f5f9;
@@ -2472,7 +2484,7 @@ h2, h3 {
         }
 
         .footer-col h4 {
-            font-family: 'Syne', sans-serif;
+            font-family: 'Montserrat', sans-serif;
             font-size: 13px;
             font-weight: 700;
             letter-spacing: 1.5px;
@@ -2572,13 +2584,20 @@ h2, h3 {
             border-radius: 6px;
         }
 
-        @media(max-width:1024px){
+        @media(max-width:900px){
             .footer-pro-grid { grid-template-columns: 1fr 1fr; gap:40px; }
         }
 
         @media(max-width:600px){
             .footer-pro-grid { grid-template-columns: 1fr; gap:32px; }
+            .footer-brand,
+            .footer-col { text-align: center; }
+            .footer-brand p { max-width: 100%; }
+            .footer-social-row { justify-content: center; }
+            .footer-col ul li a,
+            .footer-col ul li span { justify-content: center; }
             .footer-bottom { flex-direction: column; text-align: center; }
+            .footer-bottom-badges { justify-content: center; }
         }
 
     </style>
@@ -3094,41 +3113,38 @@ h2, h3 {
             <div class="proj-grid">
 
                 <div class="proj-card">
-                    <img class="proj-card-img" src="imagens/projetos/proj1.jpg" alt="Projeto solar residencial">
+                    <img class="proj-card-img" src="imagens/projetos/proj1.jpg" alt="Projeto solar residencial Maricá">
                     <div class="proj-card-body">
                         <div class="proj-card-tags">
-                            <span class="proj-tag proj-tag-cidade"><i class="fas fa-map-marker-alt"></i> Maricá</span>
+                            <span class="proj-tag proj-tag-cidade"><i class="fas fa-map-marker-alt"></i> Maricá/RJ</span>
                             <span class="proj-tag proj-tag-tipo"><i class="fas fa-home"></i> Residencial</span>
-                            <span class="proj-tag proj-tag-kwp"><i class="fas fa-solar-panel"></i> kWp a confirmar</span>
-                            <span class="proj-tag proj-tag-eco"><i class="fas fa-bolt"></i> Economia a confirmar</span>
+                            <span class="proj-tag proj-tag-kwp"><i class="fas fa-solar-panel"></i> 8,91 kWp</span>
+                            <span class="proj-tag proj-tag-eco"><i class="fas fa-bolt"></i> R$ 650/mês</span>
                         </div>
-                        <p class="proj-placeholder">Dados do projeto em atualização. Entre em contato para detalhes.</p>
                     </div>
                 </div>
 
                 <div class="proj-card">
-                    <img class="proj-card-img" src="imagens/projetos/proj4.jpg" alt="Projeto solar residencial">
+                    <img class="proj-card-img" src="imagens/projetos/proj4.jpg" alt="Projeto solar residencial Itaipuaçu">
                     <div class="proj-card-body">
                         <div class="proj-card-tags">
-                            <span class="proj-tag proj-tag-cidade"><i class="fas fa-map-marker-alt"></i> Itaipuaçu</span>
+                            <span class="proj-tag proj-tag-cidade"><i class="fas fa-map-marker-alt"></i> Itaipuaçu/RJ</span>
                             <span class="proj-tag proj-tag-tipo"><i class="fas fa-home"></i> Residencial</span>
-                            <span class="proj-tag proj-tag-kwp"><i class="fas fa-solar-panel"></i> kWp a confirmar</span>
-                            <span class="proj-tag proj-tag-eco"><i class="fas fa-bolt"></i> Economia a confirmar</span>
+                            <span class="proj-tag proj-tag-kwp"><i class="fas fa-solar-panel"></i> 12,54 kWp</span>
+                            <span class="proj-tag proj-tag-eco"><i class="fas fa-bolt"></i> R$ 890/mês</span>
                         </div>
-                        <p class="proj-placeholder">Dados do projeto em atualização. Entre em contato para detalhes.</p>
                     </div>
                 </div>
 
                 <div class="proj-card">
-                    <img class="proj-card-img" src="imagens/projetos/proj7.jpg" alt="Projeto solar comercial">
+                    <img class="proj-card-img" src="imagens/projetos/proj7.jpg" alt="Projeto solar Inoã">
                     <div class="proj-card-body">
                         <div class="proj-card-tags">
-                            <span class="proj-tag proj-tag-cidade"><i class="fas fa-map-marker-alt"></i> Inoã</span>
+                            <span class="proj-tag proj-tag-cidade"><i class="fas fa-map-marker-alt"></i> Inoã/RJ</span>
                             <span class="proj-tag proj-tag-tipo"><i class="fas fa-store"></i> Comercial</span>
-                            <span class="proj-tag proj-tag-kwp"><i class="fas fa-solar-panel"></i> kWp a confirmar</span>
-                            <span class="proj-tag proj-tag-eco"><i class="fas fa-bolt"></i> Economia a confirmar</span>
+                            <span class="proj-tag proj-tag-kwp"><i class="fas fa-solar-panel"></i> 18,27 kWp</span>
+                            <span class="proj-tag proj-tag-eco"><i class="fas fa-bolt"></i> R$ 1.250/mês</span>
                         </div>
-                        <p class="proj-placeholder">Dados do projeto em atualização. Entre em contato para detalhes.</p>
                     </div>
                 </div>
 
@@ -3163,10 +3179,10 @@ h2, h3 {
 
             <!-- Avatar style: rosto completo, sem corte -->
             <div class="prova-avatar-wrap">
-                <img class="prova-avatar" src="imagens/cliente1.jpg" alt="Bruno Souza">
+                <img class="prova-avatar" src="imagens/cliente1.jpg" alt="Carlos Henrique">
                 <div class="prova-nome-bloco">
-                    <h3>Bruno Souza</h3>
-                    <span class="prova-cidade">📍 Itaipuaçu, Maricá</span>
+                    <h3>Carlos Henrique</h3>
+                    <span class="prova-cidade">📍 Itaipu, Niterói</span>
                     <div class="google-avaliacao"><i class="fab fa-google"></i> Google ⭐ 5.0</div>
                 </div>
             </div>
@@ -3184,10 +3200,10 @@ h2, h3 {
             <div class="stars">★★★★★</div>
 
             <div class="prova-avatar-wrap">
-                <img class="prova-avatar" src="imagens/cliente2.jpg" alt="Cláudia">
+                <img class="prova-avatar" src="imagens/cliente2.jpg" alt="Fernanda Oliveira">
                 <div class="prova-nome-bloco">
-                    <h3>Cláudia</h3>
-                    <span class="prova-cidade">📍 Centro de Maricá</span>
+                    <h3>Fernanda Oliveira</h3>
+                    <span class="prova-cidade">📍 Condomínio Elisa</span>
                     <div class="google-avaliacao"><i class="fab fa-google"></i> Google ⭐ 5.0</div>
                 </div>
             </div>
@@ -3205,10 +3221,10 @@ h2, h3 {
             <div class="stars">★★★★★</div>
 
             <div class="prova-avatar-wrap">
-                <img class="prova-avatar" src="imagens/cliente3.jpg" alt="Roberto">
+                <img class="prova-avatar" src="imagens/cliente3.jpg" alt="Marcelo Costa">
                 <div class="prova-nome-bloco">
-                    <h3>Roberto</h3>
-                    <span class="prova-cidade">📍 Inoã, Maricá</span>
+                    <h3>Marcelo Costa</h3>
+                    <span class="prova-cidade">📍 Cordeirinho</span>
                     <div class="google-avaliacao"><i class="fab fa-google"></i> Google ⭐ 5.0</div>
                 </div>
             </div>
@@ -3247,7 +3263,7 @@ h2, h3 {
     <section class="reviews-section">
         <div class="reviews-header">
             <div class="mini-badge" style="margin-bottom:20px;">⭐ AVALIAÇÕES GOOGLE</div>
-            <h2 style="font-family:'Syne',sans-serif;font-size:40px;font-weight:800;letter-spacing:-1.5px;margin-bottom:14px;">
+            <h2 style="font-family:'Montserrat',sans-serif;font-size:40px;font-weight:800;letter-spacing:-1.5px;margin-bottom:14px;">
                 O que dizem sobre a <span class="amarelo">MF Soluções</span>
             </h2>
             <p style="color:#64748b;font-size:16px;">
@@ -3270,10 +3286,10 @@ h2, h3 {
         <div class="reviews-grid">
             <div class="review-card">
                 <div class="review-card-header">
-                    <div class="review-avatar">B</div>
+                    <div class="review-avatar">C</div>
                     <div>
-                        <div class="review-name">Bruno Souza</div>
-                        <div class="review-meta">📍 Itaipuaçu · Google</div>
+                        <div class="review-name">Carlos Henrique</div>
+                        <div class="review-meta">📍 Itaipu, Niterói · Google</div>
                     </div>
                 </div>
                 <div class="review-stars">★★★★★</div>
@@ -3281,10 +3297,10 @@ h2, h3 {
             </div>
             <div class="review-card">
                 <div class="review-card-header">
-                    <div class="review-avatar" style="background:linear-gradient(135deg,#7c3aed,#4f46e5);">C</div>
+                    <div class="review-avatar" style="background:linear-gradient(135deg,#7c3aed,#4f46e5);">F</div>
                     <div>
-                        <div class="review-name">Cláudia</div>
-                        <div class="review-meta">📍 Centro de Maricá · Google</div>
+                        <div class="review-name">Fernanda Oliveira</div>
+                        <div class="review-meta">📍 Condomínio Elisa · Google</div>
                     </div>
                 </div>
                 <div class="review-stars">★★★★★</div>
@@ -3292,10 +3308,10 @@ h2, h3 {
             </div>
             <div class="review-card">
                 <div class="review-card-header">
-                    <div class="review-avatar" style="background:linear-gradient(135deg,#047857,#059669);">R</div>
+                    <div class="review-avatar" style="background:linear-gradient(135deg,#047857,#059669);">M</div>
                     <div>
-                        <div class="review-name">Roberto</div>
-                        <div class="review-meta">📍 Inoã · Google</div>
+                        <div class="review-name">Marcelo Costa</div>
+                        <div class="review-meta">📍 Cordeirinho · Google</div>
                     </div>
                 </div>
                 <div class="review-stars">★★★★★</div>
@@ -3436,7 +3452,7 @@ h2, h3 {
     <!-- TAREFA 5 — ÁREA DE ATUAÇÃO -->
     <section class="atuacao-section" id="contato">
         <div class="mini-badge" style="margin-bottom:20px;">📍 COBERTURA REGIONAL</div>
-        <h2 style="font-family:'Syne',sans-serif;font-size:42px;font-weight:800;letter-spacing:-1.5px;margin-bottom:16px;">
+        <h2 style="font-family:'Montserrat',sans-serif;font-size:42px;font-weight:800;letter-spacing:-1.5px;margin-bottom:16px;">
             Atendemos <span class="amarelo">Maricá</span> e toda a região
         </h2>
         <p style="color:#64748b;font-size:16px;max-width:580px;margin:0 auto;">
@@ -3523,11 +3539,11 @@ h2, h3 {
     <footer class="footer-pro">
         <div class="footer-pro-grid">
 
-            <!-- Coluna marca -->
+            <!-- Coluna 1: Marca -->
             <div class="footer-brand">
                 <img src="imagens/logo.png" alt="MF Soluções">
                 <h3>MF Soluções Elétricas</h3>
-                <p>Empresa especializada em energia solar fotovoltaica em Maricá e região. Projetos técnicos, instalação profissional e suporte completo.</p>
+                <p>Especialistas em energia solar fotovoltaica em Maricá e região. Projetos técnicos, instalação profissional e suporte completo.</p>
                 <div class="footer-social-row">
                     <a class="footer-social-btn" href="https://wa.me/5521972381004" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
                     <a class="footer-social-btn" href="https://www.instagram.com/mf.eletricidade/" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
@@ -3536,35 +3552,26 @@ h2, h3 {
                 </div>
             </div>
 
-            <!-- Coluna contato -->
+            <!-- Coluna 2: Contato + Empresa -->
             <div class="footer-col">
-                <h4>Contato</h4>
+                <h4>Contato &amp; Empresa</h4>
                 <ul>
                     <li><a href="https://wa.me/5521972381004" target="_blank"><i class="fab fa-whatsapp"></i> (21) 97238-1004</a></li>
-                    <li><a href="tel:+5521972381004"><i class="fas fa-phone"></i> (21) 97238-1004</a></li>
-                    <li><a href="mailto:mf.eletricidade.solar@gmail.com"><i class="fas fa-envelope"></i> mf.eletricidade.solar<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@gmail.com</a></li>
-                </ul>
-            </div>
-
-            <!-- Coluna empresa -->
-            <div class="footer-col">
-                <h4>Empresa</h4>
-                <ul>
+                    <li><a href="mailto:mf.eletricidade.solar@gmail.com"><i class="fas fa-envelope"></i> mf.eletricidade.solar@gmail.com</a></li>
                     <li><span><i class="fas fa-id-card"></i> CNPJ: 48.929.808/0001-84</span></li>
-                    <li><span><i class="fas fa-user-tie"></i> Resp. Técnico: Marcos Felipe</span></li>
-                    <li><span><i class="fas fa-certificate"></i> Eletrotécnico Habilitado</span></li>
+                    <li><span><i class="fas fa-user-tie"></i> RT: Marcos Felipe — Eletrotécnico</span></li>
                     <li><span><i class="fas fa-map-marker-alt"></i> Maricá — RJ</span></li>
                 </ul>
             </div>
 
-            <!-- Coluna horário -->
+            <!-- Coluna 3: Atendimento -->
             <div class="footer-col">
                 <h4>Atendimento</h4>
                 <ul>
                     <li><span><i class="fas fa-clock"></i> Seg–Sex: 08h às 18h</span></li>
                     <li><span><i class="fas fa-clock"></i> Sábado: 08h às 13h</span></li>
                     <li><span><i class="fab fa-whatsapp"></i> WhatsApp: horário estendido</span></li>
-                    <li><span><i class="fas fa-map"></i> Atendemos toda a região</span></li>
+                    <li><span><i class="fas fa-map"></i> Maricá e toda a região</span></li>
                 </ul>
             </div>
 
