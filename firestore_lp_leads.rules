@@ -1,0 +1,26 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // lp_leads — coleção exclusiva da landing page
+    // Qualquer visitante pode CRIAR um documento (captura de lead)
+    // Ninguém pode listar, ler, atualizar ou excluir via cliente
+    match /lp_leads/{leadId} {
+      allow create: if
+        request.resource.data.nome     is string &&
+        request.resource.data.telefone is string &&
+        request.resource.data.nome.size()     > 0 &&
+        request.resource.data.telefone.size() > 0;
+
+      allow read:   if false;
+      allow list:   if false;
+      allow update: if false;
+      allow delete: if false;
+    }
+
+    // Todas as outras coleções — sem acesso via cliente
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

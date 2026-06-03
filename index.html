@@ -58,6 +58,12 @@
     <title>MF Energia Solar</title>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <!-- Firebase SDK (compat) — preencher config em js/firebase-leads.js antes do deploy -->
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+    <!-- reCAPTCHA v3 — substituir SITE_KEY em js/firebase-leads.js e abaixo -->
+    <script src="https://www.google.com/recaptcha/api.js?render=explicit" async defer></script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -4292,6 +4298,9 @@ h2, h3 {
         }, 10000) // 10 segundos
     </script>
 
+    <!-- Firebase Leads V1 -->
+    <script src="js/firebase-leads.js"></script>
+
     <script>
     /* =============================================
        CAPTURA DE UTM + ENVIO DE FORMULÁRIO + RASTREAMENTO GA4
@@ -4328,65 +4337,72 @@ h2, h3 {
             } catch (e) {}
         };
 
-        // 3. Submissão do formulário Hero → WhatsApp + Rastreamento GA4 + Leads com Origem
+        // 3. Submissão do formulário Hero → Firestore → WhatsApp + GA4
         window.enviarFormHero = function (e) {
             e.preventDefault();
             var nome     = (document.getElementById('lead-nome').value || '').trim();
             var telefone = (document.getElementById('lead-telefone').value || '').trim();
             var conta    = (document.getElementById('lead-conta').value || '').trim() || 'Não informado';
 
-            // Salvar lead localmente com a estrutura original + complemento da Fase 1.5
+            // Função de abertura do WhatsApp (executada após salvar no Firestore)
+            var abrirWhatsApp = function () {
+                var msg = encodeURIComponent(
+                    'Vi a simulação e quero orçamento.\n\n' +
+                    'Nome: ' + nome + '\n' +
+                    'Telefone: ' + telefone + '\n' +
+                    'Valor da conta: ' + conta
+                );
+                window.open('https://wa.me/5521972381004?text=' + msg, '_blank');
+            };
+
+            // Salvar lead no localStorage (backup local)
             try {
                 var leads = JSON.parse(localStorage.getItem('mf_leads') || '[]');
                 leads.push({
-                    nome: nome,
-                    telefone: telefone,
-                    conta: conta,
-                    data: new Date().toISOString(),
-                    utms: utms,
+                    nome: nome, telefone: telefone, conta: conta,
+                    data: new Date().toISOString(), utms: utms,
                     valorConta: conta,
-                    utm_source: utms['utm_source'] || '',
-                    utm_medium: utms['utm_medium'] || '',
-                    utm_campaign: utms['utm_campaign'] || '',
-                    utm_content: utms['utm_content'] || '',
-                    utm_term: utms['utm_term'] || '',
-                    timestamp: new Date().toISOString()
+                    utm_source: utms['utm_source'] || '', utm_medium: utms['utm_medium'] || '',
+                    utm_campaign: utms['utm_campaign'] || '', utm_content: utms['utm_content'] || '',
+                    utm_term: utms['utm_term'] || '', timestamp: new Date().toISOString()
                 });
                 localStorage.setItem('mf_leads', JSON.stringify(leads));
-            } catch (e) {}
+            } catch (_) {}
 
-            // Rastrear no Meta Pixel
-            if (typeof fbq !== 'undefined') {
-                fbq('track', 'Lead', { content_name: 'hero_form', value: conta });
-            }
+            // Meta Pixel
+            if (typeof fbq !== 'undefined') fbq('track', 'Lead', { content_name: 'hero_form', value: conta });
 
-            // Rastrear no Google Analytics 4
+            // GA4
             if (typeof gtag !== 'undefined') {
                 gtag('event', 'lead_submit', {
                     valorConta: conta,
-                    utm_source: utms['utm_source'] || '',
-                    utm_medium: utms['utm_medium'] || '',
-                    utm_campaign: utms['utm_campaign'] || '',
-                    utm_content: utms['utm_content'] || '',
+                    utm_source: utms['utm_source'] || '', utm_medium: utms['utm_medium'] || '',
+                    utm_campaign: utms['utm_campaign'] || '', utm_content: utms['utm_content'] || '',
                     utm_term: utms['utm_term'] || ''
                 });
-                gtag('event', 'whatsapp_click', {
-                    origem: 'hero_form',
-                    valorConta: conta
-                });
+                gtag('event', 'whatsapp_click', { origem: 'hero_form', valorConta: conta });
             }
 
             registrarClique('hero_form');
 
-            // Compor e enviar mensagem ao WhatsApp
-            var msg = encodeURIComponent(
-                'Vi a simulação e quero orçamento.\n\n' +
-                'Nome: ' + nome + '\n' +
-                'Telefone: ' + telefone + '\n' +
-                'Valor da conta: ' + conta
-            );
+            // Pixel layer (preparado para Meta/Google Ads)
+            if (window.mfTracking) {
+                window.mfTracking.trackLead({ nome: nome, conta: conta });
+                window.mfTracking.trackWhatsapp('hero_form');
+            }
 
-            window.open('https://wa.me/5521972381004?text=' + msg, '_blank');
+            // TAREFA 5 — Firestore primeiro, WhatsApp depois
+            if (window.mfLeads) {
+                var dadosLead = { nome: nome, telefone: telefone, valorConta: conta, origem: 'hero_form' };
+                window.mfLeads.getRecaptchaToken('lead_submit').then(function (token) {
+                    if (token) dadosLead.recaptchaToken = token;
+                    window.mfLeads.save(dadosLead, function () {
+                        abrirWhatsApp(); // sempre executado, mesmo se Firebase falhar
+                    });
+                });
+            } else {
+                abrirWhatsApp();
+            }
         };
 
         // 4. Rastreamento de cliques no WhatsApp (Links wa.me / whatsapp.com)
