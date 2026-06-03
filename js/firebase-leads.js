@@ -20,7 +20,7 @@
     };
 
     // reCAPTCHA v3: registrar site em https://www.google.com/recaptcha/admin
-    var MF_RECAPTCHA_KEY = "COLE_AQUI_siteKey_v3";
+    var MF_RECAPTCHA_KEY = "6Lds8AotAAAAAF7kSl-q_GNGQllFTDR73av_tD7B";
 
     var FIREBASE_PRONTO = MF_FIREBASE_CONFIG.apiKey !== "COLE_AQUI_apiKey";
 
