@@ -11,14 +11,15 @@
        CONFIGURAÇÃO
        ============================================================ */
     var MF_FIREBASE_CONFIG = {
-        apiKey:            "COLE_AQUI_apiKey",
-        authDomain:        "COLE_AQUI_authDomain",
-        projectId:         "COLE_AQUI_projectId",
-        storageBucket:     "COLE_AQUI_storageBucket",
-        messagingSenderId: "COLE_AQUI_messagingSenderId",
-        appId:             "COLE_AQUI_appId"
+        apiKey:            "AIzaSyD8OBOl1hUfsrWWT0-L19uuI-F273IvBgU",
+        authDomain:        "mf-solucoes-crm.firebaseapp.com",
+        projectId:         "mf-solucoes-crm",
+        storageBucket:     "mf-solucoes-crm.firebasestorage.app",
+        messagingSenderId: "492242482187",
+        appId:             "1:492242482187:web:34c99a57f3b99c2260030e"
     };
 
+    // reCAPTCHA v3: registrar site em https://www.google.com/recaptcha/admin
     var MF_RECAPTCHA_KEY = "COLE_AQUI_siteKey_v3";
 
     var FIREBASE_PRONTO = MF_FIREBASE_CONFIG.apiKey !== "COLE_AQUI_apiKey";
