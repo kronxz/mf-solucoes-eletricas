@@ -15,6 +15,15 @@
         gtag('config', 'G-2MDLX4H95K');
     </script>
 
+    <!-- Microsoft Clarity -->
+    <script type="text/javascript">
+        (function(c,l,a,r,i,t,y){
+            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+        })(window, document, "clarity", "script", /* INSIRA O ID DO MICROSOFT CLARITY AQUI */ "");
+    </script>
+
     <meta charset="UTF-8">
     <!-- Meta Pixel Code -->
     <script>
@@ -2769,7 +2778,7 @@
         localStorage.setItem("visitas", JSON.stringify(visitas))
     </script>
     <script>
-        // 🔥 TEMPO NA PÁGINA
+        // 🔥 TEMPO NA PÁGINA (META PIXEL)
         setTimeout(() => {
             fbq('trackCustom', 'TempoPagina')
         }, 10000) // 10 segundos
@@ -2777,8 +2786,8 @@
 
     <script>
     /* =============================================
-       CAPTURA DE UTM + ENVIO DE FORMULÁRIO
-       MF Soluções — Fase 1 — Conversão
+       CAPTURA DE UTM + ENVIO DE FORMULÁRIO + RASTREAMENTO GA4
+       MF Soluções — Fase 1.5 — Conversão & Rastreamento
     ============================================= */
     (function () {
 
@@ -2794,7 +2803,7 @@
             if (stored) utms[key] = stored;
         });
 
-        // 2. Registrar cliques por seção para análise futura
+        // 2. Registrar cliques por seção para análise futura (Local)
         window.registrarClique = function (origem) {
             try {
                 var eventos = JSON.parse(localStorage.getItem('mf_cliques') || '[]');
@@ -2803,23 +2812,52 @@
             } catch (e) {}
         };
 
-        // 3. Submissão do formulário Hero → WhatsApp
+        // 3. Submissão do formulário Hero → WhatsApp + Rastreamento GA4 + Leads com Origem
         window.enviarFormHero = function (e) {
             e.preventDefault();
             var nome     = (document.getElementById('lead-nome').value || '').trim();
             var telefone = (document.getElementById('lead-telefone').value || '').trim();
             var conta    = (document.getElementById('lead-conta').value || '').trim() || 'Não informado';
 
-            // Salvar lead localmente para futura integração
+            // Salvar lead localmente com a estrutura original + complemento da Fase 1.5
             try {
                 var leads = JSON.parse(localStorage.getItem('mf_leads') || '[]');
-                leads.push({ nome: nome, telefone: telefone, conta: conta, data: new Date().toISOString(), utms: utms });
+                leads.push({
+                    nome: nome,
+                    telefone: telefone,
+                    conta: conta,
+                    data: new Date().toISOString(),
+                    utms: utms,
+                    valorConta: conta,
+                    utm_source: utms['utm_source'] || '',
+                    utm_medium: utms['utm_medium'] || '',
+                    utm_campaign: utms['utm_campaign'] || '',
+                    utm_content: utms['utm_content'] || '',
+                    utm_term: utms['utm_term'] || '',
+                    timestamp: new Date().toISOString()
+                });
                 localStorage.setItem('mf_leads', JSON.stringify(leads));
             } catch (e) {}
 
             // Rastrear no Meta Pixel
             if (typeof fbq !== 'undefined') {
                 fbq('track', 'Lead', { content_name: 'hero_form', value: conta });
+            }
+
+            // Rastrear no Google Analytics 4
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'lead_submit', {
+                    valorConta: conta,
+                    utm_source: utms['utm_source'] || '',
+                    utm_medium: utms['utm_medium'] || '',
+                    utm_campaign: utms['utm_campaign'] || '',
+                    utm_content: utms['utm_content'] || '',
+                    utm_term: utms['utm_term'] || ''
+                });
+                gtag('event', 'whatsapp_click', {
+                    origem: 'hero_form',
+                    valorConta: conta
+                });
             }
 
             registrarClique('hero_form');
@@ -2834,6 +2872,93 @@
 
             window.open('https://wa.me/5521972381004?text=' + msg, '_blank');
         };
+
+        // 4. Rastreamento de cliques no WhatsApp (Links wa.me / whatsapp.com)
+        document.addEventListener('click', function (e) {
+            var targetLink = e.target.closest('a');
+            if (targetLink && targetLink.href && (targetLink.href.indexOf('wa.me') > -1 || targetLink.href.indexOf('whatsapp.com') > -1)) {
+                if (typeof gtag !== 'undefined') {
+                    gtag('event', 'whatsapp_click', {
+                        origem: targetLink.getAttribute('onclick') || targetLink.className || 'link_whatsapp',
+                        href: targetLink.href
+                    });
+                }
+            }
+        });
+
+        // 5. Rastreamento de cliques em Seções Específicas
+        var projetosSec = document.getElementById('projetos');
+        if (projetosSec) {
+            projetosSec.addEventListener('click', function () {
+                if (typeof gtag !== 'undefined') {
+                    gtag('event', 'project_click');
+                }
+            });
+        }
+
+        var testimonialSec = document.querySelector('.prova-social');
+        if (testimonialSec) {
+            testimonialSec.addEventListener('click', function () {
+                if (typeof gtag !== 'undefined') {
+                    gtag('event', 'testimonial_click');
+                }
+            });
+        }
+
+        var financingSec = document.querySelector('.financiamento');
+        if (financingSec) {
+            financingSec.addEventListener('click', function () {
+                if (typeof gtag !== 'undefined') {
+                    gtag('event', 'financing_click');
+                }
+            });
+        }
+
+        // 6. Scroll Tracking (disparar apenas uma vez cada)
+        var scrollsDisparados = {
+            'scroll_25': false,
+            'scroll_50': false,
+            'scroll_75': false,
+            'scroll_100': false
+        };
+
+        window.addEventListener('scroll', function () {
+            var scrollTop = window.scrollY || window.pageYOffset || document.documentElement.scrollTop;
+            var docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            if (docHeight <= 0) return;
+
+            var pct = (scrollTop / docHeight) * 100;
+
+            if (pct >= 25 && !scrollsDisparados['scroll_25']) {
+                scrollsDisparados['scroll_25'] = true;
+                if (typeof gtag !== 'undefined') gtag('event', 'scroll_25');
+            }
+            if (pct >= 50 && !scrollsDisparados['scroll_50']) {
+                scrollsDisparados['scroll_50'] = true;
+                if (typeof gtag !== 'undefined') gtag('event', 'scroll_50');
+            }
+            if (pct >= 75 && !scrollsDisparados['scroll_75']) {
+                scrollsDisparados['scroll_75'] = true;
+                if (typeof gtag !== 'undefined') gtag('event', 'scroll_75');
+            }
+            if (pct >= 99 && !scrollsDisparados['scroll_100']) {
+                scrollsDisparados['scroll_100'] = true;
+                if (typeof gtag !== 'undefined') gtag('event', 'scroll_100');
+            }
+        });
+
+        // 7. Tempo de página (disparar apenas uma vez cada)
+        setTimeout(function () {
+            if (typeof gtag !== 'undefined') gtag('event', 'time_10s');
+        }, 10000);
+
+        setTimeout(function () {
+            if (typeof gtag !== 'undefined') gtag('event', 'time_30s');
+        }, 30000);
+
+        setTimeout(function () {
+            if (typeof gtag !== 'undefined') gtag('event', 'time_60s');
+        }, 60000);
 
     })();
     </script>
