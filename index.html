@@ -58,6 +58,9 @@
     <title>MF Energia Solar</title>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
 
     <style>
         body {
@@ -74,8 +77,7 @@
             }
 
             margin:0;
-            font-family:Arial,
-            sans-serif;
+            font-family:'DM Sans', Arial, sans-serif;
 
             background: radial-gradient(circle at 20% 20%, rgba(34, 197, 94, 0.08), transparent 40%),
             radial-gradient(circle at 80% 30%, rgba(59, 130, 246, 0.08), transparent 40%),
@@ -338,24 +340,20 @@
 }
 
         .hero h1{
-
-    font-size:72px;
-
+    font-family:'Syne', sans-serif;
+    font-size:68px;
     line-height:1.05;
-
     font-weight:800;
-
-    letter-spacing:-3px;
-
+    letter-spacing:-2.5px;
     margin-bottom:25px;
-
     max-width:950px;
-
     margin-left:auto;
     margin-right:auto;
+    text-shadow: 0 10px 30px rgba(0,0,0,0.45);
+}
 
-    text-shadow:
-    0 10px 30px rgba(0,0,0,0.45);
+h2, h3 {
+    font-family: 'Syne', sans-serif;
 }
 
 
@@ -2012,6 +2010,577 @@
             .btn-wpp-secao { font-size:13px; }
         }
 
+        @keyframes pulseBadge {
+            0%,100% { opacity:1; transform:scale(1); }
+            50% { opacity:0.5; transform:scale(1.5); }
+        }
+
+        /* =============================================
+           TAREFA 2 — FAIXA DE INDICADORES PREMIUM
+        ============================================= */
+        .indicadores-strip {
+            background: linear-gradient(135deg, rgba(15,23,42,0.98), rgba(2,6,23,1));
+            border-top: 1px solid rgba(34,197,94,0.2);
+            border-bottom: 1px solid rgba(34,197,94,0.2);
+            padding: 0;
+            overflow: hidden;
+        }
+
+        .indicadores-inner {
+            display: grid;
+            grid-template-columns: repeat(4,1fr);
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .indicador-item {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            padding: 36px 32px;
+            border-right: 1px solid rgba(255,255,255,0.06);
+            position: relative;
+            overflow: hidden;
+            transition: background 0.3s;
+        }
+
+        .indicador-item:last-child { border-right: none; }
+
+        .indicador-item::before {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0;
+            width: 0; height: 2px;
+            background: linear-gradient(90deg, #22c55e, #60a5fa);
+            transition: width 0.5s ease;
+        }
+
+        .indicador-item:hover::before { width: 100%; }
+        .indicador-item:hover { background: rgba(34,197,94,0.04); }
+
+        .indicador-icon {
+            width: 52px; height: 52px;
+            min-width: 52px;
+            border-radius: 14px;
+            background: rgba(34,197,94,0.1);
+            border: 1px solid rgba(34,197,94,0.2);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 22px;
+            flex-shrink: 0;
+        }
+
+        .indicador-text strong {
+            display: block;
+            font-family: 'Syne', sans-serif;
+            font-size: 26px;
+            font-weight: 800;
+            color: #ffffff;
+            line-height: 1.1;
+            letter-spacing: -0.5px;
+
+            /* counter animation via CSS */
+            animation: fadeUp 0.6s ease both;
+        }
+
+        .indicador-text span {
+            font-size: 13px;
+            color: #64748b;
+            font-weight: 500;
+            margin-top: 3px;
+            display: block;
+        }
+
+        @keyframes fadeUp {
+            from { opacity:0; transform:translateY(12px); }
+            to   { opacity:1; transform:translateY(0); }
+        }
+
+        @media (max-width:768px) {
+            .indicadores-inner {
+                grid-template-columns: repeat(2,1fr);
+            }
+            .indicador-item {
+                border-right: 1px solid rgba(255,255,255,0.06);
+                border-bottom: 1px solid rgba(255,255,255,0.06);
+                padding: 24px 20px;
+                gap: 14px;
+            }
+            .indicador-item:nth-child(2n) { border-right: none; }
+            .indicador-item:nth-child(3),
+            .indicador-item:nth-child(4) { border-bottom: none; }
+            .indicador-icon { width:44px; height:44px; min-width:44px; font-size:18px; }
+            .indicador-text strong { font-size:22px; }
+        }
+
+        @media (max-width:480px) {
+            .indicador-item { padding: 20px 16px; gap:12px; }
+            .indicador-text strong { font-size:20px; }
+        }
+
+        /* =============================================
+           TAREFA 3 — PROJETOS PREMIUM GRID
+        ============================================= */
+        .proj-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px,1fr));
+            gap: 24px;
+            margin-top: 40px;
+        }
+
+        .proj-card {
+            background: linear-gradient(145deg, rgba(255,255,255,0.05), rgba(255,255,255,0.01));
+            border: 1px solid rgba(255,255,255,0.07);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: 0.35s;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .proj-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(34,197,94,0.3);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+        }
+
+        .proj-card-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+
+        .proj-card:hover .proj-card-img { transform: scale(1.04); }
+
+        .proj-card-body {
+            padding: 20px;
+        }
+
+        .proj-card-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 14px;
+        }
+
+        .proj-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.3px;
+        }
+
+        .proj-tag-cidade { background:rgba(59,130,246,0.12); border:1px solid rgba(59,130,246,0.25); color:#93c5fd; }
+        .proj-tag-tipo   { background:rgba(250,204,21,0.1);  border:1px solid rgba(250,204,21,0.2);  color:#fde68a; }
+        .proj-tag-kwp    { background:rgba(34,197,94,0.1);   border:1px solid rgba(34,197,94,0.25);  color:#86efac; }
+        .proj-tag-eco    { background:rgba(168,85,247,0.1);  border:1px solid rgba(168,85,247,0.25); color:#d8b4fe; }
+
+        .proj-card-body .proj-placeholder {
+            color: #475569;
+            font-size: 12px;
+            font-style: italic;
+            margin-top: 8px;
+        }
+
+        @media(max-width:768px){
+            .proj-grid { grid-template-columns:1fr; }
+        }
+
+        /* =============================================
+           TAREFA 4 — GOOGLE REVIEWS
+        ============================================= */
+        .reviews-section {
+            padding: 100px 20px;
+            background: radial-gradient(circle at 50% 0%, rgba(250,204,21,0.05), transparent 60%), #020617;
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .reviews-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 60px;
+        }
+
+        .reviews-score-block {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            margin-bottom: 60px;
+        }
+
+        .reviews-big-score {
+            text-align: center;
+        }
+
+        .reviews-big-score .score-num {
+            font-family: 'Syne', sans-serif;
+            font-size: 80px;
+            font-weight: 800;
+            color: #ffffff;
+            line-height: 1;
+            letter-spacing: -3px;
+        }
+
+        .reviews-big-score .score-stars {
+            color: #facc15;
+            font-size: 24px;
+            letter-spacing: 3px;
+            margin: 8px 0 6px;
+        }
+
+        .reviews-big-score .score-label {
+            font-size: 13px;
+            color: #64748b;
+        }
+
+        .reviews-google-logo {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            padding: 20px 30px;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 16px;
+        }
+
+        .reviews-google-logo i {
+            font-size: 32px;
+            color: #e2e8f0;
+        }
+
+        .reviews-google-logo span {
+            font-size: 13px;
+            color: #64748b;
+            font-weight: 600;
+        }
+
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px,1fr));
+            gap: 24px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .review-card {
+            background: linear-gradient(145deg, rgba(255,255,255,0.05), rgba(255,255,255,0.01));
+            border: 1px solid rgba(255,255,255,0.07);
+            border-radius: 20px;
+            padding: 28px;
+            transition: 0.3s;
+            position: relative;
+        }
+
+        .review-card:hover {
+            border-color: rgba(250,204,21,0.25);
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+        }
+
+        .review-card-header {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 16px;
+        }
+
+        .review-avatar {
+            width: 46px; height: 46px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #1e3a8a, #2563eb);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 18px;
+            font-weight: 700;
+            color: #fff;
+            flex-shrink: 0;
+            font-family: 'Syne', sans-serif;
+        }
+
+        .review-name {
+            font-size: 15px;
+            font-weight: 700;
+            color: #f1f5f9;
+            margin-bottom: 3px;
+        }
+
+        .review-meta {
+            font-size: 11px;
+            color: #475569;
+        }
+
+        .review-stars {
+            color: #facc15;
+            font-size: 13px;
+            letter-spacing: 2px;
+            margin-bottom: 12px;
+        }
+
+        .review-text {
+            color: #94a3b8;
+            font-size: 14px;
+            line-height: 1.7;
+            font-style: italic;
+        }
+
+        .review-placeholder-banner {
+            text-align: center;
+            padding: 40px;
+            border: 2px dashed rgba(250,204,21,0.2);
+            border-radius: 20px;
+            max-width: 600px;
+            margin: 40px auto 0;
+        }
+
+        .review-placeholder-banner p {
+            color: #475569;
+            font-size: 14px;
+            margin: 8px 0 0;
+        }
+
+        .review-placeholder-banner strong {
+            color: #facc15;
+            font-size: 16px;
+            display: block;
+            margin-bottom: 6px;
+        }
+
+        @media(max-width:768px){
+            .reviews-grid { grid-template-columns:1fr; }
+            .reviews-big-score .score-num { font-size:60px; }
+        }
+
+        /* =============================================
+           TAREFA 5 — ÁREA DE ATUAÇÃO
+        ============================================= */
+        .atuacao-section {
+            padding: 100px 20px;
+            text-align: center;
+            background: linear-gradient(180deg, #020617, #030f22);
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .atuacao-cities {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 16px;
+            margin-top: 50px;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .city-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 24px;
+            border-radius: 999px;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.09);
+            font-size: 15px;
+            font-weight: 600;
+            color: #e2e8f0;
+            transition: 0.3s;
+            cursor: default;
+        }
+
+        .city-pill:hover {
+            background: rgba(34,197,94,0.08);
+            border-color: rgba(34,197,94,0.35);
+            color: #ffffff;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+        }
+
+        .city-pill .city-dot {
+            width: 8px; height: 8px;
+            border-radius: 50%;
+            background: #22c55e;
+            flex-shrink: 0;
+        }
+
+        .city-pill.city-main {
+            background: rgba(34,197,94,0.1);
+            border-color: rgba(34,197,94,0.3);
+            color: #86efac;
+            font-size: 17px;
+            padding: 16px 30px;
+        }
+
+        .city-pill.city-main .city-dot {
+            width: 10px; height: 10px;
+            box-shadow: 0 0 8px rgba(34,197,94,0.6);
+        }
+
+        .atuacao-note {
+            margin-top: 40px;
+            color: #475569;
+            font-size: 14px;
+        }
+
+        @media(max-width:480px){
+            .atuacao-cities { gap: 10px; }
+            .city-pill { padding: 12px 18px; font-size: 14px; }
+            .city-pill.city-main { font-size: 15px; padding: 14px 22px; }
+        }
+
+        /* =============================================
+           TAREFA 6 — RODAPÉ PROFISSIONAL
+        ============================================= */
+        .footer-pro {
+            background: linear-gradient(180deg, #020617 0%, #010510 100%);
+            border-top: 1px solid rgba(255,255,255,0.07);
+            padding: 80px 20px 40px;
+        }
+
+        .footer-pro-grid {
+            display: grid;
+            grid-template-columns: 1.8fr 1fr 1fr 1fr;
+            gap: 50px;
+            max-width: 1200px;
+            margin: 0 auto 60px;
+        }
+
+        .footer-brand img {
+            width: 60px; height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 16px;
+        }
+
+        .footer-brand h3 {
+            font-family: 'Syne', sans-serif;
+            font-size: 20px;
+            font-weight: 800;
+            color: #f1f5f9;
+            margin: 0 0 8px;
+        }
+
+        .footer-brand p {
+            font-size: 14px;
+            color: #475569;
+            line-height: 1.7;
+            max-width: 260px;
+        }
+
+        .footer-col h4 {
+            font-family: 'Syne', sans-serif;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: #facc15;
+            margin: 0 0 20px;
+        }
+
+        .footer-col ul {
+            list-style: none;
+            padding: 0; margin: 0;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 12px;
+        }
+
+        .footer-col ul li a,
+        .footer-col ul li span {
+            font-size: 14px;
+            color: #64748b;
+            text-decoration: none;
+            transition: color 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .footer-col ul li a:hover { color: #e2e8f0; }
+
+        .footer-col ul li i {
+            width: 16px;
+            color: #334155;
+            font-size: 13px;
+        }
+
+        .footer-social-row {
+            display: flex;
+            gap: 12px;
+            margin-top: 24px;
+        }
+
+        .footer-social-btn {
+            width: 42px; height: 42px;
+            border-radius: 10px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.08);
+            display: flex; align-items: center; justify-content: center;
+            color: #64748b;
+            font-size: 16px;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .footer-social-btn:hover {
+            background: #22c55e;
+            border-color: #22c55e;
+            color: #fff;
+            transform: translateY(-2px);
+        }
+
+        .footer-divider {
+            max-width: 1200px;
+            margin: 0 auto 30px;
+            border: none;
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .footer-bottom p {
+            font-size: 13px;
+            color: #334155;
+        }
+
+        .footer-bottom-badges {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .footer-bottom-badge {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            color: #475569;
+            padding: 4px 10px;
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 6px;
+        }
+
+        @media(max-width:1024px){
+            .footer-pro-grid { grid-template-columns: 1fr 1fr; gap:40px; }
+        }
+
+        @media(max-width:600px){
+            .footer-pro-grid { grid-template-columns: 1fr; gap:32px; }
+            .footer-bottom { flex-direction: column; text-align: center; }
+        }
+
     </style>
 </head>
 
@@ -2039,20 +2608,20 @@
 
         <div class="hero-content">
 
-<!-- TAREFA 4: Hero premium — hierarquia e tipografia melhoradas -->
 <div class="hero-badge">
-    ⚡ Especialistas em energia solar em Maricá e região
+    <span style="width:8px;height:8px;border-radius:50%;background:#22c55e;display:inline-block;animation:pulseBadge 2s ease-in-out infinite;"></span>
+    Empresa local · Maricá e Região · +150 Projetos
 </div>
 
             <h1>
-                Reduza sua conta de luz em até
-                <span class="amarelo">95%</span>
-                com energia <span class="azul">solar</span>
+                Acabe com sua<br>
+                conta de luz.<br>
+                <span class="amarelo">Economize até 95%</span>
             </h1>
 
-            <p style="font-size:19px; margin-top:16px; color:#94a3b8; max-width:580px; margin-left:auto; margin-right:auto; line-height:1.65;">
-                Projeto sob medida, instalação profissional e suporte completo.
-                Economize todos os meses a partir do <strong style="color:#e2e8f0;">primeiro mês</strong>.
+            <p style="font-size:18px; margin-top:18px; color:#94a3b8; max-width:560px; margin-left:auto; margin-right:auto; line-height:1.7; font-family:'DM Sans',sans-serif;">
+                Projeto dimensionado sob medida, instalação técnica habilitada
+                e suporte completo. <strong style="color:#e2e8f0;">Resultado real desde o primeiro mês.</strong>
             </p>
 
             <!-- FORMULÁRIO DE CAPTURA DE LEAD -->
@@ -2099,6 +2668,40 @@
         </div>
 
     </section>
+
+    <!-- TAREFA 2 — FAIXA DE INDICADORES PREMIUM -->
+    <div class="indicadores-strip">
+        <div class="indicadores-inner">
+            <div class="indicador-item">
+                <div class="indicador-icon">⚡</div>
+                <div class="indicador-text">
+                    <strong>+150</strong>
+                    <span>Projetos instalados</span>
+                </div>
+            </div>
+            <div class="indicador-item">
+                <div class="indicador-icon">🏅</div>
+                <div class="indicador-text">
+                    <strong>30 Anos</strong>
+                    <span>de experiência técnica</span>
+                </div>
+            </div>
+            <div class="indicador-item">
+                <div class="indicador-icon">📍</div>
+                <div class="indicador-text">
+                    <strong>Regional</strong>
+                    <span>Maricá e toda a região</span>
+                </div>
+            </div>
+            <div class="indicador-item">
+                <div class="indicador-icon">🎯</div>
+                <div class="indicador-text">
+                    <strong>Gratuito</strong>
+                    <span>Simulação sem compromisso</span>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <section class="section">
 
@@ -2476,13 +3079,60 @@
 
         </div>
 
-        <div style="text-align:center; margin-top:10px;">
+        <div style="text-align:center; margin-top:30px;">
             <a class="btn-wpp-secao"
                 href="https://wa.me/5521972381004?text=Vi%20os%20projetos%20e%20quero%20or%C3%A7amento."
                 onclick="registrarClique('secao_projetos')"
                 target="_blank">
                 <i class="fab fa-whatsapp"></i> Vi os projetos — Quero um orçamento
             </a>
+        </div>
+
+        <!-- DESTAQUES DE PROJETOS COM DADOS -->
+        <div style="margin-top:70px; text-align:left;">
+            <p style="font-size:12px;letter-spacing:2px;text-transform:uppercase;color:#475569;font-weight:700;text-align:center;margin-bottom:32px;">ALGUNS PROJETOS EM DESTAQUE</p>
+            <div class="proj-grid">
+
+                <div class="proj-card">
+                    <img class="proj-card-img" src="imagens/projetos/proj1.jpg" alt="Projeto solar residencial">
+                    <div class="proj-card-body">
+                        <div class="proj-card-tags">
+                            <span class="proj-tag proj-tag-cidade"><i class="fas fa-map-marker-alt"></i> Maricá</span>
+                            <span class="proj-tag proj-tag-tipo"><i class="fas fa-home"></i> Residencial</span>
+                            <span class="proj-tag proj-tag-kwp"><i class="fas fa-solar-panel"></i> kWp a confirmar</span>
+                            <span class="proj-tag proj-tag-eco"><i class="fas fa-bolt"></i> Economia a confirmar</span>
+                        </div>
+                        <p class="proj-placeholder">Dados do projeto em atualização. Entre em contato para detalhes.</p>
+                    </div>
+                </div>
+
+                <div class="proj-card">
+                    <img class="proj-card-img" src="imagens/projetos/proj4.jpg" alt="Projeto solar residencial">
+                    <div class="proj-card-body">
+                        <div class="proj-card-tags">
+                            <span class="proj-tag proj-tag-cidade"><i class="fas fa-map-marker-alt"></i> Itaipuaçu</span>
+                            <span class="proj-tag proj-tag-tipo"><i class="fas fa-home"></i> Residencial</span>
+                            <span class="proj-tag proj-tag-kwp"><i class="fas fa-solar-panel"></i> kWp a confirmar</span>
+                            <span class="proj-tag proj-tag-eco"><i class="fas fa-bolt"></i> Economia a confirmar</span>
+                        </div>
+                        <p class="proj-placeholder">Dados do projeto em atualização. Entre em contato para detalhes.</p>
+                    </div>
+                </div>
+
+                <div class="proj-card">
+                    <img class="proj-card-img" src="imagens/projetos/proj7.jpg" alt="Projeto solar comercial">
+                    <div class="proj-card-body">
+                        <div class="proj-card-tags">
+                            <span class="proj-tag proj-tag-cidade"><i class="fas fa-map-marker-alt"></i> Inoã</span>
+                            <span class="proj-tag proj-tag-tipo"><i class="fas fa-store"></i> Comercial</span>
+                            <span class="proj-tag proj-tag-kwp"><i class="fas fa-solar-panel"></i> kWp a confirmar</span>
+                            <span class="proj-tag proj-tag-eco"><i class="fas fa-bolt"></i> Economia a confirmar</span>
+                        </div>
+                        <p class="proj-placeholder">Dados do projeto em atualização. Entre em contato para detalhes.</p>
+                    </div>
+                </div>
+
+            </div>
         </div>
 
     </section>
@@ -2592,6 +3242,72 @@
 
 
     </section> <!-- seção anterior -->
+
+    <!-- TAREFA 4 — GOOGLE REVIEWS -->
+    <section class="reviews-section">
+        <div class="reviews-header">
+            <div class="mini-badge" style="margin-bottom:20px;">⭐ AVALIAÇÕES GOOGLE</div>
+            <h2 style="font-family:'Syne',sans-serif;font-size:40px;font-weight:800;letter-spacing:-1.5px;margin-bottom:14px;">
+                O que dizem sobre a <span class="amarelo">MF Soluções</span>
+            </h2>
+            <p style="color:#64748b;font-size:16px;">
+                Avaliações reais de clientes no Google.
+            </p>
+        </div>
+
+        <div class="reviews-score-block">
+            <div class="reviews-big-score">
+                <div class="score-num">5.0</div>
+                <div class="score-stars">★★★★★</div>
+                <div class="score-label">Nota no Google</div>
+            </div>
+            <div class="reviews-google-logo">
+                <i class="fab fa-google"></i>
+                <span>Google Reviews</span>
+            </div>
+        </div>
+
+        <div class="reviews-grid">
+            <div class="review-card">
+                <div class="review-card-header">
+                    <div class="review-avatar">B</div>
+                    <div>
+                        <div class="review-name">Bruno Souza</div>
+                        <div class="review-meta">📍 Itaipuaçu · Google</div>
+                    </div>
+                </div>
+                <div class="review-stars">★★★★★</div>
+                <p class="review-text">"Desde o primeiro atendimento senti confiança. A instalação ficou impecável e hoje praticamente não me preocupo mais com conta de luz."</p>
+            </div>
+            <div class="review-card">
+                <div class="review-card-header">
+                    <div class="review-avatar" style="background:linear-gradient(135deg,#7c3aed,#4f46e5);">C</div>
+                    <div>
+                        <div class="review-name">Cláudia</div>
+                        <div class="review-meta">📍 Centro de Maricá · Google</div>
+                    </div>
+                </div>
+                <div class="review-stars">★★★★★</div>
+                <p class="review-text">"A equipe explicou tudo com clareza e cuidou de cada detalhe do projeto. Hoje vejo a economia acontecendo todos os meses."</p>
+            </div>
+            <div class="review-card">
+                <div class="review-card-header">
+                    <div class="review-avatar" style="background:linear-gradient(135deg,#047857,#059669);">R</div>
+                    <div>
+                        <div class="review-name">Roberto</div>
+                        <div class="review-meta">📍 Inoã · Google</div>
+                    </div>
+                </div>
+                <div class="review-stars">★★★★★</div>
+                <p class="review-text">"O atendimento foi muito acima do esperado. Sistema funcionando perfeitamente e suporte sempre rápido quando precisei."</p>
+            </div>
+        </div>
+
+        <div class="review-placeholder-banner">
+            <strong>Mais avaliações em breve</strong>
+            <p>Espaço preparado para novas avaliações reais do Google. Serão adicionadas conforme chegam.</p>
+        </div>
+    </section>
 
     <!-- TAREFA 3: SEÇÃO DE AUTORIDADE -->
     <section style="background:linear-gradient(135deg,rgba(30,58,138,0.18),rgba(2,6,23,0.9) 70%),#020617; border-top:1px solid rgba(255,255,255,0.05); border-bottom:1px solid rgba(255,255,255,0.05);">
@@ -2717,24 +3433,64 @@
     <!-- 🔽 depois vem o contato -->
 
 
-    <section class="section" id="contato">
-        <h2>
-            Atendemos em <span class="amarelo">Maricá</span> e região
+    <!-- TAREFA 5 — ÁREA DE ATUAÇÃO -->
+    <section class="atuacao-section" id="contato">
+        <div class="mini-badge" style="margin-bottom:20px;">📍 COBERTURA REGIONAL</div>
+        <h2 style="font-family:'Syne',sans-serif;font-size:42px;font-weight:800;letter-spacing:-1.5px;margin-bottom:16px;">
+            Atendemos <span class="amarelo">Maricá</span> e toda a região
         </h2>
-        <div class="linha-titulo"></div>
+        <p style="color:#64748b;font-size:16px;max-width:580px;margin:0 auto;">
+            Equipe local com agilidade de resposta em todas as cidades da região.
+            Seu projeto começa com uma visita técnica gratuita.
+        </p>
 
-        <div style="width:100%; max-width:1000px; margin:auto; border-radius:20px; overflow:hidden;">
-            <iframe src="https://www.google.com/maps?q=Maricá%20RJ&output=embed" width="100%" height="450"
+        <div class="atuacao-cities">
+            <span class="city-pill city-main">
+                <span class="city-dot"></span>
+                Maricá
+            </span>
+            <span class="city-pill">
+                <span class="city-dot"></span>
+                Itaipuaçu
+            </span>
+            <span class="city-pill">
+                <span class="city-dot"></span>
+                Inoã
+            </span>
+            <span class="city-pill">
+                <span class="city-dot"></span>
+                Ponta Negra
+            </span>
+            <span class="city-pill">
+                <span class="city-dot"></span>
+                São José do Imbassaí
+            </span>
+            <span class="city-pill">
+                <span class="city-dot"></span>
+                Niterói
+            </span>
+            <span class="city-pill">
+                <span class="city-dot"></span>
+                Saquarema
+            </span>
+        </div>
+
+        <p class="atuacao-note">Não encontrou sua cidade? Entre em contato — atendemos também regiões próximas.</p>
+
+        <div style="width:100%; max-width:1000px; margin:50px auto 0; border-radius:20px; overflow:hidden; box-shadow:0 20px 60px rgba(0,0,0,0.4);">
+            <iframe src="https://www.google.com/maps?q=Maricá%20RJ&output=embed" width="100%" height="400"
                 style="border:0;" loading="lazy">
             </iframe>
         </div>
 
-        <br><br>
-
-        <a class="btn"
-            href="https://wa.me/5521972381004?text=Olá,%20vim%20pelo%20site%20e%20gostaria%20de%20um%20orçamento">
-            Falar no WhatsApp
-        </a>
+        <div style="margin-top:40px;">
+            <a class="btn-wpp-secao"
+                href="https://wa.me/5521972381004?text=Olá,%20vim%20pelo%20site%20e%20gostaria%20de%20um%20orçamento"
+                onclick="registrarClique('secao_atuacao')"
+                target="_blank">
+                <i class="fab fa-whatsapp"></i> Quero uma visita técnica gratuita
+            </a>
+        </div>
     </section>
 
     <a class="btn-whatsapp"
@@ -2763,41 +3519,68 @@
     </section>
 
 
-    <footer class="footer">
+    <!-- TAREFA 6 — RODAPÉ PROFISSIONAL -->
+    <footer class="footer-pro">
+        <div class="footer-pro-grid">
 
-        <img src="imagens/logo.png" class="logo-footer">
+            <!-- Coluna marca -->
+            <div class="footer-brand">
+                <img src="imagens/logo.png" alt="MF Soluções">
+                <h3>MF Soluções Elétricas</h3>
+                <p>Empresa especializada em energia solar fotovoltaica em Maricá e região. Projetos técnicos, instalação profissional e suporte completo.</p>
+                <div class="footer-social-row">
+                    <a class="footer-social-btn" href="https://wa.me/5521972381004" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    <a class="footer-social-btn" href="https://www.instagram.com/mf.eletricidade/" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a class="footer-social-btn" href="https://www.facebook.com/profile.php?id=61550489622398" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a class="footer-social-btn" href="mailto:mf.eletricidade.solar@gmail.com" title="E-mail"><i class="fas fa-envelope"></i></a>
+                </div>
+            </div>
 
-        <h2>MF Soluções Elétricas</h2>
+            <!-- Coluna contato -->
+            <div class="footer-col">
+                <h4>Contato</h4>
+                <ul>
+                    <li><a href="https://wa.me/5521972381004" target="_blank"><i class="fab fa-whatsapp"></i> (21) 97238-1004</a></li>
+                    <li><a href="tel:+5521972381004"><i class="fas fa-phone"></i> (21) 97238-1004</a></li>
+                    <li><a href="mailto:mf.eletricidade.solar@gmail.com"><i class="fas fa-envelope"></i> mf.eletricidade.solar<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@gmail.com</a></li>
+                </ul>
+            </div>
 
-        <p>CNPJ: 48.929.808/0001-84</p>
-        <p>Responsável Técnico: Marcos Felipe - Eletrotécnico</p>
-        <p>Telefone: (21) 97238-1004</p>
-        <p>Email: mf.eletricidade.solar@gmail.com</p>
+            <!-- Coluna empresa -->
+            <div class="footer-col">
+                <h4>Empresa</h4>
+                <ul>
+                    <li><span><i class="fas fa-id-card"></i> CNPJ: 48.929.808/0001-84</span></li>
+                    <li><span><i class="fas fa-user-tie"></i> Resp. Técnico: Marcos Felipe</span></li>
+                    <li><span><i class="fas fa-certificate"></i> Eletrotécnico Habilitado</span></li>
+                    <li><span><i class="fas fa-map-marker-alt"></i> Maricá — RJ</span></li>
+                </ul>
+            </div>
 
-        <div class="social">
-
-            <a href="mailto:mf.eletricidade.solar@gmail.com">
-                <i class="fas fa-envelope"></i>
-            </a>
-
-            <a href="https://www.instagram.com/mf.eletricidade/" target="_blank">
-                <i class="fab fa-instagram"></i>
-            </a>
-
-            <a href="https://www.facebook.com/profile.php?id=61550489622398&mibextid=ZbWKwL" target="_blank">
-                <i class="fab fa-facebook-f"></i>
-            </a>
-
-            <a href="https://wa.me/5521972381004" target="_blank">
-                <i class="fab fa-whatsapp"></i>
-            </a>
+            <!-- Coluna horário -->
+            <div class="footer-col">
+                <h4>Atendimento</h4>
+                <ul>
+                    <li><span><i class="fas fa-clock"></i> Seg–Sex: 08h às 18h</span></li>
+                    <li><span><i class="fas fa-clock"></i> Sábado: 08h às 13h</span></li>
+                    <li><span><i class="fab fa-whatsapp"></i> WhatsApp: horário estendido</span></li>
+                    <li><span><i class="fas fa-map"></i> Atendemos toda a região</span></li>
+                </ul>
+            </div>
 
         </div>
 
-        <p style="margin-top:20px; font-size:12px; color:#64748b;">
-            © 2026 MF Soluções Elétricas - Todos os direitos reservados
-        </p>
+        <hr class="footer-divider">
 
+        <div class="footer-bottom">
+            <p>© 2026 MF Soluções Elétricas · Todos os direitos reservados</p>
+            <div class="footer-bottom-badges">
+                <span class="footer-bottom-badge">NBR 16690</span>
+                <span class="footer-bottom-badge">CREA</span>
+                <span class="footer-bottom-badge">+150 Projetos</span>
+                <span class="footer-bottom-badge">30 Anos de Experiência</span>
+            </div>
+        </div>
     </footer>
 
     <script>
