@@ -1,8 +1,6 @@
 /**
- * MF Soluções — Firebase Leads V1
- * Captura de leads da landing page → Firestore (lp_leads)
- *
- * ANTES DO DEPLOY: preencher MF_FIREBASE_CONFIG e MF_RECAPTCHA_KEY
+ * MF Soluções — Firebase Leads V2
+ * Captura de leads + tracking comportamental → Firestore (lp_leads)
  */
 (function () {
     'use strict';
@@ -19,13 +17,22 @@
         appId:             "1:492242482187:web:34c99a57f3b99c2260030e"
     };
 
-    // reCAPTCHA v3: registrar site em https://www.google.com/recaptcha/admin
     var MF_RECAPTCHA_KEY = "6Lds8AotAAAAAF7kSl-q_GNGQllFTDR73av_tD7B";
-
-    var FIREBASE_PRONTO = MF_FIREBASE_CONFIG.apiKey !== "COLE_AQUI_apiKey";
+    var FIREBASE_PRONTO  = MF_FIREBASE_CONFIG.apiKey !== "COLE_AQUI_apiKey";
 
     /* ============================================================
-       TAREFA 3 — UTM + GCLID + FBCLID (não sobrescrever)
+       TRACKING — estado comportamental
+       ============================================================ */
+    var _tracking = {
+        inicioSegundos:        Math.floor(Date.now() / 1000),
+        scrollMaximo:          0,
+        cliquesWhatsapp:       0,
+        digitouNome:           false,
+        digitouTelefone:       false
+    };
+
+    /* ============================================================
+       TAREFA 3 — UTM + GCLID + FBCLID
        ============================================================ */
     function capturarParametros() {
         var params = new URLSearchParams(window.location.search);
@@ -65,6 +72,56 @@
     }
 
     /* ============================================================
+       TRACKING — listeners DOM
+       ============================================================ */
+    function iniciarTracking() {
+        // Scroll máximo
+        window.addEventListener('scroll', function () {
+            var scrolled = window.scrollY + window.innerHeight;
+            var total    = document.documentElement.scrollHeight;
+            var pct      = total > 0 ? Math.round((scrolled / total) * 100) : 0;
+            if (pct > _tracking.scrollMaximo) _tracking.scrollMaximo = pct;
+        }, { passive: true });
+
+        // Cliques WhatsApp
+        document.addEventListener('click', function (e) {
+            var link = e.target.closest('a');
+            if (link && link.href && (link.href.indexOf('wa.me') > -1 || link.href.indexOf('whatsapp.com') > -1)) {
+                _tracking.cliquesWhatsapp++;
+                if (typeof gtag !== 'undefined') {
+                    gtag('event', 'whatsapp_click', {
+                        origem: link.className || 'link_whatsapp',
+                        href: link.href
+                    });
+                }
+            }
+        });
+
+        // Digitou nome
+        document.addEventListener('input', function (e) {
+            if (e.target && e.target.id === 'lead-nome' && e.target.value.trim().length > 0) {
+                _tracking.digitouNome = true;
+            }
+            if (e.target && e.target.id === 'lead-telefone' && e.target.value.trim().length > 0) {
+                _tracking.digitouTelefone = true;
+            }
+        });
+    }
+
+    /* ============================================================
+       SCORE — calculado no momento do envio
+       ============================================================ */
+    function calcularScore(tracking) {
+        var score = 0;
+        if (tracking.digitouNome)                   score += 10;
+        if (tracking.digitouTelefone)               score += 20;
+        if (tracking.scrollMaximo > 50)             score += 20;
+        if (tracking.tempoTotalSegundos > 40)       score += 20;
+        score += 30; // formulário enviado
+        return Math.min(100, score);
+    }
+
+    /* ============================================================
        FIREBASE INIT
        ============================================================ */
     function iniciarFirebase() {
@@ -80,14 +137,13 @@
     }
 
     /* ============================================================
-       TAREFA 7 — RECAPTCHA V3 (silencioso)
+       RECAPTCHA V3
        ============================================================ */
     function obterTokenRecaptcha(acao) {
         return new Promise(function (resolve) {
             try {
                 if (typeof grecaptcha === 'undefined' || MF_RECAPTCHA_KEY === 'COLE_AQUI_siteKey_v3') {
-                    resolve('');
-                    return;
+                    resolve(''); return;
                 }
                 grecaptcha.ready(function () {
                     grecaptcha.execute(MF_RECAPTCHA_KEY, { action: acao })
@@ -99,37 +155,56 @@
     }
 
     /* ============================================================
-       TAREFA 5 — SALVAR LEAD (Firestore primeiro, WhatsApp depois)
+       SALVAR LEAD — Firestore com tracking
        ============================================================ */
     function salvarLead(dadosLead, callback) {
-        var utms     = coletarUTMs();
-        var agora    = new Date().toISOString();
-        var sessao   = utms.sessionId;
+        var utms  = coletarUTMs();
+        var agora = new Date().toISOString();
+        var sessao = utms.sessionId;
+
+        // Calcular tempo total na página
+        var tempoTotalSegundos = Math.floor(Date.now() / 1000) - _tracking.inicioSegundos;
+        _tracking.tempoTotalSegundos = tempoTotalSegundos;
+
+        var score = calcularScore(_tracking);
 
         var documento = {
-            nome:         dadosLead.nome         || '',
-            telefone:     dadosLead.telefone      || '',
-            valorConta:   dadosLead.valorConta    || 'Não informado',
-            origem:       dadosLead.origem        || 'hero_form',
+            // ── Dados do lead ──
+            nome:         dadosLead.nome      || '',
+            telefone:     dadosLead.telefone   || '',
+            valorConta:   dadosLead.valorConta || 'Não informado',
+            origem:       dadosLead.origem     || 'hero_form',
             status:       'novo',
             createdAt:    agora,
-            landingPage:  utms.landingPage        || window.location.href,
-            referrer:     utms.referrer           || '',
-            utm_source:   utms.utm_source         || '',
-            utm_medium:   utms.utm_medium         || '',
-            utm_campaign: utms.utm_campaign       || '',
-            utm_content:  utms.utm_content        || '',
-            utm_term:     utms.utm_term           || '',
-            gclid:        utms.gclid              || '',
-            fbclid:       utms.fbclid             || '',
-            firstVisit:   utms.firstVisit         || '',
-            sessionId:    sessao
+            lastActivity: agora,
+
+            // ── UTMs e sessão ──
+            landingPage:  utms.landingPage  || window.location.href,
+            referrer:     utms.referrer     || '',
+            utm_source:   utms.utm_source   || '',
+            utm_medium:   utms.utm_medium   || '',
+            utm_campaign: utms.utm_campaign || '',
+            utm_content:  utms.utm_content  || '',
+            utm_term:     utms.utm_term     || '',
+            gclid:        utms.gclid        || '',
+            fbclid:       utms.fbclid       || '',
+            firstVisit:   utms.firstVisit   || agora,
+            sessionId:    sessao,
+
+            // ── Comportamento (tracking) ──
+            tempoTotalSegundos:    tempoTotalSegundos,
+            scrollMaximoPercentual: _tracking.scrollMaximo,
+            cliquesWhatsapp:       _tracking.cliquesWhatsapp,
+            digitouNome:           _tracking.digitouNome,
+            digitouTelefone:       _tracking.digitouTelefone,
+
+            // ── Score ──
+            score: score
         };
 
         if (dadosLead.recaptchaToken) documento.recaptchaToken = dadosLead.recaptchaToken;
 
-        /* TAREFA 6 — evento lead_saved sempre (mesmo sem Firebase) */
-        var gtagParams = { sessionId: sessao, utm_source: documento.utm_source, utm_campaign: documento.utm_campaign };
+        var gtagParams = { sessionId: sessao, utm_source: documento.utm_source, utm_campaign: documento.utm_campaign, score: score };
         if (typeof gtag !== 'undefined') gtag('event', 'lead_saved', gtagParams);
 
         var db = iniciarFirebase();
@@ -142,31 +217,24 @@
 
         db.collection('lp_leads').add(documento)
             .then(function (ref) {
+                console.log('[mfLeads] Lead salvo:', ref.id, '| score:', score);
                 if (typeof gtag !== 'undefined') gtag('event', 'firebase_success', gtagParams);
                 if (typeof callback === 'function') callback(ref.id);
             })
             .catch(function (err) {
                 console.warn('[mfLeads] Firestore error:', err.message);
                 if (typeof gtag !== 'undefined') gtag('event', 'firebase_error', Object.assign({}, gtagParams, { error: err.message }));
-                if (typeof callback === 'function') callback(null); /* não bloqueia WhatsApp */
+                if (typeof callback === 'function') callback(null);
             });
     }
 
     /* ============================================================
-       TAREFA 9 — PIXEL LAYER (preparado para Meta + Google Ads)
+       PIXEL LAYER
        ============================================================ */
     window.mfTracking = {
-        trackLead: function (params) {
-            // Descomentar ao configurar Meta Pixel / Google Ads Conversion:
-            // if (typeof fbq !== 'undefined') fbq('track', 'Lead', params || {});
-            // if (typeof gtag !== 'undefined') gtag('event', 'conversion', { send_to: 'AW-CONVERSION_ID/LABEL' });
-        },
-        trackWhatsapp: function (origem) {
-            // if (typeof fbq !== 'undefined') fbq('trackCustom', 'WhatsAppClick', { origem: origem });
-        },
-        trackPageView: function () {
-            // if (typeof fbq !== 'undefined') fbq('track', 'PageView');
-        }
+        trackLead:     function (params) { /* fbq('track', 'Lead', params) */ },
+        trackWhatsapp: function (origem)  { /* fbq('trackCustom', 'WhatsAppClick', {origem}) */ },
+        trackPageView: function ()        { /* fbq('track', 'PageView') */ }
     };
 
     /* ============================================================
@@ -174,12 +242,12 @@
        ============================================================ */
     capturarParametros();
     obterSessionId();
+    iniciarTracking();
 
-    /* API pública */
     window.mfLeads = {
-        save:                salvarLead,
-        getUTMs:             coletarUTMs,
-        getRecaptchaToken:   obterTokenRecaptcha
+        save:              salvarLead,
+        getUTMs:           coletarUTMs,
+        getRecaptchaToken: obterTokenRecaptcha
     };
 
 })();
