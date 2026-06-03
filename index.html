@@ -1560,6 +1560,11 @@ h2, h3 {
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
         }
 
+        /* Offset para menu fixo de 80px + folga */
+        #servicos, #projetos {
+            scroll-margin-top: 100px;
+        }
+
         html,
         body {
             overflow-x: hidden;
@@ -2624,7 +2629,7 @@ h2, h3 {
             <a href="#servicos">Serviços</a>
             <a href="#projetos">Projetos</a>
 
-            <a href="#contato" class="btn-contato">Contato</a>
+            <a href="#rodape" class="btn-contato">Contato</a>
 
         </nav>
     </header>
@@ -3544,7 +3549,7 @@ h2, h3 {
 
 
     <!-- TAREFA 6 — RODAPÉ PROFISSIONAL -->
-    <footer class="footer-pro">
+    <footer class="footer-pro" id="rodape">
         <div class="footer-pro-grid">
 
             <!-- Coluna 1: Marca -->
