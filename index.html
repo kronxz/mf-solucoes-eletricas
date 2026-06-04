@@ -1967,6 +1967,15 @@ h2, h3 {
 
         .hero-form-btn:active { transform: translateY(0); }
 
+        .campo-erro {
+            display: block;
+            color: #ef4444;
+            font-size: 12px;
+            margin-top: 3px;
+            min-height: 16px;
+            text-align: left;
+        }
+
         .hero-form-note {
             font-size: 12px;
             color: #475569;
@@ -3019,11 +3028,14 @@ h2, h3 {
 
             <!-- FORMULÁRIO DE CAPTURA DE LEAD -->
             <form id="hero-lead-form" class="hero-form" onsubmit="enviarFormHero(event)">
-                <input type="text" id="lead-nome" name="nome" placeholder="👤  Seu nome completo" required autocomplete="name">
+                <input type="text" id="lead-nome" name="nome" placeholder="👤  Seu nome completo" required autocomplete="name" maxlength="100">
+                <span id="lead-nome-erro" class="campo-erro"></span>
                 <div class="hero-form-row">
-                    <input type="tel" id="lead-telefone" name="telefone" placeholder="📱  WhatsApp com DDD" required autocomplete="tel">
-                    <input type="text" id="lead-conta" name="conta" placeholder="💡  Valor da conta (ex: R$ 400)">
+                    <input type="tel" id="lead-telefone" name="telefone" placeholder="📱  WhatsApp com DDD" required autocomplete="tel" maxlength="15">
+                    <input type="text" id="lead-conta" name="conta" placeholder="💡  Valor da conta (ex: 400)" maxlength="10">
                 </div>
+                <span id="lead-telefone-erro" class="campo-erro"></span>
+                <span id="lead-conta-erro" class="campo-erro"></span>
                 <button type="submit" class="hero-form-btn">⚡ Quero Minha Simulação Gratuita</button>
                 <p class="hero-form-note">🔒 Dados usados apenas para contato. Sem spam. Resposta em até 5 min.</p>
             </form>
@@ -4319,19 +4331,57 @@ h2, h3 {
             } catch (e) {}
         };
 
-        // 3. Submissão do formulário Hero → Firestore → WhatsApp + GA4
+        // 3. Validação de campos
+        var _reNome = /^[a-zA-ZÀ-ÿ\s]{2,100}$/;
+
+        function _marcarCampo(id, ok, msg) {
+            var el = document.getElementById(id);
+            var fb = document.getElementById(id + '-erro');
+            if (el) el.style.borderColor = ok ? '' : '#ef4444';
+            if (fb) fb.textContent = ok ? '' : msg;
+            return ok;
+        }
+
+        function _validarNome(v) { return _reNome.test((v || '').trim()); }
+        function _validarTelefone(v) { var d = (v || '').replace(/\D/g, ''); return d.length >= 10 && d.length <= 11; }
+        function _validarConta(v) {
+            if (!v || v === 'Não informado') return true;
+            if (!/^[\d.,]+$/.test(v.trim())) return false;
+            var n = parseFloat(String(v).replace(',', '.'));
+            return !isNaN(n) && n >= 1 && n <= 999999;
+        }
+
+        // Listeners de validação em tempo real
+        document.getElementById('lead-nome')?.addEventListener('input', function () {
+            if (this.value.length > 0) _marcarCampo('lead-nome', _validarNome(this.value), 'Digite apenas letras e espaços.');
+        });
+        document.getElementById('lead-telefone')?.addEventListener('input', function () {
+            if (this.value.length > 0) _marcarCampo('lead-telefone', _validarTelefone(this.value), 'Digite um WhatsApp válido com DDD.');
+        });
+        document.getElementById('lead-conta')?.addEventListener('input', function () {
+            if (this.value.length > 0) _marcarCampo('lead-conta', _validarConta(this.value), 'Digite apenas números.');
+        });
+
+        // Submissão do formulário Hero → Firestore → WhatsApp + GA4
         var _heroFormEnviando = false;
         window.enviarFormHero = function (e) {
             e.preventDefault();
             if (_heroFormEnviando) return;
-            _heroFormEnviando = true;
-
-            var btn = document.querySelector('.hero-form-btn');
-            if (btn) { btn.disabled = true; btn.textContent = '⏳ Enviando...'; btn.style.opacity = '0.7'; }
 
             var nome     = (document.getElementById('lead-nome').value || '').trim();
             var telefone = (document.getElementById('lead-telefone').value || '').trim();
-            var conta    = (document.getElementById('lead-conta').value || '').trim() || 'Não informado';
+            var contaRaw = (document.getElementById('lead-conta').value || '').trim();
+            var conta    = contaRaw || 'Não informado';
+
+            // Validar antes de processar
+            var nomeOk = _marcarCampo('lead-nome',     _validarNome(nome),      'Digite apenas letras e espaços.');
+            var telOk  = _marcarCampo('lead-telefone', _validarTelefone(telefone), 'Digite um WhatsApp válido com DDD.');
+            var contaOk = _marcarCampo('lead-conta',   _validarConta(contaRaw), 'Digite apenas números.');
+            if (!nomeOk || !telOk || !contaOk) return;
+
+            _heroFormEnviando = true;
+            var btn = document.querySelector('.hero-form-btn');
+            if (btn) { btn.disabled = true; btn.textContent = '⏳ Enviando...'; btn.style.opacity = '0.7'; }
 
             // Função de abertura do WhatsApp (executada após salvar no Firestore)
             var abrirWhatsApp = function () {
