@@ -4294,6 +4294,8 @@ h2, h3 {
 
     <!-- Firebase Leads V1 -->
     <script src="js/firebase-leads.js"></script>
+    <!-- Rastreamento de visitantes + QR Codes -->
+    <script src="js/visit-tracking.js"></script>
 
     <script>
     /* =============================================
@@ -4442,9 +4444,10 @@ h2, h3 {
                 var dadosLead = { nome: nome, telefone: telefone, valorConta: conta, origem: 'hero_form' };
                 window.mfLeads.getRecaptchaToken('lead_submit').then(function (token) {
                     if (token) dadosLead.recaptchaToken = token;
-                    window.mfLeads.save(dadosLead, function () {
+                    window.mfLeads.save(dadosLead, function (leadId) {
                         _mostrarSucesso();
                         abrirWhatsApp(); // sempre executado, mesmo se Firebase falhar
+                        if (window.mfVisitTracking) window.mfVisitTracking.registrarLeadConvertido(leadId);
                     });
                 });
             } else {
