@@ -2827,11 +2827,19 @@ h2, h3 {
             margin: 0 auto 60px;
         }
 
+        .footer-brand {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
         .footer-brand img {
             width: 60px; height: 60px;
             border-radius: 50%;
             object-fit: cover;
             margin-bottom: 16px;
+            display: block;
         }
 
         .footer-brand h3 {
@@ -3204,7 +3212,7 @@ h2, h3 {
 
         <div class="numero-box">
 
-            <i class="fas fa-percent icone-numero"></i>
+            <i class="fas fa-coins icone-numero"></i>
 
             <h2><span class="contador" data-target="95">0</span>%</h2>
             <p>Redução na conta</p>
@@ -3745,32 +3753,6 @@ h2, h3 {
 
             </div>
 
-            <!-- Espaço preparado para certificações -->
-            <div style="margin-top:50px;">
-                <p style="font-size:13px; color:#475569; letter-spacing:1px; text-transform:uppercase; margin-bottom:20px; font-weight:600;">Credenciamentos &amp; Formação Técnica</p>
-                <div class="cert-row">
-                    <div class="cert-badge">
-                        <span class="cert-icon">🎓</span>
-                        <span>SENAI</span>
-                        <small>Formação técnica</small>
-                    </div>
-                    <div class="cert-badge">
-                        <span class="cert-icon">📋</span>
-                        <span>CFT</span>
-                        <small>Responsável técnico</small>
-                    </div>
-                    <div class="cert-badge">
-                        <span class="cert-icon">🏛️</span>
-                        <span>CREA</span>
-                        <small>Registro profissional</small>
-                    </div>
-                    <div class="cert-badge">
-                        <span class="cert-icon">✅</span>
-                        <span>NBR 16690</span>
-                        <small>Norma solar fotovoltaica</small>
-                    </div>
-                </div>
-            </div>
 
         </div>
     </section>
@@ -4338,8 +4320,15 @@ h2, h3 {
         };
 
         // 3. Submissão do formulário Hero → Firestore → WhatsApp + GA4
+        var _heroFormEnviando = false;
         window.enviarFormHero = function (e) {
             e.preventDefault();
+            if (_heroFormEnviando) return;
+            _heroFormEnviando = true;
+
+            var btn = document.querySelector('.hero-form-btn');
+            if (btn) { btn.disabled = true; btn.textContent = '⏳ Enviando...'; btn.style.opacity = '0.7'; }
+
             var nome     = (document.getElementById('lead-nome').value || '').trim();
             var telefone = (document.getElementById('lead-telefone').value || '').trim();
             var conta    = (document.getElementById('lead-conta').value || '').trim() || 'Não informado';
@@ -4392,15 +4381,24 @@ h2, h3 {
             }
 
             // TAREFA 5 — Firestore primeiro, WhatsApp depois
+            var _mostrarSucesso = function () {
+                var btn = document.querySelector('.hero-form-btn');
+                if (btn) { btn.textContent = '✅ Solicitação enviada!'; btn.style.opacity = '1'; }
+                var nota = document.querySelector('.hero-form-note');
+                if (nota) nota.textContent = '✅ Solicitação enviada com sucesso! Em instantes entraremos em contato.';
+            };
+
             if (window.mfLeads) {
                 var dadosLead = { nome: nome, telefone: telefone, valorConta: conta, origem: 'hero_form' };
                 window.mfLeads.getRecaptchaToken('lead_submit').then(function (token) {
                     if (token) dadosLead.recaptchaToken = token;
                     window.mfLeads.save(dadosLead, function () {
+                        _mostrarSucesso();
                         abrirWhatsApp(); // sempre executado, mesmo se Firebase falhar
                     });
                 });
             } else {
+                _mostrarSucesso();
                 abrirWhatsApp();
             }
         };
