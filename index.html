@@ -1983,6 +1983,31 @@ h2, h3 {
             margin-top: 4px;
         }
 
+        .hero-form-sucesso {
+            text-align: center;
+            padding: 28px 20px;
+            background: rgba(34,197,94,0.08);
+            border: 1px solid rgba(34,197,94,0.3);
+            border-radius: 16px;
+            margin-top: 8px;
+        }
+        .sucesso-icone {
+            font-size: 2.4rem;
+            margin-bottom: 12px;
+        }
+        .sucesso-titulo {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #22c55e;
+            margin: 0 0 8px;
+        }
+        .sucesso-texto {
+            font-size: 0.92rem;
+            color: #94a3b8;
+            margin: 0;
+            line-height: 1.5;
+        }
+
         /* BOTÃO WHATSAPP POR SEÇÃO */
         .btn-wpp-secao {
             display: inline-flex;
@@ -3028,11 +3053,11 @@ h2, h3 {
 
             <!-- FORMULÁRIO DE CAPTURA DE LEAD -->
             <form id="hero-lead-form" class="hero-form" onsubmit="enviarFormHero(event)">
-                <input type="text" id="lead-nome" name="nome" placeholder="👤  Seu nome completo" required autocomplete="name" maxlength="100">
+                <input type="text" id="lead-nome" name="nome" placeholder="👤  Seu nome completo" required autocomplete="name" maxlength="30">
                 <span id="lead-nome-erro" class="campo-erro"></span>
                 <div class="hero-form-row">
-                    <input type="tel" id="lead-telefone" name="telefone" placeholder="📱  WhatsApp com DDD" required autocomplete="tel" maxlength="15">
-                    <input type="text" id="lead-conta" name="conta" placeholder="💡  Valor da conta (ex: 400)" maxlength="10">
+                    <input type="tel" id="lead-telefone" name="telefone" placeholder="📱  WhatsApp com DDD" required autocomplete="tel" maxlength="13">
+                    <input type="text" id="lead-conta" name="conta" placeholder="💡  Valor da conta (ex: 400)" maxlength="5">
                 </div>
                 <span id="lead-telefone-erro" class="campo-erro"></span>
                 <span id="lead-conta-erro" class="campo-erro"></span>
@@ -4334,7 +4359,9 @@ h2, h3 {
         };
 
         // 3. Validação de campos
-        var _reNome = /^[a-zA-ZÀ-ÿ\s]{2,100}$/;
+        var _reNome = /^[a-zA-ZÀ-ÿ\s]{2,30}$/;
+        var _FLOOD_KEY = 'mf_ultimo_envio';
+        var _FLOOD_MS  = 60000; // 1 minuto
 
         function _marcarCampo(id, ok, msg) {
             var el = document.getElementById(id);
@@ -4344,24 +4371,56 @@ h2, h3 {
             return ok;
         }
 
+        function _sanitizarNome(v) {
+            // Remove qualquer caractere que não seja letra, acento ou espaço
+            return (v || '').replace(/[^a-zA-ZÀ-ÿ\s]/g, '').replace(/\s{2,}/g, ' ').trim().slice(0, 30);
+        }
+        function _sanitizarTelefone(v) {
+            return (v || '').replace(/\D/g, '').slice(0, 13);
+        }
+        function _sanitizarConta(v) {
+            return (v || '').replace(/\D/g, '').slice(0, 5);
+        }
+
         function _validarNome(v) { return _reNome.test((v || '').trim()); }
-        function _validarTelefone(v) { var d = (v || '').replace(/\D/g, ''); return d.length >= 10 && d.length <= 11; }
+        function _validarTelefone(v) { var d = (v || '').replace(/\D/g, ''); return d.length >= 10 && d.length <= 13; }
         function _validarConta(v) {
             if (!v || v === 'Não informado') return true;
-            if (!/^[\d.,]+$/.test(v.trim())) return false;
-            var n = parseFloat(String(v).replace(',', '.'));
-            return !isNaN(n) && n >= 1 && n <= 999999;
+            if (!/^\d+$/.test(v.trim())) return false;
+            var n = parseInt(v.trim(), 10);
+            return !isNaN(n) && n >= 1 && n <= 99999;
+        }
+
+        function _verificarFlood() {
+            var ultimo = parseInt(localStorage.getItem(_FLOOD_KEY) || '0', 10);
+            return (Date.now() - ultimo) < _FLOOD_MS;
+        }
+        function _registrarEnvio() {
+            localStorage.setItem(_FLOOD_KEY, String(Date.now()));
         }
 
         // Listeners de validação em tempo real
-        document.getElementById('lead-nome')?.addEventListener('input', function () {
-            if (this.value.length > 0) _marcarCampo('lead-nome', _validarNome(this.value), 'Digite apenas letras e espaços.');
+        var elNome = document.getElementById('lead-nome');
+        var elTel  = document.getElementById('lead-telefone');
+        var elConta = document.getElementById('lead-conta');
+
+        if (elNome) elNome.addEventListener('input', function () {
+            // Bloquear digitação de caracteres inválidos em tempo real
+            var limpo = this.value.replace(/[^a-zA-ZÀ-ÿ\s]/g, '');
+            if (limpo !== this.value) this.value = limpo;
+            if (this.value.length > 0) _marcarCampo('lead-nome', _validarNome(this.value), 'Use apenas letras e espaços (máx. 30).');
         });
-        document.getElementById('lead-telefone')?.addEventListener('input', function () {
-            if (this.value.length > 0) _marcarCampo('lead-telefone', _validarTelefone(this.value), 'Digite um WhatsApp válido com DDD.');
+        if (elTel) elTel.addEventListener('input', function () {
+            // Manter apenas dígitos automaticamente
+            var limpo = this.value.replace(/\D/g, '').slice(0, 13);
+            if (limpo !== this.value) this.value = limpo;
+            if (this.value.length > 0) _marcarCampo('lead-telefone', _validarTelefone(this.value), 'Digite um WhatsApp válido com DDD (10 a 13 dígitos).');
         });
-        document.getElementById('lead-conta')?.addEventListener('input', function () {
-            if (this.value.length > 0) _marcarCampo('lead-conta', _validarConta(this.value), 'Digite apenas números.');
+        if (elConta) elConta.addEventListener('input', function () {
+            // Manter apenas dígitos automaticamente
+            var limpo = this.value.replace(/\D/g, '').slice(0, 5);
+            if (limpo !== this.value) this.value = limpo;
+            if (this.value.length > 0) _marcarCampo('lead-conta', _validarConta(this.value), 'Digite apenas números (máx. 99999).');
         });
 
         // Submissão do formulário Hero → Firestore → WhatsApp + GA4
@@ -4370,22 +4429,31 @@ h2, h3 {
             e.preventDefault();
             if (_heroFormEnviando) return;
 
-            var nome     = (document.getElementById('lead-nome').value || '').trim();
-            var telefone = (document.getElementById('lead-telefone').value || '').trim();
-            var contaRaw = (document.getElementById('lead-conta').value || '').trim();
+            // CORREÇÃO 6 — Anti-flood: 1 envio por minuto
+            if (_verificarFlood()) {
+                var segundosRestantes = Math.ceil((_FLOOD_MS - (Date.now() - parseInt(localStorage.getItem(_FLOOD_KEY) || '0', 10))) / 1000);
+                var erroNome = document.getElementById('lead-nome-erro');
+                if (erroNome) erroNome.textContent = 'Aguarde ' + segundosRestantes + 's antes de tentar novamente.';
+                return;
+            }
+
+            // CORREÇÃO 7 — Sanitizar e validar (tripla: input + submit + pré-gravação)
+            var nome     = _sanitizarNome(document.getElementById('lead-nome').value);
+            var telefone = _sanitizarTelefone(document.getElementById('lead-telefone').value);
+            var contaRaw = _sanitizarConta(document.getElementById('lead-conta').value);
             var conta    = contaRaw || 'Não informado';
 
-            // Validar antes de processar
-            var nomeOk = _marcarCampo('lead-nome',     _validarNome(nome),      'Digite apenas letras e espaços.');
-            var telOk  = _marcarCampo('lead-telefone', _validarTelefone(telefone), 'Digite um WhatsApp válido com DDD.');
-            var contaOk = _marcarCampo('lead-conta',   _validarConta(contaRaw), 'Digite apenas números.');
+            var nomeOk  = _marcarCampo('lead-nome',     _validarNome(nome),         'Use apenas letras e espaços (máx. 30).');
+            var telOk   = _marcarCampo('lead-telefone', _validarTelefone(telefone),  'Digite um WhatsApp válido com DDD (10 a 13 dígitos).');
+            var contaOk = _marcarCampo('lead-conta',    _validarConta(contaRaw),     'Digite apenas números (máx. 99999).');
             if (!nomeOk || !telOk || !contaOk) return;
 
+            // CORREÇÃO 4 — Bloquear botão imediatamente
             _heroFormEnviando = true;
             var btn = document.querySelector('.hero-form-btn');
             if (btn) { btn.disabled = true; btn.textContent = '⏳ Enviando...'; btn.style.opacity = '0.7'; }
 
-            // Função de abertura do WhatsApp (executada após salvar no Firestore)
+            // Função de abertura do WhatsApp
             var abrirWhatsApp = function () {
                 var msg = encodeURIComponent(
                     'Vi a simulação e quero orçamento.\n\n' +
@@ -4396,7 +4464,7 @@ h2, h3 {
                 window.open('https://wa.me/5521972381004?text=' + msg, '_blank');
             };
 
-            // Salvar lead no localStorage (backup local)
+            // Backup local
             try {
                 var leads = JSON.parse(localStorage.getItem('mf_leads') || '[]');
                 leads.push({
@@ -4426,27 +4494,60 @@ h2, h3 {
 
             registrarClique('hero_form');
 
-            // Pixel layer (preparado para Meta/Google Ads)
             if (window.mfTracking) {
                 window.mfTracking.trackLead({ nome: nome, conta: conta });
                 window.mfTracking.trackWhatsapp('hero_form');
             }
 
-            // TAREFA 5 — Firestore primeiro, WhatsApp depois
+            // CORREÇÃO 5 — Esconder formulário e exibir confirmação profissional
             var _mostrarSucesso = function () {
-                var btn = document.querySelector('.hero-form-btn');
-                if (btn) { btn.textContent = '✅ Solicitação enviada!'; btn.style.opacity = '1'; }
-                var nota = document.querySelector('.hero-form-note');
-                if (nota) nota.textContent = '✅ Solicitação enviada com sucesso! Em instantes entraremos em contato.';
+                var form = document.getElementById('hero-lead-form');
+                if (form) form.style.display = 'none';
+                var container = form ? form.parentNode : null;
+                if (container) {
+                    var bloco = document.createElement('div');
+                    bloco.className = 'hero-form-sucesso';
+
+                    var icone = document.createElement('div');
+                    icone.className = 'sucesso-icone';
+                    icone.textContent = '✅';
+
+                    var titulo = document.createElement('p');
+                    titulo.className = 'sucesso-titulo';
+                    titulo.textContent = 'Solicitação enviada com sucesso.';
+
+                    var texto = document.createElement('p');
+                    texto.className = 'sucesso-texto';
+                    texto.textContent = 'Nossa equipe analisará seus dados e entrará em contato em breve.';
+
+                    bloco.appendChild(icone);
+                    bloco.appendChild(titulo);
+                    bloco.appendChild(texto);
+                    container.insertBefore(bloco, form);
+                }
+                // CORREÇÃO 6 — Registrar timestamp do envio bem-sucedido
+                _registrarEnvio();
             };
 
+            // CORREÇÃO 8 — Validação final antes de gravar (hardening)
+            var dadosFinais = {
+                nome:       _sanitizarNome(nome),
+                telefone:   _sanitizarTelefone(telefone),
+                valorConta: _sanitizarConta(contaRaw) || 'Não informado',
+                origem:     'hero_form'
+            };
+            if (!_validarNome(dadosFinais.nome) || !_validarTelefone(dadosFinais.telefone)) {
+                _heroFormEnviando = false;
+                if (btn) { btn.disabled = false; btn.textContent = '⚡ Quero Minha Simulação Gratuita'; btn.style.opacity = '1'; }
+                return;
+            }
+
             if (window.mfLeads) {
-                var dadosLead = { nome: nome, telefone: telefone, valorConta: conta, origem: 'hero_form' };
                 window.mfLeads.getRecaptchaToken('lead_submit').then(function (token) {
-                    if (token) dadosLead.recaptchaToken = token;
-                    window.mfLeads.save(dadosLead, function (leadId) {
+                    if (token) dadosFinais.recaptchaToken = token;
+                    window.mfLeads.save(dadosFinais, function (leadId) {
                         _mostrarSucesso();
-                        abrirWhatsApp(); // sempre executado, mesmo se Firebase falhar
+                        abrirWhatsApp();
                         if (window.mfVisitTracking) window.mfVisitTracking.registrarLeadConvertido(leadId);
                     });
                 });
