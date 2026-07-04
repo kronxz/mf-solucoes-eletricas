@@ -31,7 +31,7 @@
                 .then(function () {
                     sessionStorage.setItem('mf_visit_ok', '1');
                 })
-                .catch(function () { /* silencioso */ });
+                .catch(function (err) { console.warn('[visit-tracking] Firestore write failed:', err); });
         } catch (e) { /* silencioso */ }
     }, 800); // aguarda firebase-leads.js inicializar Firebase
 })();
