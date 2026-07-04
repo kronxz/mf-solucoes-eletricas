@@ -56,6 +56,7 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MF Energia Solar</title>
+    <link rel="icon" type="image/png" href="imagens/logo.png">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <!-- Firebase SDK (compat) — preencher config em js/firebase-leads.js antes do deploy -->
@@ -3008,6 +3009,39 @@ h2, h3 {
             .footer-bottom-badges { justify-content: center; }
         }
 
+
+        /* ===================================================
+           CENTRALIZAÇÃO DESKTOP (min-width: 769px)
+           Não toca no mobile — mobile já está perfeito
+        =================================================== */
+        @media (min-width: 769px) {
+            /* Hero — título, parágrafo e badge centrados */
+            .hero-content {
+                text-align: center;
+            }
+            /* Formulário: o container pode ser centralizado,
+               mas os campos permanecem com texto à esquerda */
+            .hero-form input,
+            .hero-form select {
+                text-align: left;
+            }
+            /* Blocos de feature (imagem + texto lado a lado) */
+            .bloco div {
+                text-align: center;
+            }
+            .bloco h3,
+            .bloco p {
+                text-align: center;
+            }
+            /* Cards de serviço */
+            .card {
+                text-align: center;
+            }
+            /* Passos */
+            .passo-box {
+                text-align: center;
+            }
+        }
     </style>
 </head>
 
@@ -4478,9 +4512,6 @@ h2, h3 {
                 localStorage.setItem('mf_leads', JSON.stringify(leads));
             } catch (_) {}
 
-            // Meta Pixel
-            if (typeof fbq !== 'undefined') fbq('track', 'Lead', { content_name: 'hero_form', value: conta });
-
             // GA4
             if (typeof gtag !== 'undefined') {
                 gtag('event', 'lead_submit', {
@@ -4495,7 +4526,7 @@ h2, h3 {
             registrarClique('hero_form');
 
             if (window.mfTracking) {
-                window.mfTracking.trackLead({ nome: nome, conta: conta });
+                window.mfTracking.trackLead({ content_name: 'hero_form', value: conta });
                 window.mfTracking.trackWhatsapp('hero_form');
             }
 
@@ -4557,18 +4588,7 @@ h2, h3 {
             }
         };
 
-        // 4. Rastreamento de cliques no WhatsApp (Links wa.me / whatsapp.com)
-        document.addEventListener('click', function (e) {
-            var targetLink = e.target.closest('a');
-            if (targetLink && targetLink.href && (targetLink.href.indexOf('wa.me') > -1 || targetLink.href.indexOf('whatsapp.com') > -1)) {
-                if (typeof gtag !== 'undefined') {
-                    gtag('event', 'whatsapp_click', {
-                        origem: targetLink.getAttribute('onclick') || targetLink.className || 'link_whatsapp',
-                        href: targetLink.href
-                    });
-                }
-            }
-        });
+        // 4. Rastreamento de cliques no WhatsApp — feito por js/firebase-leads.js (fonte única, evita duplicidade no GA4)
 
         // 5. Rastreamento de cliques em Seções Específicas
         var projetosSec = document.getElementById('projetos');
