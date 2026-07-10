@@ -1,0 +1,70 @@
+name: Guard main = redirect QR codes
+
+# ADR-0003 — A branch `main` deste repo é SAGRADA: contem APENAS a pagina de
+# redirect para https://mfsolucaosolar.com.br/ (servida via GitHub Pages para os
+# QR codes JA IMPRESSOS fisicamente). Em 04/07/2026 um merge sobrescreveu esse
+# redirect pelo site completo e derrubou os QR codes (HTTP 404).
+#
+# Esta guarda FALHA (quebra o CI) se o index.html da `main` deixar de ser o
+# redirect. Assim, qualquer PR/push que tente subir o site completo na main
+# fica visivelmente vermelho e avisa antes de estragar a producao.
+#
+# IMPORTANTE: para a guarda proteger de fato, este arquivo precisa existir NA
+# branch `main`. Enquanto nao estiver na main, ela so valida PRs cujo destino
+# seja a main (o Action roda a partir do arquivo presente no merge/branch alvo).
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch: {}
+
+jobs:
+  verificar-redirect:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout do codigo
+        uses: actions/checkout@v4
+
+      - name: index.html existe
+        run: |
+          if [ ! -f index.html ]; then
+            echo "::error::index.html NAO existe na main. A main deve conter a pagina de redirect (ADR-0003)."
+            exit 1
+          fi
+
+      - name: Contem meta-refresh para mfsolucaosolar.com.br
+        run: |
+          if ! grep -Eiq 'http-equiv=["'\'']?refresh' index.html; then
+            echo "::error::index.html NAO tem <meta http-equiv=\"refresh\">. A main deixou de ser redirect (ADR-0003)."
+            exit 1
+          fi
+          if ! grep -Eiq 'mfsolucaosolar\.com\.br' index.html; then
+            echo "::error::index.html NAO aponta para mfsolucaosolar.com.br. Redirect quebrado (ADR-0003)."
+            exit 1
+          fi
+          echo "OK: meta-refresh -> mfsolucaosolar.com.br presente."
+
+      - name: Contem fallback window.location para o dominio
+        run: |
+          if ! grep -Eiq 'window\.location' index.html; then
+            echo "::error::index.html NAO tem fallback window.location. Redirect JS ausente (ADR-0003)."
+            exit 1
+          fi
+          echo "OK: fallback window.location presente."
+
+      - name: Guarda contra site completo na main (heuristica)
+        run: |
+          # A pagina de redirect e minima. Se o index.html ficar grande demais,
+          # provavelmente alguem subiu o site completo por engano.
+          bytes=$(wc -c < index.html)
+          echo "Tamanho do index.html: ${bytes} bytes"
+          if [ "$bytes" -gt 4000 ]; then
+            echo "::error::index.html tem ${bytes} bytes (> 4000). A pagina de redirect e minima; isso parece o SITE COMPLETO. Bloqueando (ADR-0003)."
+            exit 1
+          fi
+          echo "OK: index.html dentro do tamanho esperado para redirect."
+
+      - name: Resumo
+        run: echo "Guarda OK — a main continua sendo a pagina de redirect dos QR codes."
